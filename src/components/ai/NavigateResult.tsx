@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { ArrowRight, MapPin } from 'lucide-react'
+import { ArrowRight, MapPin, Sparkles } from 'lucide-react'
 import type { NavigateTarget } from '../../types/ai.types'
 import { useAIStore } from '../../stores/aiStore'
 
@@ -10,7 +10,7 @@ interface Props {
 
 export default function NavigateResult({ target, question }: Props) {
   const navigate = useNavigate()
-  const { close } = useAIStore()
+  const { close, forceAnalysis } = useAIStore()
 
   const handleNavigate = () => {
     close()
@@ -38,14 +38,29 @@ export default function NavigateResult({ target, question }: Props) {
         </div>
       </div>
 
-      <button
-        onClick={handleNavigate}
-        className="flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
-        style={{ backgroundColor: 'var(--client-primary)' }}
-      >
-        Go to {target.pageName}
-        <ArrowRight size={16} />
-      </button>
+      <div className="flex gap-2">
+        <button
+          onClick={handleNavigate}
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-colors hover:opacity-90"
+          style={{ backgroundColor: 'var(--client-primary)' }}
+        >
+          Go to {target.pageName}
+          <ArrowRight size={16} />
+        </button>
+
+        <button
+          onClick={() => forceAnalysis(question)}
+          className="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors hover:opacity-90"
+          style={{
+            color: 'var(--client-text)',
+            backgroundColor: 'rgba(var(--client-accent-rgb), 0.12)',
+            border: '1px solid rgba(var(--client-accent-rgb), 0.3)',
+          }}
+        >
+          <Sparkles size={14} />
+          Custom Analysis
+        </button>
+      </div>
     </div>
   )
 }

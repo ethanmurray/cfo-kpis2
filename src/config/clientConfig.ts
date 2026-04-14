@@ -396,15 +396,156 @@ export const SCOTIABANK_CONFIG: ClientConfig = {
 }
 
 // ---------------------------------------------------------------------------
+// Acme Bank Configuration (generic demo client, reuses Northern Trust colors)
+// ---------------------------------------------------------------------------
+export const ACME_BANK_CONFIG: ClientConfig = {
+  id: 'acme',
+  name: 'Acme Bank Corporation',
+  shortName: 'Acme Bank',
+  ticker: 'ACME',
+  headquarters: 'New York, New York',
+  colors: { ...NORTHERN_TRUST_CONFIG.colors },
+  logo: {
+    monogram: 'AB',
+    textLines: ['ACME', 'BANK'],
+  },
+
+  baseAUC: 8_500_000_000_000,
+  baseRevenue: 12_000_000_000,
+  clientCount: 1_200,
+  marketCap: 32_000_000_000,
+  dividendYield: 2.8,
+  efficiencyRatio: 61.5,
+  totalEmployees: 35_000,
+  sharesOutstanding: 420_000_000,
+  totalBookValue: 28_000_000_000,
+  intangibles: 5_200_000_000,
+  taxRate: 0.21,
+  roe: 12.4,
+  roa: 0.95,
+  nonInterestIncomeShare: 0.65,
+
+  segments: [
+    {
+      name: 'Commercial Banking',
+      revenueShare: 0.35,
+      expenseShare: 0.32,
+      assets: 180_000_000_000,
+      roe: 14.2,
+      efficiencyRatio: 58.5,
+      headcount: 12_000,
+      revenueGrowth: 4.8,
+    },
+    {
+      name: 'Wealth & Asset Management',
+      revenueShare: 0.30,
+      expenseShare: 0.28,
+      assets: 95_000_000_000,
+      roe: 13.1,
+      efficiencyRatio: 62.3,
+      headcount: 8_500,
+      revenueGrowth: 5.5,
+    },
+    {
+      name: 'Capital Markets',
+      revenueShare: 0.20,
+      expenseShare: 0.22,
+      assets: 120_000_000_000,
+      roe: 10.8,
+      efficiencyRatio: 66.8,
+      headcount: 6_500,
+      revenueGrowth: 3.2,
+    },
+    {
+      name: 'Retail Banking',
+      revenueShare: 0.15,
+      expenseShare: 0.18,
+      assets: 85_000_000_000,
+      roe: 9.5,
+      efficiencyRatio: 72.1,
+      headcount: 8_000,
+      revenueGrowth: 2.1,
+    },
+  ],
+
+  revenueCategories: [
+    { category: 'Net Interest Income', share: 0.35 },
+    { category: 'Asset Management Fees', share: 0.22 },
+    { category: 'Transaction & Advisory', share: 0.18 },
+    { category: 'Lending Fees', share: 0.12 },
+    { category: 'Trading Revenue', share: 0.08 },
+    { category: 'Other Income', share: 0.05 },
+  ],
+
+  departments: [
+    { department: 'Commercial Banking', employees: 12_000, revenueShare: 0.35 },
+    { department: 'Wealth & Asset Management', employees: 8_500, revenueShare: 0.30 },
+    { department: 'Capital Markets', employees: 6_500, revenueShare: 0.20 },
+    { department: 'Retail Banking', employees: 8_000, revenueShare: 0.15 },
+  ],
+
+  aucDistribution: {
+    byAssetClass: [
+      { class: 'Equities', percentage: 42 },
+      { class: 'Fixed Income', percentage: 30 },
+      { class: 'Alternatives', percentage: 16 },
+      { class: 'Cash & Money Market', percentage: 12 },
+    ],
+    byRegion: [
+      { region: 'North America', percentage: 60 },
+      { region: 'Europe', percentage: 22 },
+      { region: 'Asia-Pacific', percentage: 13 },
+      { region: 'Other', percentage: 5 },
+    ],
+    byClientSegment: [
+      { segment: 'Institutional', percentage: 35 },
+      { segment: 'High Net Worth', percentage: 25 },
+      { segment: 'Corporate', percentage: 20 },
+      { segment: 'Retail', percentage: 15 },
+      { segment: 'Government', percentage: 5 },
+    ],
+  },
+
+  peers: [
+    { ticker: 'ACME', name: 'Acme Bank Corporation', isOwn: true },
+    { ticker: 'JPM', name: 'JPMorgan Chase & Co.' },
+    { ticker: 'BAC', name: 'Bank of America Corp.' },
+    { ticker: 'WFC', name: 'Wells Fargo & Company' },
+    { ticker: 'C', name: 'Citigroup Inc.' },
+    { ticker: 'USB', name: 'U.S. Bancorp' },
+    { ticker: 'PNC', name: 'PNC Financial Services' },
+    { ticker: 'TFC', name: 'Truist Financial Corp.' },
+    { ticker: 'STT', name: 'State Street Corporation' },
+    { ticker: 'BK', name: 'Bank of New York Mellon' },
+    { ticker: 'NTRS', name: 'Northern Trust Corporation' },
+    { ticker: 'SCHW', name: 'Charles Schwab Corp.' },
+  ],
+  globalRanking: 8,
+
+  aiContext: {
+    companyDescription: 'Acme Bank Corporation, a diversified financial services company',
+    companyBulletPoints: [
+      'Assets Under Custody/Administration: $8.5 trillion',
+      'Annual Revenue: ~$12 billion',
+      '~35,000 employees globally',
+      'Diversified across commercial, wealth, capital markets, and retail banking',
+      'Headquarters: New York, New York',
+    ],
+    chartColorsCSS: '#006747 (green), #D4AF37 (gold), #10b981, #3b82f6, #f59e0b, #ef4444, #8b5cf6',
+  },
+}
+
+// ---------------------------------------------------------------------------
 // Registry
 // ---------------------------------------------------------------------------
 export const CLIENT_CONFIGS: Record<string, ClientConfig> = {
   ntrs: NORTHERN_TRUST_CONFIG,
   bns: SCOTIABANK_CONFIG,
+  acme: ACME_BANK_CONFIG,
 }
 
-export const DEFAULT_CLIENT_ID = 'ntrs'
+export const DEFAULT_CLIENT_ID = 'acme'
 
 export function getClientConfig(clientId: string): ClientConfig {
-  return CLIENT_CONFIGS[clientId] ?? NORTHERN_TRUST_CONFIG
+  return CLIENT_CONFIGS[clientId] ?? ACME_BANK_CONFIG
 }

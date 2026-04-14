@@ -26,6 +26,7 @@ interface AIState {
 
   // Async actions
   submitQuestion: (question: string, filters?: Record<string, string>) => Promise<void>
+  forceAnalysis: (question: string, filters?: Record<string, string>) => Promise<void>
 }
 
 export const useAIStore = create<AIState>((set, get) => ({
@@ -122,6 +123,50 @@ export const useAIStore = create<AIState>((set, get) => ({
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Something went wrong'
       set({ error: message, isLoading: false, isClassifying: false })
+    }
+  },
+
+  forceAnalysis: async (question, filters) => {
+    const state = get()
+    const clientId = useClientStore.getState().clientId
+    set({ isLoading: true, isClassifying: false, error: null, currentReport: null })
+
+    try {
+      const conversationHistory = state.currentReport?.dynamicReport
+        ? [
+            { role: 'user' as const, content: state.currentReport.question },
+            { role: 'assistant' as const, content: state.currentReport.dynamicReport.narrative },
+          ]
+        : undefined
+
+      const askRes = await fetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, filters, conversationHistory, clientId }),
+      })
+
+      if (!askRes.ok) throw new Error('Analysis failed')
+
+      const askData: AskResponse = await askRes.json()
+
+      const report: AIReport = {
+        question,
+        tier: 'dynamic',
+        dynamicReport: {
+          narrative: askData.narrative,
+          pythonCode: askData.pythonCode,
+          stdout: askData.stdout,
+          images: askData.images,
+          error: askData.error,
+        },
+        timestamp: new Date().toISOString(),
+      }
+
+      set({ currentReport: report, isLoading: false })
+      state.addToHistory(report)
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Something went wrong'
+      set({ error: message, isLoading: false })
     }
   },
 }))
