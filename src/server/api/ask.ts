@@ -115,16 +115,44 @@ async function handleDirectAnalysis(
     userPrompt = `Previous conversation:\n${historyContext}\n\nNew question: ${userPrompt}`
   }
 
-  const analysis = await generateDirectAnalysis(
+  userPrompt += `\n\nRemember: respond with ONLY valid JSON containing "narrative" and "chart" fields. The chart must be a complete SVG element.`
+
+  const rawText = await generateDirectAnalysis(
     DIRECT_ANALYSIS_SYSTEM_PROMPT,
     userPrompt
   )
 
+  // Parse the JSON response to extract narrative and SVG chart
+  let narrative = ''
+  const images: string[] = []
+
+  try {
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/)
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0])
+      narrative = parsed.narrative || ''
+      if (parsed.chart) {
+        images.push('svg:' + parsed.chart)
+      }
+    } else {
+      narrative = rawText
+    }
+  } catch {
+    // If JSON parsing fails, try to extract SVG separately
+    const svgMatch = rawText.match(/<svg[\s\S]*?<\/svg>/)
+    if (svgMatch) {
+      images.push('svg:' + svgMatch[0])
+      narrative = rawText.replace(svgMatch[0], '').trim()
+    } else {
+      narrative = rawText
+    }
+  }
+
   return {
-    narrative: analysis,
+    narrative,
     pythonCode: '',
     stdout: '',
-    images: [],
+    images,
     error: null,
   }
 }

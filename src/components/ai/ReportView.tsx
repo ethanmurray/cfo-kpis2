@@ -34,15 +34,23 @@ export default function ReportView({ report, question }: Props) {
             Visualizations
           </div>
           <div className="space-y-3">
-            {report.images.map((img, i) => (
-              <img
-                key={i}
-                src={`data:image/png;base64,${img}`}
-                alt={`Chart ${i + 1}`}
-                className="w-full rounded-md border border-gray-100"
-                style={{ maxHeight: 400 }}
-              />
-            ))}
+            {report.images.map((img, i) =>
+              img.startsWith('svg:') ? (
+                <div
+                  key={i}
+                  className="w-full rounded-md border border-gray-100 overflow-hidden bg-white"
+                  dangerouslySetInnerHTML={{ __html: img.slice(4) }}
+                />
+              ) : (
+                <img
+                  key={i}
+                  src={`data:image/png;base64,${img}`}
+                  alt={`Chart ${i + 1}`}
+                  className="w-full rounded-md border border-gray-100"
+                  style={{ maxHeight: 400 }}
+                />
+              )
+            )}
           </div>
         </div>
       )}

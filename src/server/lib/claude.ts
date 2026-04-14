@@ -53,7 +53,7 @@ export async function generateDirectAnalysis(
 ): Promise<string> {
   const response = await anthropic.messages.create({
     model: SONNET_MODEL,
-    max_tokens: 2048,
+    max_tokens: 8192,
     system: systemPrompt,
     messages: [{ role: 'user', content: userPrompt }],
   })
