@@ -436,10 +436,10 @@ export default function RiskCompliance() {
             }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <Activity className="h-6 w-6" style={{ color: '#D4AF37' }} />
+                  <Activity className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Risk Metrics by Category</h2>
+                  <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Risk Metrics by Category</h2>
                   <p className="text-xs" style={{ color: '#6b7280' }}>Key risk measures across major risk types</p>
                 </div>
               </div>
@@ -466,7 +466,7 @@ export default function RiskCompliance() {
                     }}>
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <span className="text-sm font-semibold" style={{ color: '#006747' }}>{item.category}</span>
+                          <span className="text-sm font-semibold" style={{ color: 'var(--client-primary)' }}>{item.category}</span>
                           <span className="text-xs block" style={{ color: '#6b7280' }}>{item.metric}</span>
                         </div>
                         <span className={`text-xs font-semibold ${item.trend < 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -500,7 +500,7 @@ export default function RiskCompliance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747' }}>
+              <h3 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)' }}>
                 Risk Metrics Trend (Last 4 Months)
               </h3>
               <ResponsiveContainer width="100%" height={250}>
@@ -529,9 +529,9 @@ export default function RiskCompliance() {
             }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <Shield className="h-6 w-6" style={{ color: '#D4AF37' }} />
+                  <Shield className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
                 </div>
-                <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Risk Appetite Framework</h2>
+                <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Risk Appetite Framework</h2>
               </div>
 
               <div className="space-y-3">
@@ -539,7 +539,7 @@ export default function RiskCompliance() {
                   <div key={idx} className="p-4 rounded-xl bg-white border border-gray-100">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-3">
-                        <span className="text-sm font-semibold" style={{ color: '#006747' }}>{item.metric}</span>
+                        <span className="text-sm font-semibold" style={{ color: 'var(--client-primary)' }}>{item.metric}</span>
                         <div className="flex items-center gap-1">
                           {item.status === 'excellent' && <CheckCircle2 className="h-4 w-4 text-green-600" />}
                           {item.status === 'good' && <CheckCircle2 className="h-4 w-4 text-blue-600" />}
@@ -594,9 +594,9 @@ export default function RiskCompliance() {
             }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <CheckCircle2 className="h-6 w-6" style={{ color: '#D4AF37' }} />
+                  <CheckCircle2 className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
                 </div>
-                <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Compliance Activity by Category</h2>
+                <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Compliance Activity by Category</h2>
               </div>
 
               <div className="grid grid-cols-5 gap-3 mb-6">
@@ -631,7 +631,7 @@ export default function RiskCompliance() {
 
               {/* Compliance Trends */}
               <div className="mt-6">
-                <h3 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747' }}>
+                <h3 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)' }}>
                   Compliance Trends (Last 4 Months)
                 </h3>
                 <ResponsiveContainer width="100%" height={250}>
@@ -661,9 +661,9 @@ export default function RiskCompliance() {
             }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <Activity className="h-6 w-6" style={{ color: '#D4AF37' }} />
+                  <Activity className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
                 </div>
-                <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Regulatory Examination Status</h2>
+                <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Regulatory Examination Status</h2>
               </div>
 
               <div className="space-y-3">
@@ -672,7 +672,7 @@ export default function RiskCompliance() {
                     <div className="flex items-center justify-between mb-3">
                       <div>
                         <div className="flex items-center gap-3">
-                          <span className="text-sm font-bold" style={{ color: '#006747' }}>{item.regulator}</span>
+                          <span className="text-sm font-bold" style={{ color: 'var(--client-primary)' }}>{item.regulator}</span>
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
                             item.status === 'Completed' ? 'bg-green-100 text-green-700' :
                             item.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
@@ -712,9 +712,9 @@ export default function RiskCompliance() {
             }}>
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-                  <TrendingDown className="h-6 w-6" style={{ color: '#D4AF37' }} />
+                  <TrendingDown className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
                 </div>
-                <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Upcoming Regulatory Changes</h2>
+                <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Upcoming Regulatory Changes</h2>
               </div>
 
               <div className="space-y-3">
@@ -723,7 +723,7 @@ export default function RiskCompliance() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <div className="flex items-center gap-3">
-                          <span className="text-sm font-bold" style={{ color: '#006747' }}>{item.regulation}</span>
+                          <span className="text-sm font-bold" style={{ color: 'var(--client-primary)' }}>{item.regulation}</span>
                           <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
                             item.impact === 'High' ? 'bg-red-100 text-red-700' :
                             item.impact === 'Medium' ? 'bg-amber-100 text-amber-700' :
@@ -780,7 +780,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>SOX 302/404 Testing Status by Quarter</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>SOX 302/404 Testing Status by Quarter</h3>
                   <div className="grid grid-cols-4 gap-4">
                     {Object.entries(soxTestingStatus).map(([quarter, data]) => (
                       <div key={quarter} className="p-4 rounded-xl bg-white border-2" style={{
@@ -832,7 +832,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Certification Timeline & Milestones</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Certification Timeline & Milestones</h3>
                   <div className="space-y-3">
                     {certificationTimeline.map((item, idx) => (
                       <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-white border border-gray-100">
@@ -866,7 +866,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>IT General Controls (ITGCs) Status</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>IT General Controls (ITGCs) Status</h3>
                   <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">
                       <thead className="bg-gray-50">
@@ -930,7 +930,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Control Effectiveness by Process Area</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Control Effectiveness by Process Area</h3>
                   <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">
                       <thead className="bg-gray-50">
@@ -1001,7 +1001,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Key Control Risk Indicators (KRIs)</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Key Control Risk Indicators (KRIs)</h3>
                   <div className="space-y-3">
                     {controlKRIs.map((kri, idx) => (
                       <div key={idx} className="p-4 rounded-xl bg-white border-l-4" style={{
@@ -1086,7 +1086,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Deficiency Details & Remediation Status</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Deficiency Details & Remediation Status</h3>
                   <div className="space-y-3">
                     {openDeficiencies.map((deficiency) => (
                       <div key={deficiency.id} className="p-4 rounded-xl bg-white border-l-4" style={{
@@ -1141,7 +1141,7 @@ export default function RiskCompliance() {
                   background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                   border: '1px solid rgba(0, 77, 53, 0.08)'
                 }}>
-                  <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Required Remediation Actions</h3>
+                  <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Required Remediation Actions</h3>
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg bg-red-50">
                       <div className="flex items-center gap-2 mb-2">

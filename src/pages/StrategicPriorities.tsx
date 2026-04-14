@@ -5,8 +5,10 @@ import { CheckCircle, AlertTriangle, TrendingUp, Users, Target, Rocket } from 'l
 import LineChart from '../components/charts/LineChart'
 import BarChart from '../components/charts/BarChart'
 import DataTable from '../components/DataTable'
+import { useClientStore } from '../stores/clientStore'
 
 export default function StrategicPriorities() {
+  const config = useClientStore((s) => s.config)
   const strategicData = getStrategicTargetsData()
   const marketData = getMarketPositionData()
   const peerData = getPeerComparisonData()
@@ -309,10 +311,10 @@ export default function StrategicPriorities() {
                     format: (v: number) => (v * 100).toFixed(2),
                   },
                   {
-                    header: 'Position vs Northern Trust',
+                    header: `Position vs ${config.shortName}`,
                     accessor: 'averageFee',
                     format: (v: number) => {
-                      const ourFee = marketData.competitiveFees.find(c => c.competitor === 'Northern Trust')?.averageFee || 0
+                      const ourFee = marketData.competitiveFees.find(c => c.competitor === config.shortName)?.averageFee || 0
                       const diff = ((v - ourFee) / ourFee) * 100
                       if (Math.abs(diff) < 1) return 'Similar'
                       return diff > 0 ? `${diff.toFixed(1)}% higher` : `${Math.abs(diff).toFixed(1)}% lower`
@@ -432,10 +434,10 @@ export default function StrategicPriorities() {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {peerData.peers.map((peer, index) => {
-                    const isNorthernTrust = peer.name === 'Northern Trust'
+                    const isOwnCompany = peer.name === config.shortName
                     return (
-                      <tr key={index} className={isNorthernTrust ? 'bg-blue-50' : 'hover:bg-gray-50'}>
-                        <td className={`whitespace-nowrap px-6 py-4 text-sm ${isNorthernTrust ? 'font-bold text-blue-900' : 'text-gray-900'}`}>
+                      <tr key={index} className={isOwnCompany ? 'bg-blue-50' : 'hover:bg-gray-50'}>
+                        <td className={`whitespace-nowrap px-6 py-4 text-sm ${isOwnCompany ? 'font-bold text-blue-900' : 'text-gray-900'}`}>
                           {peer.name}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900">

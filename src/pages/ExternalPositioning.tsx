@@ -5,8 +5,10 @@ import ValuationView from '../components/peer/ValuationView'
 import CompactMetricCard from '../components/CompactMetricCard'
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Cell } from 'recharts'
 import { TrendingUp, Users, Award, Target, CheckCircle2, AlertCircle, Clock } from 'lucide-react'
+import { useClientStore } from '../stores/clientStore'
 
 export default function ExternalPositioning() {
+  const config = useClientStore((s) => s.config)
   // Strategic positioning vs peers
   const strategicPosition = [
     { dimension: 'Scale', score: 85, benchmark: 72 },
@@ -31,7 +33,7 @@ export default function ExternalPositioning() {
   const marketShareData = [
     { competitor: 'BNY Mellon', share: 28.5, color: '#6b7280' },
     { competitor: 'State Street', share: 26.2, color: '#6b7280' },
-    { competitor: 'Northern Trust', share: 18.8, color: '#D4AF37' },
+    { competitor: config.shortName, share: 18.8, color: '#D4AF37' },
     { competitor: 'JP Morgan', share: 15.3, color: '#6b7280' },
     { competitor: 'Others', share: 11.2, color: '#6b7280' },
   ]
@@ -156,7 +158,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
                 Strategic Position vs Peer Average (Percentile Scores)
               </h3>
               <div className="grid grid-cols-2 gap-6">
@@ -165,7 +167,7 @@ export default function ExternalPositioning() {
                     <PolarGrid stroke="rgba(0, 77, 53, 0.1)" />
                     <PolarAngleAxis dataKey="dimension" style={{ fontSize: '12px', fill: '#6b7280' }} />
                     <PolarRadiusAxis domain={[0, 100]} style={{ fontSize: '10px', fill: '#9ca3af' }} />
-                    <Radar name="Northern Trust" dataKey="score" stroke="#D4AF37" fill="#D4AF37" fillOpacity={0.5} strokeWidth={2} />
+                    <Radar name={config.shortName} dataKey="score" stroke="#D4AF37" fill="#D4AF37" fillOpacity={0.5} strokeWidth={2} />
                     <Radar name="Peer Average" dataKey="benchmark" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.2} strokeWidth={2} />
                     <Legend />
                   </RadarChart>
@@ -176,9 +178,9 @@ export default function ExternalPositioning() {
                       backgroundColor: 'rgba(0, 77, 53, 0.02)'
                     }}>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-sm" style={{ color: '#006747' }}>{item.dimension}</span>
+                        <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>{item.dimension}</span>
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-bold" style={{ color: '#D4AF37' }}>
+                          <span className="text-sm font-bold" style={{ color: 'var(--client-accent)' }}>
                             {item.score}th
                           </span>
                           <span className="text-xs" style={{ color: '#6b7280' }}>
@@ -192,7 +194,7 @@ export default function ExternalPositioning() {
                             className="h-2 rounded-full transition-all duration-500"
                             style={{
                               width: `${item.score}%`,
-                              backgroundColor: item.score >= 80 ? '#10b981' : item.score >= 70 ? '#D4AF37' : '#f59e0b'
+                              backgroundColor: item.score >= 80 ? '#10b981' : item.score >= 70 ? 'var(--client-accent)' : '#f59e0b'
                             }}
                           />
                         </div>
@@ -213,7 +215,7 @@ export default function ExternalPositioning() {
                   </ul>
                 </div>
                 <div className="p-4 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                  <div className="font-bold mb-2" style={{ color: '#D4AF37' }}>Competitive (70-79)</div>
+                  <div className="font-bold mb-2" style={{ color: 'var(--client-accent)' }}>Competitive (70-79)</div>
                   <ul className="space-y-1" style={{ color: '#6b7280' }}>
                     <li>• Efficiency: 79th percentile</li>
                     <li>• Profitability: 72nd percentile</li>
@@ -235,21 +237,21 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Competitive Metrics & Rankings</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Competitive Metrics & Rankings</h3>
               <table className="min-w-full">
                 <thead style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Metric</th>
-                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Value</th>
-                    <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Industry Rank</th>
-                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Trend</th>
+                    <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Metric</th>
+                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Value</th>
+                    <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Industry Rank</th>
+                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Trend</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y" style={{ divideColor: 'rgba(0, 77, 53, 0.05)' }}>
+                <tbody className="divide-y" style={{ borderColor: 'rgba(var(--client-primary-rgb), 0.05)' }}>
                   {competitiveMetrics.map((item, idx) => (
                     <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-sm" style={{ color: '#006747' }}>{item.metric}</td>
-                      <td className="px-6 py-4 text-right text-xl font-bold" style={{ color: '#D4AF37' }}>{item.value}</td>
+                      <td className="px-6 py-4 font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>{item.metric}</td>
+                      <td className="px-6 py-4 text-right text-xl font-bold" style={{ color: 'var(--client-accent)' }}>{item.value}</td>
                       <td className="px-6 py-4 text-center">
                         <span className="px-4 py-2 rounded-full text-sm font-bold" style={{
                           backgroundColor: `${getRankColor(item.rank)}15`,
@@ -274,7 +276,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>US Custody Market Share</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>US Custody Market Share</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={marketShareData} layout="horizontal">
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -302,7 +304,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Win/Loss Analysis (Last 5 Quarters)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Win/Loss Analysis (Last 5 Quarters)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={winLossData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -338,10 +340,10 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Key Differentiators</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Key Differentiators</h3>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: '#006747' }}>Strengths</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Strengths</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
                       <span className="text-green-600 font-bold">✓</span>
@@ -358,7 +360,7 @@ export default function ExternalPositioning() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: '#006747' }}>Neutral</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Neutral</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}>
                       <span className="text-amber-600 font-bold">~</span>
@@ -375,7 +377,7 @@ export default function ExternalPositioning() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: '#006747' }}>Gaps</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Gaps</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
                       <span className="text-red-600 font-bold">✗</span>

@@ -50,7 +50,7 @@ export default function AskPanel() {
                 <ArrowLeft size={18} />
               </button>
             )}
-            <Sparkles size={18} style={{ color: '#006747' }} />
+            <Sparkles size={18} style={{ color: 'var(--client-primary)' }} />
             <span className="text-sm font-semibold text-gray-800">
               AI Assistant
             </span>

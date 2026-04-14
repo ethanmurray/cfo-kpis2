@@ -22,7 +22,7 @@ export default function AskButton() {
     <button
       onClick={toggle}
       className="fixed bottom-6 right-6 z-40 flex items-center gap-2 rounded-full px-5 py-3 text-white shadow-lg transition-all hover:shadow-xl hover:scale-105 active:scale-95"
-      style={{ backgroundColor: '#006747' }}
+      style={{ backgroundColor: 'var(--client-primary)' }}
       title="Ask AI (Ctrl+K)"
     >
       <Sparkles size={20} />

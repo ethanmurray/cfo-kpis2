@@ -101,7 +101,7 @@ export default function PlanningStrategy() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           2025 Strategic Targets Progress
         </h2>
         <div className="grid grid-cols-6 gap-3 mb-4">

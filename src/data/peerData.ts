@@ -1,22 +1,15 @@
 import { PeerData, NewsItem, TimeSeriesPoint } from '../types/metrics'
 import { randomInRange } from '../utils/dataGenerators'
 import { subDays, subMonths, format } from 'date-fns'
+import { getActiveClientConfig } from './mockData'
 
-// Major bank peers
-const peers = [
-  { ticker: 'NTRS', name: 'Northern Trust Corporation', isOwn: true },
-  { ticker: 'JPM', name: 'JPMorgan Chase & Co.' },
-  { ticker: 'BAC', name: 'Bank of America Corp.' },
-  { ticker: 'WFC', name: 'Wells Fargo & Company' },
-  { ticker: 'C', name: 'Citigroup Inc.' },
-  { ticker: 'USB', name: 'U.S. Bancorp' },
-  { ticker: 'PNC', name: 'PNC Financial Services' },
-  { ticker: 'TFC', name: 'Truist Financial Corp.' },
-  { ticker: 'STT', name: 'State Street Corporation' },
-  { ticker: 'BK', name: 'Bank of New York Mellon' },
-  { ticker: 'COF', name: 'Capital One Financial' },
-  { ticker: 'SCHW', name: 'Charles Schwab Corp.' }
-]
+function getPeers() {
+  return getActiveClientConfig().peers
+}
+
+function getOwnTicker() {
+  return getActiveClientConfig().ticker
+}
 
 const newsTopics = [
   'Earnings Release',
@@ -127,8 +120,10 @@ function generateNews(ticker: string, name: string, count: number = 10): NewsIte
 }
 
 export function generatePeerData(): PeerData[] {
+  const peers = getPeers()
+  const ownTicker = getOwnTicker()
   return peers.map(peer => {
-    const basePrice = peer.ticker === 'NTRS' ? 95 : peer.ticker === 'JPM' ? 185 : randomInRange(50, 200)
+    const basePrice = peer.isOwn ? 95 : peer.ticker === 'JPM' ? 185 : randomInRange(50, 200)
     const marketCap = peer.ticker === 'JPM' ? 550 : peer.ticker === 'BAC' ? 280 : randomInRange(20, 150)
 
     // Market performance metrics
@@ -142,7 +137,7 @@ export function generatePeerData(): PeerData[] {
     }
 
     // Valuation metrics - custody banks typically trade at lower multiples
-    const isCustodyBank = ['NTRS', 'STT', 'BK'].includes(peer.ticker)
+    const isCustodyBank = peer.isOwn || ['STT', 'BK'].includes(peer.ticker)
     const peTTM = isCustodyBank ? randomInRange(12, 16) : randomInRange(8, 14)
     const peForward = peTTM * randomInRange(0.85, 0.95)
     const pb = isCustodyBank ? randomInRange(1.2, 1.8) : randomInRange(0.8, 1.3)
@@ -205,11 +200,13 @@ export function generatePeerTimeSeries(
 ): TimeSeriesPoint[] {
   const data: TimeSeriesPoint[] = []
 
+  const ownTicker = getOwnTicker()
+  const isOwn = ticker === ownTicker
   const baseValues = {
-    price: ticker === 'JPM' ? 150 : ticker === 'NTRS' ? 85 : randomInRange(50, 120),
-    roe: ['NTRS', 'STT', 'BK'].includes(ticker) ? 12 : 10,
+    price: ticker === 'JPM' ? 150 : isOwn ? 85 : randomInRange(50, 120),
+    roe: isOwn || ['STT', 'BK'].includes(ticker) ? 12 : 10,
     cet1: 11.5,
-    nim: ['NTRS', 'STT', 'BK'].includes(ticker) ? 2.0 : 2.8
+    nim: isOwn || ['STT', 'BK'].includes(ticker) ? 2.0 : 2.8
   }
 
   const trends = {

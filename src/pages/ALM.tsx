@@ -241,7 +241,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Repricing Gap Analysis</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Repricing Gap Analysis</h3>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
                   <thead className="bg-gray-50">
@@ -299,7 +299,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Net Interest Income Sensitivity (12-Month Horizon)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Net Interest Income Sensitivity (12-Month Horizon)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={niiSensitivity[0].m1 !== undefined ?
                   [1, 3, 6, 9, 12].map(month => ({
@@ -343,7 +343,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Economic Value of Equity (EVE) Sensitivity</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Economic Value of Equity (EVE) Sensitivity</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <ResponsiveContainer width="100%" height={280}>
@@ -365,7 +365,7 @@ export default function ALM() {
                 </div>
                 <div className="space-y-3">
                   <div className="p-4 rounded-lg bg-white border border-gray-200">
-                    <div className="text-sm font-bold mb-2" style={{ color: '#006747' }}>EVE Risk Summary</div>
+                    <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-primary)' }}>EVE Risk Summary</div>
                     <div className="space-y-2 text-xs text-gray-700">
                       <div className="flex justify-between">
                         <span>Current Equity (Book Value):</span>
@@ -402,7 +402,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Duration Gap Analysis</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Duration Gap Analysis</h3>
               <div className="grid grid-cols-3 gap-6">
                 <div className="p-5 rounded-xl bg-blue-50 border-2 border-blue-200">
                   <div className="text-xs text-blue-700 mb-1">Asset Duration</div>
@@ -421,7 +421,7 @@ export default function ALM() {
                 </div>
               </div>
               <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                <div className="text-sm font-bold mb-2" style={{ color: '#006747' }}>Interpretation</div>
+                <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-primary)' }}>Interpretation</div>
                 <div className="text-xs text-gray-700 space-y-1">
                   <div>• Positive duration gap (1.7 years) means assets reprice slower than liabilities</div>
                   <div>• In rising rate environment: liabilities reprice first → NII margin expansion</div>
@@ -442,7 +442,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Liquidity Coverage Ratio (LCR) Trend</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Liquidity Coverage Ratio (LCR) Trend</h3>
               <ResponsiveContainer width="100%" height={280}>
                 <ComposedChart data={liquidityTrend}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -481,7 +481,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Liquidity Stress Test Results</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Liquidity Stress Test Results</h3>
               <div className="space-y-3">
                 {stressScenarios.map((scenario, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-white border-2" style={{
@@ -537,7 +537,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>High-Quality Liquid Assets (HQLA) Composition</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>High-Quality Liquid Assets (HQLA) Composition</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-3">
                   <div className="p-4 rounded-lg bg-green-50">
@@ -576,7 +576,7 @@ export default function ALM() {
                 </div>
                 <div className="space-y-3">
                   <div className="p-4 rounded-lg bg-white border border-gray-200">
-                    <div className="text-sm font-semibold mb-3" style={{ color: '#006747' }}>HQLA Quality Metrics</div>
+                    <div className="text-sm font-semibold mb-3" style={{ color: 'var(--client-primary)' }}>HQLA Quality Metrics</div>
                     <div className="space-y-2 text-xs">
                       <div className="flex justify-between">
                         <span className="text-gray-600">Total HQLA (after haircuts):</span>
@@ -597,7 +597,7 @@ export default function ALM() {
                     </div>
                   </div>
                   <div className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                    <div className="text-xs font-semibold mb-1" style={{ color: '#D4AF37' }}>Optimal HQLA Mix</div>
+                    <div className="text-xs font-semibold mb-1" style={{ color: 'var(--client-accent)' }}>Optimal HQLA Mix</div>
                     <div className="text-xs text-gray-700">
                       77% Level 1 assets provides maximum liquidity and monetization capability. Well within regulatory limits for Level 2 assets.
                     </div>
@@ -616,7 +616,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Funding Mix & Stability Analysis</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Funding Mix & Stability Analysis</h3>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
                   <thead className="bg-gray-50">
@@ -678,7 +678,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Contractual Maturity Ladder</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Contractual Maturity Ladder</h3>
               <ResponsiveContainer width="100%" height={320}>
                 <ComposedChart data={maturityLadder}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -719,7 +719,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Deposit Beta Analysis</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Deposit Beta Analysis</h3>
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={depositBeta}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -763,7 +763,7 @@ export default function ALM() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Interest Rate Hedge Portfolio</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Interest Rate Hedge Portfolio</h3>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
                   <thead className="bg-gray-50">
@@ -804,7 +804,7 @@ export default function ALM() {
                   <div className="text-blue-800">Hedges 20% of interest-sensitive balance sheet. Appropriate for current risk profile.</div>
                 </div>
                 <div className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                  <div className="font-bold mb-1" style={{ color: '#D4AF37' }}>DV01: -$62K per bp</div>
+                  <div className="font-bold mb-1" style={{ color: 'var(--client-accent)' }}>DV01: -$62K per bp</div>
                   <div className="text-gray-700">Every 1bp rate move = $62K daily P&L volatility from hedge portfolio.</div>
                 </div>
               </div>
@@ -816,8 +816,8 @@ export default function ALM() {
               border: '1px solid rgba(212, 175, 55, 0.25)'
             }}>
               <div className="flex items-center gap-2 mb-4">
-                <Activity className="h-5 w-5" style={{ color: '#D4AF37' }} />
-                <h3 className="text-lg font-bold" style={{ color: '#006747' }}>Strategic ALM Recommendations</h3>
+                <Activity className="h-5 w-5" style={{ color: 'var(--client-accent)' }} />
+                <h3 className="text-lg font-bold" style={{ color: 'var(--client-primary)' }}>Strategic ALM Recommendations</h3>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl bg-white border border-green-200">
@@ -856,10 +856,10 @@ export default function ALM() {
                     <li>• Lock in deposit pricing ahead of potential Fed cuts</li>
                   </ul>
                 </div>
-                <div className="p-4 rounded-xl bg-white border" style={{ borderColor: '#D4AF37' }}>
+                <div className="p-4 rounded-xl bg-white border" style={{ borderColor: 'var(--client-accent)' }}>
                   <div className="flex items-center gap-2 mb-2">
-                    <Target className="h-4 w-4" style={{ color: '#D4AF37' }} />
-                    <span className="text-sm font-bold" style={{ color: '#D4AF37' }}>Strategic Optimization</span>
+                    <Target className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
+                    <span className="text-sm font-bold" style={{ color: 'var(--client-accent)' }}>Strategic Optimization</span>
                   </div>
                   <ul className="space-y-1 text-xs text-gray-700">
                     <li>• Target 55% deposit beta vs current 48% for conservative NII planning</li>

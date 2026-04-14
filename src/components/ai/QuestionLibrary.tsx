@@ -53,7 +53,7 @@ export default function QuestionLibrary() {
                   key={q.id}
                   onClick={() => handleQuestionClick(q.text)}
                   disabled={isLoading}
-                  className="block w-full rounded-md px-2 py-1.5 text-left text-xs text-gray-600 hover:bg-[#006747]/5 hover:text-[#006747] transition-colors disabled:opacity-50"
+                  className="block w-full rounded-md px-2 py-1.5 text-left text-xs text-gray-600 hover:bg-[rgba(var(--client-primary-rgb),0.05)] hover:text-[var(--client-primary)] transition-colors disabled:opacity-50"
                 >
                   {q.text}
                 </button>

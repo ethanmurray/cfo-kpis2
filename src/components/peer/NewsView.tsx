@@ -3,9 +3,11 @@ import { generatePeerData, generateSentimentTrend } from '../../data/peerData'
 import LineChart from '../charts/LineChart'
 import { TrendingUp, TrendingDown, Minus, AlertCircle, Calendar } from 'lucide-react'
 import { format } from 'date-fns'
+import { useClientStore } from '../../stores/clientStore'
 
 export default function NewsView() {
-  const [selectedTicker, setSelectedTicker] = useState<string>('NTRS')
+  const config = useClientStore((s) => s.config)
+  const [selectedTicker, setSelectedTicker] = useState<string>(config.ticker)
   const [selectedTopic, setSelectedTopic] = useState<string>('All')
   const [sentimentFilter, setSentimentFilter] = useState<'all' | 'positive' | 'neutral' | 'negative'>('all')
   const [showEventsOnly, setShowEventsOnly] = useState(false)
@@ -91,7 +93,7 @@ export default function NewsView() {
                   onClick={() => setSelectedTicker(peer.ticker)}
                   className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                     selectedTicker === peer.ticker
-                      ? peer.ticker === 'NTRS'
+                      ? peer.ticker === config.ticker
                         ? 'bg-amber-600 text-white'
                         : 'bg-blue-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'

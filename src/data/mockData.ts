@@ -25,26 +25,48 @@ import type {
   CybersecurityMetricsData,
   CreditRiskDetailData,
 } from '../types/dashboard.types'
+import { type ClientConfig, NORTHERN_TRUST_CONFIG } from '../config/clientConfig'
 
-// Northern Trust - Real-world scale data
-// Based on publicly available information (2023-2024 data)
-// Northern Trust is one of the world's leading custody banks
+// Active client configuration (switchable at runtime)
+let activeConfig: ClientConfig = NORTHERN_TRUST_CONFIG
+let currentClientId: string = activeConfig.id
 
-// Generate base clients data with Northern Trust scale
-const clients = generateClients(450) // Northern Trust serves ~450 institutional clients
-const BASE_AUC = 15_800_000_000_000 // $15.8 trillion in assets under custody/administration
-const BASE_REVENUE = 7_100_000_000 // ~$7.1 billion annual revenue
+// Module-level data variables — recalculated when config changes
+let clients = generateClients(Math.min(activeConfig.clientCount, 500))
+let totalAUC = activeConfig.baseAUC
+let totalRevenue = activeConfig.baseRevenue
 
-// Scale client AUC to match Northern Trust's actual scale
-const clientAUCSum = clients.reduce((sum, client) => sum + client.auc, 0)
-const scaleFactor = BASE_AUC / clientAUCSum
-clients.forEach(client => {
-  client.auc *= scaleFactor
-  client.revenue = client.auc * randomInRange(0.00035, 0.00055) // 3.5-5.5 bps fee rate
-})
+// Scale client AUC on initial load
+;(function scaleClients() {
+  const clientAUCSum = clients.reduce((sum, client) => sum + client.auc, 0)
+  const scaleFactor = totalAUC / clientAUCSum
+  clients.forEach(client => {
+    client.auc *= scaleFactor
+    client.revenue = client.auc * randomInRange(0.00035, 0.00055)
+  })
+})()
 
-const totalAUC = BASE_AUC
-const totalRevenue = BASE_REVENUE
+/** Switch the active client config used by all data generators */
+export function setActiveClientConfig(config: ClientConfig) {
+  if (config.id === currentClientId) return
+  activeConfig = config
+  currentClientId = config.id
+  // Regenerate base data for the new client
+  clients = generateClients(Math.min(config.clientCount, 500))
+  totalAUC = config.baseAUC
+  totalRevenue = config.baseRevenue
+  const clientAUCSum = clients.reduce((sum, client) => sum + client.auc, 0)
+  const scaleFactor = totalAUC / clientAUCSum
+  clients.forEach(client => {
+    client.auc *= scaleFactor
+    client.revenue = client.auc * randomInRange(0.00035, 0.00055)
+  })
+}
+
+/** Get the currently active client config */
+export function getActiveClientConfig(): ClientConfig {
+  return activeConfig
+}
 
 // Executive Summary Data
 export const getExecutiveSummaryData = (): ExecutiveSummaryData => {
@@ -68,7 +90,7 @@ export const getExecutiveSummaryData = (): ExecutiveSummaryData => {
       ytdVsBudget: ((ytdRevenue - budgetYtd) / budgetYtd) * 100,
     },
     costToIncome: {
-      value: 67.8, // Northern Trust typical efficiency ratio ~68%
+      value: activeConfig.efficiencyRatio,
       trend: 'down',
     },
     preTaxMargin: {
@@ -81,25 +103,25 @@ export const getExecutiveSummaryData = (): ExecutiveSummaryData => {
       surprise: profitData.eps.surprise,
     },
     tangibleBookValuePerShare: profitData.bookValue.tangibleBookValuePerShare,
-    marketCap: 18_500_000_000, // ~$18.5B market cap
-    dividendYield: 3.45, // ~3.45% dividend yield
+    marketCap: activeConfig.marketCap,
+    dividendYield: activeConfig.dividendYield,
     alerts: [
       {
         id: '1',
         type: 'info',
-        message: 'AUC surpassed $15.8T driven by market appreciation and net new business',
+        message: `AUC surpassed $${(totalAUC / 1e12).toFixed(1)}T driven by market appreciation and net new business`,
         timestamp: new Date().toISOString(),
       },
       {
         id: '2',
         type: 'info',
-        message: 'Q3 adjusted EPS of $2.01 beat consensus estimate by $0.04 (2.0%)',
+        message: `Q3 adjusted EPS of $${profitData.eps.adjusted.toFixed(2)} beat consensus estimate`,
         timestamp: new Date().toISOString(),
       },
       {
         id: '3',
         type: 'info',
-        message: 'Net New Business of $240B YTD exceeds annual target',
+        message: 'Net New Business YTD exceeds annual target',
         timestamp: new Date().toISOString(),
       },
     ],
@@ -114,54 +136,21 @@ export const getExecutiveSummaryData = (): ExecutiveSummaryData => {
 
 // Revenue Performance Data
 export const getRevenueData = (): RevenueData => {
-  // Northern Trust revenue breakdown (Asset Servicing focused)
-  const custodyFees = totalRevenue * 0.42 // Custody & fund administration
-  const transactionFees = totalRevenue * 0.22 // Trade settlement & clearing
-  const securitiesLending = totalRevenue * 0.12 // Securities lending
-  const fundAdmin = totalRevenue * 0.14 // Fund administration
-  const fxRevenue = totalRevenue * 0.06 // Foreign exchange
-  const other = totalRevenue * 0.04 // Other services
+  // Revenue breakdown from config
+  const budgetVariances = [1.01, 0.99, 1.04, 1.02, 0.97, 1.01]
+  const priorYearFactors = [0.94, 0.96, 1.08, 0.98, 0.93, 0.97]
 
   return {
     timeSeries: generateTimeSeries(36, totalRevenue / 12, 0.045, 0.08),
-    byCategory: [
-      {
-        category: 'Custody Fees',
-        actual: custodyFees,
-        budget: custodyFees * 1.01,
-        priorYear: custodyFees * 0.94,
-      },
-      {
-        category: 'Transaction Fees',
-        actual: transactionFees,
-        budget: transactionFees * 0.99,
-        priorYear: transactionFees * 0.96,
-      },
-      {
-        category: 'Securities Lending',
-        actual: securitiesLending,
-        budget: securitiesLending * 1.04,
-        priorYear: securitiesLending * 1.08,
-      },
-      {
-        category: 'Fund Administration',
-        actual: fundAdmin,
-        budget: fundAdmin * 1.02,
-        priorYear: fundAdmin * 0.98,
-      },
-      {
-        category: 'Foreign Exchange',
-        actual: fxRevenue,
-        budget: fxRevenue * 0.97,
-        priorYear: fxRevenue * 0.93,
-      },
-      {
-        category: 'Other Services',
-        actual: other,
-        budget: other * 1.01,
-        priorYear: other * 0.97,
-      },
-    ],
+    byCategory: activeConfig.revenueCategories.map((cat, i) => {
+      const actual = totalRevenue * cat.share
+      return {
+        category: cat.category,
+        actual,
+        budget: actual * (budgetVariances[i] ?? 1.0),
+        priorYear: actual * (priorYearFactors[i] ?? 0.96),
+      }
+    }),
     topClients: clients.slice(0, 10).map((client) => ({
       clientName: client.name,
       revenue: client.revenue,
@@ -172,29 +161,25 @@ export const getRevenueData = (): RevenueData => {
 
 // Assets Under Custody Data
 export const getAUCData = (): AUCData => {
-  // Northern Trust asset class breakdown
-  const aucByAssetClass = [
-    { class: 'Equities', value: totalAUC * 0.48, percentage: 48 },
-    { class: 'Fixed Income', value: totalAUC * 0.32, percentage: 32 },
-    { class: 'Alternatives', value: totalAUC * 0.12, percentage: 12 },
-    { class: 'Cash & Other', value: totalAUC * 0.08, percentage: 8 },
-  ]
+  const dist = activeConfig.aucDistribution
 
-  // Northern Trust geographic breakdown (Americas-heavy with Chicago HQ)
-  const aucByRegion = [
-    { region: 'Americas', value: totalAUC * 0.55, percentage: 55 },
-    { region: 'EMEA', value: totalAUC * 0.30, percentage: 30 },
-    { region: 'APAC', value: totalAUC * 0.15, percentage: 15 },
-  ]
+  const aucByAssetClass = dist.byAssetClass.map((a) => ({
+    class: a.class,
+    value: totalAUC * (a.percentage / 100),
+    percentage: a.percentage,
+  }))
 
-  // Northern Trust client segment breakdown
-  const aucBySegment = [
-    { segment: 'Pension Funds', value: totalAUC * 0.38, percentage: 38 },
-    { segment: 'Asset Managers', value: totalAUC * 0.28, percentage: 28 },
-    { segment: 'Insurance Companies', value: totalAUC * 0.18, percentage: 18 },
-    { segment: 'Endowments & Foundations', value: totalAUC * 0.10, percentage: 10 },
-    { segment: 'Sovereign Wealth', value: totalAUC * 0.06, percentage: 6 },
-  ]
+  const aucByRegion = dist.byRegion.map((r) => ({
+    region: r.region,
+    value: totalAUC * (r.percentage / 100),
+    percentage: r.percentage,
+  }))
+
+  const aucBySegment = dist.byClientSegment.map((s) => ({
+    segment: s.segment,
+    value: totalAUC * (s.percentage / 100),
+    percentage: s.percentage,
+  }))
 
   // Fee-earning AUC (typically 85-90% of total)
   const feeEarningAUC = totalAUC * 0.88
@@ -247,13 +232,14 @@ export const getAUCData = (): AUCData => {
 
 // Operational Efficiency Data
 export const getOperationalMetrics = (): OperationalMetrics => {
-  const operatingExpenses = totalRevenue * 0.678 // Northern Trust efficiency ratio ~68%
+  const effRatio = activeConfig.efficiencyRatio / 100
+  const operatingExpenses = totalRevenue * effRatio
 
   return {
     costToIncome: {
-      current: 67.8,
-      trend: generateTimeSeries(24, 69.5, -0.015, 0.02).map(d => ({ ...d, value: d.value })),
-      benchmark: 65.0,
+      current: activeConfig.efficiencyRatio,
+      trend: generateTimeSeries(24, activeConfig.efficiencyRatio + 1.7, -0.015, 0.02).map(d => ({ ...d, value: d.value })),
+      benchmark: activeConfig.efficiencyRatio - 2.8,
     },
     costPerTransaction: 1.62,
     stpRate: 95.8, // Northern Trust has industry-leading automation
@@ -290,18 +276,19 @@ export const getOperationalMetrics = (): OperationalMetrics => {
 
 // Profitability Data
 export const getProfitabilityData = (): ProfitabilityData => {
-  const nonInterestIncome = totalRevenue * 0.92 // Primarily fee-based
-  const netInterestIncome = totalRevenue * 0.08
+  const niiShare = activeConfig.nonInterestIncomeShare
+  const nonInterestIncome = totalRevenue * niiShare
+  const netInterestIncome = totalRevenue * (1 - niiShare)
   const totalRev = totalRevenue
-  const opExpenses = totalRev * 0.678
+  const effRatio = activeConfig.efficiencyRatio / 100
+  const opExpenses = totalRev * effRatio
   const preTaxInc = totalRev - opExpenses
-  const taxRate = 0.19 // Effective tax rate ~19%
+  const taxRate = activeConfig.taxRate
   const netInc = preTaxInc * (1 - taxRate)
 
-  // Northern Trust real data (approximate)
-  const sharesOutstanding = 207_000_000 // ~207 million shares
-  const totalBookValue = 14_800_000_000 // ~$14.8B equity
-  const intangibles = 2_500_000_000 // ~$2.5B goodwill and intangibles
+  const sharesOutstanding = activeConfig.sharesOutstanding
+  const totalBookValue = activeConfig.totalBookValue
+  const intangibles = activeConfig.intangibles
   const tangibleBookVal = totalBookValue - intangibles
 
   const gaapEPS = netInc / sharesOutstanding
@@ -318,8 +305,8 @@ export const getProfitabilityData = (): ProfitabilityData => {
     operatingExpenses: opExpenses,
     preTaxIncome: preTaxInc,
     netIncome: netInc,
-    roe: 13.8, // Northern Trust typical ROE
-    roa: 1.02,
+    roe: activeConfig.roe,
+    roa: activeConfig.roa,
     margins: {
       preTaxMargin: (preTaxInc / totalRev) * 100,
       operatingMargin: ((totalRev - opExpenses) / totalRev) * 100,
@@ -343,7 +330,7 @@ export const getProfitabilityData = (): ProfitabilityData => {
     effectiveTaxRate: taxRate * 100,
     timeSeries: generateTimeSeries(12, totalRev / 4, 0.045, 0.06).map((d, i) => {
       const qtrRev = d.value
-      const qtrExp = qtrRev * 0.678
+      const qtrExp = qtrRev * effRatio
       const qtrPreTax = qtrRev - qtrExp
       const qtrNet = qtrPreTax * (1 - taxRate)
       const qtrEPS = qtrNet / sharesOutstanding
@@ -403,12 +390,12 @@ export const getMarketPositionData = (): MarketPositionData => {
         { region: 'APAC', share: 3.8 },
       ],
     },
-    ranking: 4, // Northern Trust ranks 4th globally by AUC
+    ranking: activeConfig.globalRanking,
     competitiveFees: [
       { competitor: 'BNY Mellon', averageFee: 0.048 },
       { competitor: 'State Street', averageFee: 0.046 },
       { competitor: 'JPMorgan', averageFee: 0.045 },
-      { competitor: 'Northern Trust', averageFee: 0.045 },
+      { competitor: activeConfig.shortName, averageFee: 0.045 },
       { competitor: 'Citibank', averageFee: 0.044 },
     ],
   }
@@ -429,8 +416,8 @@ export const getStrategicTargetsData = (): StrategicTargetsData => {
         id: 'efficiency-ratio',
         category: 'Financial',
         metric: 'Efficiency Ratio',
-        current: 67.8,
-        target: 65.0,
+        current: activeConfig.efficiencyRatio,
+        target: activeConfig.efficiencyRatio - 2.8,
         targetYear: '2026',
         unit: 'percentage',
         onTrack: true,
@@ -462,8 +449,8 @@ export const getStrategicTargetsData = (): StrategicTargetsData => {
         id: 'roe',
         category: 'Financial',
         metric: 'Return on Equity',
-        current: 13.8,
-        target: 15.0,
+        current: activeConfig.roe,
+        target: activeConfig.roe + 1.2,
         targetYear: '2026',
         unit: 'percentage',
         onTrack: false,
@@ -773,14 +760,14 @@ export const getPeerComparisonData = (): PeerComparisonData => {
         priceToTangibleBook: 2.15,
       },
       {
-        name: 'Northern Trust',
-        auc: BASE_AUC,
-        revenue: BASE_REVENUE,
-        roe: 13.8,
-        efficiencyRatio: 67.8,
+        name: activeConfig.shortName,
+        auc: totalAUC,
+        revenue: totalRevenue,
+        roe: activeConfig.roe,
+        efficiencyRatio: activeConfig.efficiencyRatio,
         preTaxMargin: 28.2,
-        marketCap: 18_500_000_000, // $18.5B
-        priceToTangibleBook: 0.68,
+        marketCap: activeConfig.marketCap,
+        priceToTangibleBook: activeConfig.marketCap / (activeConfig.totalBookValue - activeConfig.intangibles),
       },
       {
         name: 'Citibank (Securities Services)',
@@ -808,7 +795,7 @@ export const getBalanceSheetData = (): BalanceSheetData => {
   const totalLoans = 32_500_000_000 // $32.5B loans
   const totalSecurities = 52_000_000_000 // $52B securities
   const totalDeposits = 130_000_000_000 // $130B deposits
-  const totalEquity = 14_800_000_000 // $14.8B equity
+  const totalEquity = activeConfig.totalBookValue
 
   return {
     totalAssets,
@@ -850,10 +837,11 @@ export const getBalanceSheetData = (): BalanceSheetData => {
 
 // Employee Productivity Data
 export const getEmployeeProductivityData = (): EmployeeProductivityData => {
-  const totalEmployees = 19_500 // Northern Trust ~19,500 employees globally
+  const totalEmployees = activeConfig.totalEmployees
   const revenuePerEmployee = totalRevenue / totalEmployees
   const aucPerEmployee = totalAUC / totalEmployees
-  const opExpenses = totalRevenue * 0.678
+  const effRatio = activeConfig.efficiencyRatio / 100
+  const opExpenses = totalRevenue * effRatio
   const expensePerEmployee = opExpenses / totalEmployees
 
   return {
@@ -861,38 +849,15 @@ export const getEmployeeProductivityData = (): EmployeeProductivityData => {
     revenuePerEmployee,
     aucPerEmployee,
     expensePerEmployee,
-    byDepartment: [
-      {
-        department: 'Asset Servicing',
-        employees: 8_200,
-        revenue: totalRevenue * 0.58,
-        revenuePerFTE: (totalRevenue * 0.58) / 8_200,
-      },
-      {
-        department: 'Wealth Management',
-        employees: 4_800,
-        revenue: totalRevenue * 0.28,
-        revenuePerFTE: (totalRevenue * 0.28) / 4_800,
-      },
-      {
-        department: 'Technology',
-        employees: 3_100,
-        revenue: 0, // Cost center
-        revenuePerFTE: 0,
-      },
-      {
-        department: 'Operations',
-        employees: 1_900,
-        revenue: 0, // Cost center
-        revenuePerFTE: 0,
-      },
-      {
-        department: 'Corporate',
-        employees: 1_500,
-        revenue: totalRevenue * 0.14,
-        revenuePerFTE: (totalRevenue * 0.14) / 1_500,
-      },
-    ],
+    byDepartment: activeConfig.departments.map((dept) => {
+      const rev = totalRevenue * dept.revenueShare
+      return {
+        department: dept.department,
+        employees: dept.employees,
+        revenue: rev,
+        revenuePerFTE: dept.revenueShare > 0 ? rev / dept.employees : 0,
+      }
+    }),
     turnoverRate: 8.5, // 8.5% annual turnover
     avgTenure: 7.2, // 7.2 years average tenure
     vacancyRate: 2.8, // 2.8% vacancy rate
@@ -902,44 +867,21 @@ export const getEmployeeProductivityData = (): EmployeeProductivityData => {
 // Segment P&L Data
 export const getSegmentPnLData = (): SegmentPnLData => {
   const totalRev = totalRevenue
-  const totalExp = totalRev * 0.678
+  const effRatio = activeConfig.efficiencyRatio / 100
+  const totalExp = totalRev * effRatio
 
   return {
-    segments: [
-      {
-        name: 'C&IS (Corporate & Institutional Services)',
-        revenue: totalRev * 0.58, // 58% of revenue
-        expenses: totalExp * 0.52,
-        preTaxIncome: (totalRev * 0.58) - (totalExp * 0.52),
-        assets: 102_000_000_000, // $102B allocated
-        roe: 15.2,
-        efficiencyRatio: 64.5,
-        headcount: 8_200,
-        revenueGrowth: 5.2,
-      },
-      {
-        name: 'Wealth Management',
-        revenue: totalRev * 0.28, // 28% of revenue
-        expenses: totalExp * 0.30,
-        preTaxIncome: (totalRev * 0.28) - (totalExp * 0.30),
-        assets: 48_000_000_000, // $48B allocated
-        roe: 11.8,
-        efficiencyRatio: 75.2,
-        headcount: 4_800,
-        revenueGrowth: 3.8,
-      },
-      {
-        name: 'Asset Management',
-        revenue: totalRev * 0.14, // 14% of revenue
-        expenses: totalExp * 0.18,
-        preTaxIncome: (totalRev * 0.14) - (totalExp * 0.18),
-        assets: 25_000_000_000, // $25B allocated
-        roe: 8.5,
-        efficiencyRatio: 92.8,
-        headcount: 1_500,
-        revenueGrowth: 2.1,
-      },
-    ],
+    segments: activeConfig.segments.map((seg) => ({
+      name: seg.name,
+      revenue: totalRev * seg.revenueShare,
+      expenses: totalExp * seg.expenseShare,
+      preTaxIncome: (totalRev * seg.revenueShare) - (totalExp * seg.expenseShare),
+      assets: seg.assets,
+      roe: seg.roe,
+      efficiencyRatio: seg.efficiencyRatio,
+      headcount: seg.headcount,
+      revenueGrowth: seg.revenueGrowth,
+    })),
   }
 }
 

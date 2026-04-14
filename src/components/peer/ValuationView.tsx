@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react'
 import { generatePeerData } from '../../data/peerData'
 import ScatterPlot from '../charts/ScatterPlot'
+import { useClientStore } from '../../stores/clientStore'
 
 type ChartType = 'pe-roe' | 'ptbv-roe' | 'ptbv-rotce' | 'pb-roe'
 
 export default function ValuationView() {
+  const clientConfig = useClientStore((s) => s.config)
   const [selectedChart, setSelectedChart] = useState<ChartType>('ptbv-roe')
 
   const peers = useMemo(() => generatePeerData(), [])
@@ -72,11 +74,11 @@ export default function ValuationView() {
       y: yValue,
       z: peer.marketData.marketCap,
       name: peer.ticker,
-      isOwn: peer.ticker === 'NTRS'
+      isOwn: peer.ticker === clientConfig.ticker
     }
   })
 
-  const ntrsData = peers.find(p => p.ticker === 'NTRS')
+  const ntrsData = peers.find(p => p.ticker === clientConfig.ticker)
 
   return (
     <div className="space-y-6">
@@ -104,7 +106,7 @@ export default function ValuationView() {
       <div className="metric-card">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">{config.title}</h2>
         <p className="text-sm text-gray-600 mb-4">
-          Bubble size represents market capitalization. Northern Trust highlighted in amber.
+          Bubble size represents market capitalization. {clientConfig.shortName} highlighted in amber.
         </p>
         <ScatterPlot
           data={scatterData}
@@ -120,7 +122,7 @@ export default function ValuationView() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Valuation Summary */}
         <div className="metric-card">
-          <h3 className="text-sm font-semibold text-gray-900 mb-3">Valuation Summary (NTRS)</h3>
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">Valuation Summary ({clientConfig.ticker})</h3>
           {ntrsData && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -180,7 +182,7 @@ export default function ValuationView() {
 
         {/* Relative Position */}
         <div className="metric-card">
-          <h3 className="text-sm font-semibold text-gray-900 mb-3">Relative Position (NTRS)</h3>
+          <h3 className="text-sm font-semibold text-gray-900 mb-3">Relative Position ({clientConfig.ticker})</h3>
           {ntrsData && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -250,7 +252,7 @@ export default function ValuationView() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {peers.map(peer => (
-                <tr key={peer.ticker} className={peer.ticker === 'NTRS' ? 'bg-amber-50' : ''}>
+                <tr key={peer.ticker} className={peer.ticker === clientConfig.ticker ? 'bg-amber-50' : ''}>
                   <td className="px-4 py-3 text-sm font-medium text-gray-900">
                     {peer.ticker}
                   </td>

@@ -67,7 +67,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                 <Info className="h-6 w-6" style={{ color: colors.bg }} />
               </div>
               <div>
-                <h2 className="text-2xl font-bold" style={{ color: '#006747' }}>
+                <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>
                   {metric.label}
                 </h2>
                 {metric.description && (
@@ -124,14 +124,14 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
             {/* Historical Trend */}
             {metric.historicalData && metric.historicalData.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
                   Historical Trend
                 </h3>
                 <div
                   className="rounded-xl p-4"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(0, 77, 53, 0.03) 0%, rgba(255, 255, 255, 0.5) 100%)',
-                    border: '1px solid rgba(0, 77, 53, 0.1)',
+                    background: 'linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.03) 0%, rgba(255, 255, 255, 0.5) 100%)',
+                    border: '1px solid rgba(var(--client-primary-rgb), 0.1)',
                   }}
                 >
                   <ResponsiveContainer width="100%" height={300}>
@@ -145,19 +145,19 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                         type="monotone"
                         dataKey="value"
                         name="Actual"
-                        stroke="#006747"
+                        stroke="var(--client-primary)"
                         strokeWidth={3}
-                        dot={{ fill: '#006747', r: 4 }}
+                        dot={{ fill: 'var(--client-primary)', r: 4 }}
                       />
                       {metric.historicalData[0].comparison !== undefined && (
                         <Line
                           type="monotone"
                           dataKey="comparison"
                           name="Comparison"
-                          stroke="#D4AF37"
+                          stroke="var(--client-accent)"
                           strokeWidth={2}
                           strokeDasharray="5 5"
-                          dot={{ fill: '#D4AF37', r: 3 }}
+                          dot={{ fill: 'var(--client-accent)', r: 3 }}
                         />
                       )}
                     </LineChart>
@@ -169,14 +169,14 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
             {/* Breakdown by Category */}
             {metric.breakdown && metric.breakdown.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
                   Breakdown by Category
                 </h3>
                 <div
                   className="rounded-xl p-4"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(0, 77, 53, 0.03) 0%, rgba(255, 255, 255, 0.5) 100%)',
-                    border: '1px solid rgba(0, 77, 53, 0.1)',
+                    background: 'linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.03) 0%, rgba(255, 255, 255, 0.5) 100%)',
+                    border: '1px solid rgba(var(--client-primary-rgb), 0.1)',
                   }}
                 >
                   <ResponsiveContainer width="100%" height={300}>
@@ -185,7 +185,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                       <XAxis type="number" tick={{ fontSize: 11 }} />
                       <YAxis type="category" dataKey="category" tick={{ fontSize: 11 }} width={120} />
                       <Tooltip />
-                      <Bar dataKey="value" fill="#006747" radius={[0, 8, 8, 0]} />
+                      <Bar dataKey="value" fill="var(--client-primary)" radius={[0, 8, 8, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
 
@@ -194,9 +194,9 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                       <div
                         key={idx}
                         className="flex items-center justify-between p-3 rounded-lg"
-                        style={{ backgroundColor: 'rgba(0, 77, 53, 0.05)' }}
+                        style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.05)' }}
                       >
-                        <span className="text-sm font-medium" style={{ color: '#006747' }}>
+                        <span className="text-sm font-medium" style={{ color: 'var(--client-primary)' }}>
                           {item.category}
                         </span>
                         <div className="flex items-center gap-3">
@@ -218,11 +218,11 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
             <div
               className="rounded-xl p-4"
               style={{
-                background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
+                background: 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.1) 0%, rgba(var(--client-accent-rgb), 0.05) 100%)',
+                border: '1px solid rgba(var(--client-accent-rgb), 0.3)',
               }}
             >
-              <h3 className="text-sm font-bold mb-2" style={{ color: '#D4AF37' }}>
+              <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--client-accent)' }}>
                 💡 Key Insights
               </h3>
               <ul className="space-y-1 text-sm" style={{ color: '#6b7280' }}>

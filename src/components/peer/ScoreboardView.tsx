@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react'
 import { generatePeerData, calculatePeerRankings } from '../../data/peerData'
 import { ArrowUp, ArrowDown, Minus } from 'lucide-react'
+import { useClientStore } from '../../stores/clientStore'
 
 export default function ScoreboardView() {
+  const config = useClientStore((s) => s.config)
   const [sortColumn, setSortColumn] = useState<string>('roe')
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
 
@@ -149,7 +151,7 @@ export default function ScoreboardView() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {sortedPeers.map((peer, index) => {
-                const isOwn = peer.ticker === 'NTRS'
+                const isOwn = peer.ticker === config.ticker
                 const roePercentile = getPercentile(peer.fundamentals.roe, allROE)
                 const rotcePercentile = getPercentile(peer.fundamentals.rotce, allROTCE)
                 const nimPercentile = getPercentile(peer.fundamentals.nim, allNIM)
@@ -231,7 +233,7 @@ export default function ScoreboardView() {
           </table>
         </div>
         <div className="mt-4 text-xs text-gray-500">
-          <p>Northern Trust highlighted in amber. Percentile rankings shown relative to peer group.</p>
+          <p>{config.shortName} highlighted in amber. Percentile rankings shown relative to peer group.</p>
           <p>Green = Top quartile, Blue = 2nd quartile, Amber = 3rd quartile, Red = Bottom quartile</p>
         </div>
       </div>

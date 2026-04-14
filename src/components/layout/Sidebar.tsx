@@ -16,6 +16,8 @@ import {
   UserCog,
 } from 'lucide-react'
 import NorthernTrustLogo from '../NorthernTrustLogo'
+import ClientSwitcher from './ClientSwitcher'
+import { useClientStore } from '../../stores/clientStore'
 
 const navigation = [
   { name: 'Executive Dashboard', path: '/', icon: LayoutDashboard },
@@ -39,6 +41,8 @@ interface SidebarProps {
 
 export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
   const location = useLocation()
+  const config = useClientStore((s) => s.config)
+  const { primaryDark, primaryDarkest, accent } = config.colors
 
   return (
     <div
@@ -46,16 +50,16 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
         isCollapsed ? 'w-20' : 'w-72'
       }`}
       style={{
-        background: 'linear-gradient(180deg, #004d35 0%, #003829 100%)',
-        borderRight: '1px solid rgba(212, 175, 55, 0.1)'
+        background: `linear-gradient(180deg, ${primaryDark} 0%, ${primaryDarkest} 100%)`,
+        borderRight: `1px solid ${accent}1a`
       }}
     >
       {/* Header with Logo */}
-      <div className="flex h-20 items-center px-5 border-b" style={{ borderColor: 'rgba(212, 175, 55, 0.15)' }}>
+      <div className="flex h-20 items-center px-5 border-b" style={{ borderColor: `${accent}26` }}>
         {!isCollapsed ? (
           <div className="flex-1">
             <NorthernTrustLogo variant="full" className="h-12" />
-            <div className="mt-1 text-xs font-medium tracking-wide" style={{ color: '#D4AF37' }}>
+            <div className="mt-1 text-xs font-medium tracking-wide" style={{ color: accent }}>
               CFO ANALYTICS
             </div>
           </div>
@@ -67,7 +71,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="rounded-lg p-2 transition-all duration-200 hover:scale-110"
-          style={{ color: '#D4AF37' }}
+          style={{ color: accent }}
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {isCollapsed ? (
@@ -78,8 +82,15 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
         </button>
       </div>
 
+      {/* Client Switcher */}
+      {!isCollapsed && (
+        <div className="px-5 pt-4 pb-2">
+          <ClientSwitcher />
+        </div>
+      )}
+
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-6 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
         {navigation.map((item) => {
           const isActive = location.pathname === item.path
           const Icon = item.icon
@@ -91,16 +102,16 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                 isCollapsed ? 'justify-center' : ''
               }`}
               style={{
-                backgroundColor: isActive ? 'rgba(212, 175, 55, 0.15)' : 'transparent',
-                color: isActive ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-                boxShadow: isActive ? '0 2px 8px rgba(212, 175, 55, 0.2)' : 'none',
+                backgroundColor: isActive ? `${accent}26` : 'transparent',
+                color: isActive ? accent : 'rgba(255, 255, 255, 0.7)',
+                boxShadow: isActive ? `0 2px 8px ${accent}33` : 'none',
                 transform: isActive ? 'translateX(4px)' : 'translateX(0)'
               }}
               title={isCollapsed ? item.name : undefined}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.08)'
-                  e.currentTarget.style.color = '#D4AF37'
+                  e.currentTarget.style.backgroundColor = `${accent}14`
+                  e.currentTarget.style.color = accent
                   e.currentTarget.style.transform = 'translateX(4px)'
                 }
               }}
@@ -117,7 +128,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                 <span className="tracking-wide">{item.name}</span>
               )}
               {!isCollapsed && isActive && (
-                <div className="ml-auto w-1 h-1 rounded-full" style={{ backgroundColor: '#D4AF37' }} />
+                <div className="ml-auto w-1 h-1 rounded-full" style={{ backgroundColor: accent }} />
               )}
             </Link>
           )
@@ -126,14 +137,14 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
 
       {/* Footer */}
       {!isCollapsed && (
-        <div className="px-5 py-4 border-t" style={{ borderColor: 'rgba(212, 175, 55, 0.15)' }}>
-          <div className="flex items-center gap-3 px-3 py-2 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
+        <div className="px-5 py-4 border-t" style={{ borderColor: `${accent}26` }}>
+          <div className="flex items-center gap-3 px-3 py-2 rounded-lg" style={{ backgroundColor: `${accent}0d` }}>
             <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#10b981' }} />
             <div>
               <div className="text-xs font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 Live Data
               </div>
-              <div className="text-xs" style={{ color: 'rgba(212, 175, 55, 0.7)' }}>
+              <div className="text-xs" style={{ color: `${accent}b3` }}>
                 Updated {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </div>
             </div>

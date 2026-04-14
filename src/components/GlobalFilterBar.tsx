@@ -67,8 +67,8 @@ export default function GlobalFilterBar() {
     <div
       className="sticky top-0 z-40 shadow-md"
       style={{
-        background: 'linear-gradient(135deg, rgba(0, 77, 53, 0.97) 0%, rgba(0, 56, 41, 0.97) 100%)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.2)',
+        background: 'linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.97) 0%, rgba(var(--client-primary-dark-rgb), 0.97) 100%)',
+        borderBottom: '1px solid rgba(var(--client-accent-rgb), 0.2)',
         backdropFilter: 'blur(8px)',
       }}
     >
@@ -77,7 +77,7 @@ export default function GlobalFilterBar() {
         <div className="flex items-center gap-4">
           {/* Time Period Selector */}
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" style={{ color: '#D4AF37' }} />
+            <Calendar className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
             <div className="flex gap-1">
               {periods.map((period) => (
                 <button
@@ -87,12 +87,12 @@ export default function GlobalFilterBar() {
                   style={{
                     backgroundColor:
                       periodType === period.value
-                        ? 'rgba(212, 175, 55, 0.25)'
+                        ? 'rgba(var(--client-accent-rgb), 0.25)'
                         : 'rgba(255, 255, 255, 0.05)',
-                    color: periodType === period.value ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
+                    color: periodType === period.value ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
                     border:
                       periodType === period.value
-                        ? '1px solid rgba(212, 175, 55, 0.5)'
+                        ? '1px solid rgba(var(--client-accent-rgb), 0.5)'
                         : '1px solid transparent',
                   }}
                 >
@@ -102,46 +102,46 @@ export default function GlobalFilterBar() {
             </div>
           </div>
 
-          <div className="h-6 w-px" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }} />
+          <div className="h-6 w-px" style={{ backgroundColor: 'rgba(var(--client-accent-rgb), 0.2)' }} />
 
           {/* Comparison Mode Selector */}
           <div className="flex items-center gap-2">
-            <TrendingUp className="h-4 w-4" style={{ color: '#D4AF37' }} />
+            <TrendingUp className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
             <select
               value={comparisonMode || ''}
               onChange={(e) => setComparisonMode((e.target.value || null) as ComparisonMode)}
               className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all"
               style={{
-                backgroundColor: comparisonMode ? 'rgba(212, 175, 55, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                color: comparisonMode ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-                borderColor: comparisonMode ? 'rgba(212, 175, 55, 0.5)' : 'transparent',
+                backgroundColor: comparisonMode ? 'rgba(var(--client-accent-rgb), 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                color: comparisonMode ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
+                borderColor: comparisonMode ? 'rgba(var(--client-accent-rgb), 0.5)' : 'transparent',
               }}
             >
               {comparisons.map((comp) => (
-                <option key={comp.label} value={comp.value || ''} style={{ backgroundColor: '#004d35', color: '#fff' }}>
+                <option key={comp.label} value={comp.value || ''} style={{ backgroundColor: 'var(--client-primary-dark)', color: '#fff' }}>
                   {comp.label}
                 </option>
               ))}
             </select>
           </div>
 
-          <div className="h-6 w-px" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }} />
+          <div className="h-6 w-px" style={{ backgroundColor: 'rgba(var(--client-accent-rgb), 0.2)' }} />
 
           {/* Filter Toggle Button */}
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition-all"
             style={{
-              backgroundColor: hasActiveFilters || isExpanded ? 'rgba(212, 175, 55, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-              color: hasActiveFilters || isExpanded ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-              border: hasActiveFilters || isExpanded ? '1px solid rgba(212, 175, 55, 0.5)' : '1px solid transparent',
+              backgroundColor: hasActiveFilters || isExpanded ? 'rgba(var(--client-accent-rgb), 0.25)' : 'rgba(255, 255, 255, 0.05)',
+              color: hasActiveFilters || isExpanded ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
+              border: hasActiveFilters || isExpanded ? '1px solid rgba(var(--client-accent-rgb), 0.5)' : '1px solid transparent',
             }}
           >
             <span>{isExpanded ? 'Hide Filters' : 'More Filters'}</span>
             {hasActiveFilters && (
               <div
                 className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: '#D4AF37' }}
+                style={{ backgroundColor: 'var(--client-accent)' }}
               />
             )}
           </button>
@@ -160,23 +160,23 @@ export default function GlobalFilterBar() {
 
         {/* Expanded Filters Row */}
         {isExpanded && (
-          <div className="mt-3 pt-3 border-t" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+          <div className="mt-3 pt-3 border-t" style={{ borderColor: 'rgba(var(--client-accent-rgb), 0.2)' }}>
             <div className="flex items-center gap-4 flex-wrap">
               {/* Business Unit Filter */}
               <div className="flex items-center gap-2">
-                <Building2 className="h-4 w-4" style={{ color: '#D4AF37' }} />
+                <Building2 className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
                 <select
                   value={businessUnit}
                   onChange={(e) => setBusinessUnit(e.target.value as BusinessUnit)}
                   className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all"
                   style={{
-                    backgroundColor: businessUnit !== 'All' ? 'rgba(212, 175, 55, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                    color: businessUnit !== 'All' ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-                    borderColor: businessUnit !== 'All' ? 'rgba(212, 175, 55, 0.5)' : 'transparent',
+                    backgroundColor: businessUnit !== 'All' ? 'rgba(var(--client-accent-rgb), 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                    color: businessUnit !== 'All' ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
+                    borderColor: businessUnit !== 'All' ? 'rgba(var(--client-accent-rgb), 0.5)' : 'transparent',
                   }}
                 >
                   {businessUnits.map((unit) => (
-                    <option key={unit} value={unit} style={{ backgroundColor: '#004d35', color: '#fff' }}>
+                    <option key={unit} value={unit} style={{ backgroundColor: 'var(--client-primary-dark)', color: '#fff' }}>
                       {unit === 'All' ? 'All Business Units' : unit}
                     </option>
                   ))}
@@ -185,19 +185,19 @@ export default function GlobalFilterBar() {
 
               {/* Geography Filter */}
               <div className="flex items-center gap-2">
-                <Globe className="h-4 w-4" style={{ color: '#D4AF37' }} />
+                <Globe className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
                 <select
                   value={geography}
                   onChange={(e) => setGeography(e.target.value as Geography)}
                   className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all"
                   style={{
-                    backgroundColor: geography !== 'All' ? 'rgba(212, 175, 55, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                    color: geography !== 'All' ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-                    borderColor: geography !== 'All' ? 'rgba(212, 175, 55, 0.5)' : 'transparent',
+                    backgroundColor: geography !== 'All' ? 'rgba(var(--client-accent-rgb), 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                    color: geography !== 'All' ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
+                    borderColor: geography !== 'All' ? 'rgba(var(--client-accent-rgb), 0.5)' : 'transparent',
                   }}
                 >
                   {geographies.map((geo) => (
-                    <option key={geo} value={geo} style={{ backgroundColor: '#004d35', color: '#fff' }}>
+                    <option key={geo} value={geo} style={{ backgroundColor: 'var(--client-primary-dark)', color: '#fff' }}>
                       {geo === 'All' ? 'All Regions' : geo}
                     </option>
                   ))}
@@ -206,19 +206,19 @@ export default function GlobalFilterBar() {
 
               {/* Client Segment Filter */}
               <div className="flex items-center gap-2">
-                <Users className="h-4 w-4" style={{ color: '#D4AF37' }} />
+                <Users className="h-4 w-4" style={{ color: 'var(--client-accent)' }} />
                 <select
                   value={clientSegment}
                   onChange={(e) => setClientSegment(e.target.value as ClientSegment)}
                   className="px-3 py-1.5 text-xs font-medium rounded-lg border transition-all"
                   style={{
-                    backgroundColor: clientSegment !== 'All' ? 'rgba(212, 175, 55, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                    color: clientSegment !== 'All' ? '#D4AF37' : 'rgba(255, 255, 255, 0.7)',
-                    borderColor: clientSegment !== 'All' ? 'rgba(212, 175, 55, 0.5)' : 'transparent',
+                    backgroundColor: clientSegment !== 'All' ? 'rgba(var(--client-accent-rgb), 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                    color: clientSegment !== 'All' ? 'var(--client-accent)' : 'rgba(255, 255, 255, 0.7)',
+                    borderColor: clientSegment !== 'All' ? 'rgba(var(--client-accent-rgb), 0.5)' : 'transparent',
                   }}
                 >
                   {clientSegments.map((segment) => (
-                    <option key={segment} value={segment} style={{ backgroundColor: '#004d35', color: '#fff' }}>
+                    <option key={segment} value={segment} style={{ backgroundColor: 'var(--client-primary-dark)', color: '#fff' }}>
                       {segment === 'All' ? 'All Client Segments' : segment}
                     </option>
                   ))}

@@ -40,7 +40,7 @@ export const questionCategories: QuestionCategory[] = [
       },
       {
         id: 'fp-5',
-        text: 'Show profitability by business segment (C&IS, Wealth, Asset Mgmt)',
+        text: 'Show profitability by business segment',
         category: 'financial',
         keywords: ['segment', 'profitability', 'cis', 'wealth', 'asset management'],
         route: '/business-economics',
@@ -253,7 +253,7 @@ export const questionCategories: QuestionCategory[] = [
       },
       {
         id: 'mp-4',
-        text: 'What is the news sentiment trend for Northern Trust vs. peers?',
+        text: 'What is the news sentiment trend for us vs. peers?',
         category: 'peer',
         keywords: ['news', 'sentiment', 'analyst', 'headline', 'peer'],
         decisionType: 'monitor',
@@ -301,7 +301,7 @@ export const questionCategories: QuestionCategory[] = [
       },
       {
         id: 'fl-5',
-        text: 'What would it take to close the ROE gap from 13.8% to the 15% target?',
+        text: 'What would it take to close the ROE gap to our target?',
         category: 'forward',
         keywords: ['roe', 'gap', 'target', 'bridge', 'improvement'],
         decisionType: 'optimize',

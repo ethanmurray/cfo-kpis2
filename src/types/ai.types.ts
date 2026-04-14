@@ -31,6 +31,7 @@ export interface ClassifyResponse {
 
 export interface AskRequest {
   question: string
+  clientId?: string
   filters?: {
     periodType?: string
     businessUnit?: string

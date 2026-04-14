@@ -1,11 +1,41 @@
-export const CODE_GENERATION_SYSTEM_PROMPT = `You are a senior data analyst for Northern Trust Corporation, one of the world's leading custody banks.
+import { type ClientConfig, NORTHERN_TRUST_CONFIG } from '../../config/clientConfig'
+
+// Data schema description (shared across prompts, client-independent)
+const DATA_SCHEMA = `The data.json file contains these top-level keys:
+- executiveSummary: AUC, revenue (QTD/YTD), costToIncome, preTaxMargin, EPS, alerts, strategicTargets
+- revenue: timeSeries (36 months), byCategory (revenue categories with actual/budget/priorYear), topClients
+- auc: total, feeEarning, change (daily/monthly/yearly), netNewBusiness (quarterly), feeMargin, byAssetClass, byRegion, byClientSegment, topClients
+- operational: costToIncome (current + trend), costPerTransaction, stpRate, automationRate, expensesByCategory
+- profitability: NII, nonInterestIncome, totalRevenue, opExpenses, preTaxIncome, netIncome, ROE, ROA, margins, EPS (GAAP/adjusted/diluted), bookValue, sharesOutstanding, timeSeries
+- risk: operationalEvents, settlementFailRate, capitalRatios, liquidityRatios
+- clientMetrics: retentionRate, churnRate, newClients, lostClients, avgRevenuePerClient, clientGrowth
+- marketPosition: marketShare (overall + byRegion), ranking, competitiveFees
+- strategicTargets: summary, detailed targets with progress/drivers/initiatives/risks
+- peerComparison: peers with AUC/revenue/ROE/efficiency/marketCap
+- balanceSheet: totalAssets, loans, securities, deposits, equity, leverageRatio, RWA, capitalAllocation
+- employees: totalEmployees, revenuePerEmployee, byDepartment, turnoverRate
+- segmentPnL: segments with revenue/expenses/ROE/efficiency
+- techROI: totalTechSpend, investments with ROI/payback, automationSavings
+- regulatory: examinations, openFindings, CAMELS rating
+- cybersecurity: securityScore, incidents, vulnerabilities, phishing results
+- creditRisk: loanPortfolio by segment, concentrations, riskRating, chargeOffs
+- capital: CET1 (ratio/capital/RWA/headroom), Tier1, totalCapital, SLR, AOCI
+- liquidity: LCR (value/HQLA/netCashOutflows), NSFR, liquidityBuffer, unencumberedAssets, depositStability
+- interestRate: NII (MTD/QTD/YTD/runRate), NIM, sensitivity (NII/EVE), depositBeta, duration, repricingGaps, hedgeCoverage
+- orderFlow: depositFlows, loanPipeline, commitments, paymentsVolume, securitiesFlow
+- balanceSheetDetailed: totalAssets/Liabilities, loans (bySegment, fixedFloating), deposits (bySegment, insured/uninsured), securities, costMetrics, fundingMix, qualityProxies
+- forecasts: deposits7D, deposits12W, loans12W, nii8Q, lcr7D, cet18Q (each with forecast points, scenarios, drivers, sensitivities)
+- peers: bank peers with marketData, valuation, fundamentals, creditMarket, news`
+
+function companyContext(config: ClientConfig): string {
+  return config.aiContext.companyBulletPoints.map((b) => `- ${b}`).join('\n')
+}
+
+export function getCodeGenerationSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+  return `You are a senior data analyst for ${config.aiContext.companyDescription}.
 
 ## Company Context
-- Assets Under Custody/Administration: $15.8 trillion
-- Annual Revenue: ~$7.1 billion
-- ~19,500 employees globally
-- Ranked 4th globally by AUC among custody banks
-- Headquarters: Chicago, Illinois
+${companyContext(config)}
 
 ## Your Task
 Given a question from a CFO or senior finance executive, write Python code that analyzes the provided financial data and produces clear, actionable insights.
@@ -16,7 +46,7 @@ Your code MUST:
 2. Use pandas for data manipulation and analysis
 3. Print clear, formatted results to stdout (tables, summaries, key metrics)
 4. Create 1-2 charts using matplotlib and save to /tmp/chart_1.png (and /tmp/chart_2.png if needed)
-5. Use Northern Trust brand colors in charts: primary green '#006747', gold '#D4AF37', accent colors '#10b981', '#3b82f6', '#f59e0b', '#ef4444'
+5. Use brand colors in charts: ${config.aiContext.chartColorsCSS}
 
 ## Code Conventions
 - Keep code under 120 lines
@@ -30,33 +60,12 @@ Your code MUST:
 - No emoji in output
 - Available packages: pandas, numpy, scipy, matplotlib, seaborn, json
 
-## Data Structure
-The data.json file contains these top-level keys:
-- executiveSummary: AUC, revenue (QTD/YTD), costToIncome, preTaxMargin, EPS, alerts, strategicTargets
-- revenue: timeSeries (36 months), byCategory (6 fee categories with actual/budget/priorYear), topClients
-- auc: total, feeEarning, change (daily/monthly/yearly), netNewBusiness (quarterly), feeMargin, byAssetClass, byRegion, byClientSegment, topClients
-- operational: costToIncome (current + trend), costPerTransaction, stpRate, automationRate, expensesByCategory
-- profitability: NII, nonInterestIncome, totalRevenue, opExpenses, preTaxIncome, netIncome, ROE, ROA, margins, EPS (GAAP/adjusted/diluted), bookValue, sharesOutstanding, timeSeries
-- risk: operationalEvents, settlementFailRate, capitalRatios, liquidityRatios
-- clientMetrics: retentionRate, churnRate, newClients, lostClients, avgRevenuePerClient, clientGrowth
-- marketPosition: marketShare (overall + byRegion), ranking, competitiveFees
-- strategicTargets: summary, 9 detailed targets with progress/drivers/initiatives/risks
-- peerComparison: 5 peers (BNY Mellon, State Street, JPMorgan, Northern Trust, Citibank) with AUC/revenue/ROE/efficiency/marketCap
-- balanceSheet: totalAssets, loans, securities, deposits, equity, leverageRatio, RWA, capitalAllocation
-- employees: totalEmployees, revenuePerEmployee, byDepartment, turnoverRate
-- segmentPnL: 3 segments (C&IS, Wealth Management, Asset Management) with revenue/expenses/ROE/efficiency
-- techROI: totalTechSpend, investments with ROI/payback, automationSavings
-- regulatory: examinations, openFindings, CAMELS rating
-- cybersecurity: securityScore, incidents, vulnerabilities, phishing results
-- creditRisk: loanPortfolio by segment, concentrations, riskRating, chargeOffs
-- capital: CET1 (ratio/capital/RWA/headroom), Tier1, totalCapital, SLR, AOCI
-- liquidity: LCR (value/HQLA/netCashOutflows), NSFR, liquidityBuffer, unencumberedAssets, depositStability
-- interestRate: NII (MTD/QTD/YTD/runRate), NIM, sensitivity (NII/EVE), depositBeta, duration, repricingGaps, hedgeCoverage
-- orderFlow: depositFlows, loanPipeline, commitments, paymentsVolume, securitiesFlow
-- balanceSheetDetailed: totalAssets/Liabilities, loans (bySegment, fixedFloating), deposits (bySegment, insured/uninsured), securities, costMetrics, fundingMix, qualityProxies
-- forecasts: deposits7D, deposits12W, loans12W, nii8Q, lcr7D, cet18Q (each with forecast points, scenarios, drivers, sensitivities)
-- peers: 12 bank peers with marketData, valuation, fundamentals, creditMarket, news
+${DATA_SCHEMA}
 `
+}
+
+// Keep backward-compatible constant (defaults to Northern Trust)
+export const CODE_GENERATION_SYSTEM_PROMPT = getCodeGenerationSystemPrompt()
 
 export function buildCodeGenUserPrompt(
   question: string,
@@ -76,7 +85,7 @@ export function buildCodeGenUserPrompt(
     const framings: Record<string, string> = {
       monitor: 'Frame findings around whether current metrics are within acceptable ranges and what to watch.',
       optimize: 'Frame findings around specific opportunities for improvement and their potential impact.',
-      compare: 'Frame findings as relative benchmarking, highlighting where Northern Trust leads or lags.',
+      compare: 'Frame findings as relative benchmarking, highlighting where the bank leads or lags.',
       forecast: 'Frame findings around projected trajectories and key assumptions that could change outcomes.',
       diagnose: 'Frame findings around root causes and contributing factors, decomposing the metric into its drivers.',
     }
@@ -90,7 +99,8 @@ export function buildCodeGenUserPrompt(
   return prompt
 }
 
-export const NARRATIVE_SYSTEM_PROMPT = `You are a senior financial analyst advising the CFO of Northern Trust Corporation.
+export function getNarrativeSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+  return `You are a senior financial analyst advising the CFO of ${config.name}.
 Given analysis results from a data query, write a brief executive narrative (3-5 sentences).
 Be direct and action-oriented. Highlight:
 1. The key finding or insight
@@ -98,6 +108,9 @@ Be direct and action-oriented. Highlight:
 3. What action, decision, or area of focus it implies
 
 Use specific numbers from the analysis results. Avoid hedging language. Write in plain language appropriate for a CFO.`
+}
+
+export const NARRATIVE_SYSTEM_PROMPT = getNarrativeSystemPrompt()
 
 export function buildNarrativeUserPrompt(
   question: string,
@@ -111,10 +124,11 @@ export function buildNarrativeUserPrompt(
   return prompt
 }
 
-export const CLASSIFY_SYSTEM_PROMPT = `You classify CFO dashboard questions into two tiers. Respond with ONLY valid JSON, no other text.
+export function getClassifySystemPrompt(_config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+  return `You classify CFO dashboard questions into two tiers. Respond with ONLY valid JSON, no other text.
 
 Available dashboard pages:
-- "/" (Executive Dashboard): Enterprise overview, 2025 targets, critical alerts, financial/balance sheet/client/operations metrics, peer percentile
+- "/" (Executive Dashboard): Enterprise overview, targets, critical alerts, financial/balance sheet/client/operations metrics, peer percentile
 - "/financials" (Group Financials): P&L, balance sheet overview, capital ratios, funding, NIM analysis
 - "/business-economics" (Business Economics): Revenue by segment, client acquisition, margin analysis
 - "/clients" (Client Economics): Client profitability, wallet share, relationship depth, retention
@@ -134,15 +148,15 @@ Response format:
 {"tier": "navigate", "route": "/path", "tab": "tabName", "pageName": "Page Name", "description": "Brief description of what the user will find"}
 or
 {"tier": "dynamic"}`
+}
 
-// Direct analysis prompt (fallback when E2B sandbox is unavailable)
-export const DIRECT_ANALYSIS_SYSTEM_PROMPT = `You are a senior data analyst for Northern Trust Corporation, one of the world's leading custody banks.
+export const CLASSIFY_SYSTEM_PROMPT = getClassifySystemPrompt()
+
+export function getDirectAnalysisSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+  return `You are a senior data analyst for ${config.aiContext.companyDescription}.
 
 ## Company Context
-- Assets Under Custody/Administration: $15.8 trillion
-- Annual Revenue: ~$7.1 billion
-- ~19,500 employees globally
-- Ranked 4th globally by AUC among custody banks
+${companyContext(config)}
 
 ## Your Task
 Given a question and the complete financial dataset, you must:
@@ -181,7 +195,7 @@ Respond with valid JSON only. No text before or after:
 Generate ONE clean SVG chart:
 - Complete element with xmlns="http://www.w3.org/2000/svg"
 - Use viewBox="0 0 600 350"
-- Northern Trust colors: #006747, #D4AF37, #10b981, #3b82f6, #f59e0b, #ef4444, #8b5cf6
+- Brand colors: ${config.aiContext.chartColorsCSS}
 - font-family="system-ui, -apple-system, sans-serif"
 - Include title, axis labels, data labels with actual values
 - No emoji
@@ -190,6 +204,9 @@ Generate ONE clean SVG chart:
 - Direct, action-oriented, no hedging
 - ONLY cite numbers from the provided data
 - Structure: **Key Finding** (1 sentence), **Analysis** (3-5 sentences), **Recommendation** (1-2 sentences)`
+}
+
+export const DIRECT_ANALYSIS_SYSTEM_PROMPT = getDirectAnalysisSystemPrompt()
 
 export function buildDirectAnalysisUserPrompt(
   question: string,

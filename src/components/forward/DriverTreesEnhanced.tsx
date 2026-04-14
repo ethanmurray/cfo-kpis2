@@ -79,7 +79,7 @@ export default function DriverTreesEnhanced() {
         {/* Connector Line */}
         {level > 0 && (
           <div className="absolute left-0 top-0 w-8 h-1/2 border-l-2 border-b-2 rounded-bl-lg" style={{
-            borderColor: 'rgba(212, 175, 55, 0.3)',
+            borderColor: 'rgba(var(--client-accent-rgb), 0.3)',
             marginLeft: `-${level * 32}px`
           }} />
         )}
@@ -89,9 +89,9 @@ export default function DriverTreesEnhanced() {
           style={{
             marginLeft: `${level * 32}px`,
             background: isHovered
-              ? 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)'
+              ? 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.15) 0%, rgba(var(--client-accent-rgb), 0.05) 100%)'
               : 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-            border: `2px solid ${isHovered ? 'rgba(212, 175, 55, 0.4)' : 'rgba(0, 77, 53, 0.08)'}`,
+            border: `2px solid ${isHovered ? 'rgba(var(--client-accent-rgb), 0.4)' : 'rgba(var(--client-primary-rgb), 0.08)'}`,
             transform: isHovered ? 'translateX(4px)' : 'translateX(0)'
           }}
           onClick={() => hasChildren && toggleNode(id)}
@@ -104,18 +104,18 @@ export default function DriverTreesEnhanced() {
               {hasChildren && (
                 <div className="flex-shrink-0">
                   {isExpanded ? (
-                    <ChevronDown className="h-5 w-5" style={{ color: '#D4AF37' }} />
+                    <ChevronDown className="h-5 w-5" style={{ color: 'var(--client-accent)' }} />
                   ) : (
-                    <ChevronRight className="h-5 w-5" style={{ color: '#D4AF37' }} />
+                    <ChevronRight className="h-5 w-5" style={{ color: 'var(--client-accent)' }} />
                   )}
                 </div>
               )}
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm" style={{ color: '#006747' }}>{label}</span>
+                  <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>{label}</span>
                   {formula && (
                     <span className="text-xs font-mono px-2 py-0.5 rounded" style={{
-                      backgroundColor: 'rgba(0, 77, 53, 0.05)',
+                      backgroundColor: 'rgba(var(--client-primary-rgb), 0.05)',
                       color: '#6b7280'
                     }}>
                       {formula}
@@ -155,7 +155,7 @@ export default function DriverTreesEnhanced() {
             {/* Right: Value & Change */}
             <div className="flex items-center gap-4 flex-shrink-0">
               <div className="text-right">
-                <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>
+                <div className="text-2xl font-bold" style={{ color: 'var(--client-accent)' }}>
                   {unit === '$' ? '$' : ''}{value.toLocaleString(undefined, { maximumFractionDigits: unit === 'bps' ? 1 : 0 })}{unit === 'M' ? 'M' : unit === '%' ? '%' : unit === 'bps' ? ' bps' : unit === 'B' ? 'B' : ''}
                 </div>
                 {change !== undefined && (
@@ -171,7 +171,7 @@ export default function DriverTreesEnhanced() {
 
         {/* Children */}
         {isExpanded && hasChildren && (
-          <div className="ml-4 border-l-2 pl-4" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}>
+          <div className="ml-4 border-l-2 pl-4" style={{ borderColor: 'rgba(var(--client-accent-rgb), 0.2)' }}>
             {children}
           </div>
         )}
@@ -203,12 +203,12 @@ export default function DriverTreesEnhanced() {
     <div className="space-y-6">
       {/* Header with Scenario Selector */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
-        background: 'linear-gradient(135deg, rgba(0, 77, 53, 0.05) 0%, rgba(0, 77, 53, 0.02) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.15)'
+        background: 'linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.05) 0%, rgba(var(--client-primary-rgb), 0.02) 100%)',
+        border: '1px solid rgba(var(--client-primary-rgb), 0.15)'
       }}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold" style={{ color: '#006747' }}>Visual Driver Trees</h2>
+            <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>Visual Driver Trees</h2>
             <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Interactive decomposition with historical trends and contribution analysis</p>
           </div>
           <div className="flex gap-2">
@@ -218,8 +218,8 @@ export default function DriverTreesEnhanced() {
                 onClick={() => setSelectedScenario(s)}
                 className="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
                 style={{
-                  backgroundColor: selectedScenario === s ? '#D4AF37' : 'rgba(212, 175, 55, 0.1)',
-                  color: selectedScenario === s ? '#ffffff' : '#D4AF37'
+                  backgroundColor: selectedScenario === s ? 'var(--client-accent)' : 'rgba(var(--client-accent-rgb), 0.1)',
+                  color: selectedScenario === s ? '#ffffff' : 'var(--client-accent)'
                 }}
               >
                 {s.charAt(0).toUpperCase() + s.slice(1)}
@@ -248,9 +248,9 @@ export default function DriverTreesEnhanced() {
       {/* Revenue Contribution Breakdown */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Revenue Driver Contributions</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Driver Contributions</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={revenueWaterfall} layout="horizontal">
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -259,14 +259,14 @@ export default function DriverTreesEnhanced() {
             <Tooltip
               contentStyle={{
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid rgba(0, 77, 53, 0.2)',
+                border: '1px solid rgba(var(--client-primary-rgb), 0.2)',
                 borderRadius: '8px',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
             />
             <Bar dataKey="contribution" radius={[8, 8, 0, 0]}>
               {revenueWaterfall.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={index < 3 ? '#D4AF37' : '#006747'} />
+                <Cell key={`cell-${index}`} fill={index < 3 ? 'var(--client-accent)' : 'var(--client-primary)'} />
               ))}
             </Bar>
           </BarChart>
@@ -276,9 +276,9 @@ export default function DriverTreesEnhanced() {
       {/* Interactive Tree Structure */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Revenue Tree (Interactive)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Tree (Interactive)</h3>
 
         <VisualDriverNode
           id="revenue"
@@ -347,9 +347,9 @@ export default function DriverTreesEnhanced() {
       {/* Economic Profit Tree */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Economic Profit Tree (Interactive)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Economic Profit Tree (Interactive)</h3>
 
         <VisualDriverNode
           id="economic-profit"
@@ -403,10 +403,10 @@ export default function DriverTreesEnhanced() {
 
       {/* RAROC Decomposition with Sankey-style Visual */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
-        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%)',
-        border: '1px solid rgba(212, 175, 55, 0.2)'
+        background: 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.05) 0%, rgba(var(--client-accent-rgb), 0.02) 100%)',
+        border: '1px solid rgba(var(--client-accent-rgb), 0.2)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>RAROC Decomposition (9.8%)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>RAROC Decomposition (9.8%)</h3>
         <div className="grid grid-cols-3 gap-8 items-center">
           <div className="text-center p-6 rounded-xl" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
             <div className="text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6b7280' }}>
@@ -416,25 +416,25 @@ export default function DriverTreesEnhanced() {
           </div>
 
           <div className="text-center">
-            <ArrowRight className="h-12 w-12 mx-auto" style={{ color: '#D4AF37' }} />
+            <ArrowRight className="h-12 w-12 mx-auto" style={{ color: 'var(--client-accent)' }} />
             <div className="text-xs font-semibold mt-2" style={{ color: '#6b7280' }}>÷ Allocated Capital</div>
           </div>
 
-          <div className="text-center p-6 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }}>
+          <div className="text-center p-6 rounded-xl" style={{ backgroundColor: 'rgba(var(--client-accent-rgb), 0.15)' }}>
             <div className="text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6b7280' }}>
               RAROC
             </div>
-            <div className="text-4xl font-bold" style={{ color: '#D4AF37' }}>9.8%</div>
+            <div className="text-4xl font-bold" style={{ color: 'var(--client-accent)' }}>9.8%</div>
             <div className="text-xs mt-2" style={{ color: '#6b7280' }}>
               Target: 12.5% (+2.7pp gap)
             </div>
           </div>
         </div>
 
-        <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.2)' }}>
+        <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(var(--client-accent-rgb), 0.2)' }}>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <div className="font-semibold mb-2" style={{ color: '#006747' }}>Key Drivers to Close Gap:</div>
+              <div className="font-semibold mb-2" style={{ color: 'var(--client-primary)' }}>Key Drivers to Close Gap:</div>
               <ul className="space-y-1" style={{ color: '#6b7280' }}>
                 <li>• Revenue Growth: +8% clients, +12% AUM → +$720M</li>
                 <li>• Fee Optimization: +0.5 bps → +$307M</li>
@@ -443,7 +443,7 @@ export default function DriverTreesEnhanced() {
               </ul>
             </div>
             <div>
-              <div className="font-semibold mb-2" style={{ color: '#006747' }}>Historical Progress:</div>
+              <div className="font-semibold mb-2" style={{ color: 'var(--client-primary)' }}>Historical Progress:</div>
               <div className="space-y-2">
                 {[
                   { year: '2022', raroc: 8.2 },
@@ -459,11 +459,11 @@ export default function DriverTreesEnhanced() {
                           className="h-2 rounded-full transition-all duration-500"
                           style={{
                             width: `${(item.raroc / 12.5) * 100}%`,
-                            backgroundColor: item.raroc >= 12.5 ? '#10b981' : '#D4AF37'
+                            backgroundColor: item.raroc >= 12.5 ? '#10b981' : 'var(--client-accent)'
                           }}
                         />
                       </div>
-                      <span className="font-bold w-12 text-right" style={{ color: '#006747' }}>{item.raroc}%</span>
+                      <span className="font-bold w-12 text-right" style={{ color: 'var(--client-primary)' }}>{item.raroc}%</span>
                     </div>
                   </div>
                 ))}

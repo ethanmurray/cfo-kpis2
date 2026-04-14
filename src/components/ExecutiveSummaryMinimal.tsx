@@ -1,9 +1,13 @@
+import { useClientStore } from '../stores/clientStore'
+
 export default function ExecutiveSummaryMinimal() {
+  const config = useClientStore((s) => s.config)
+
   return (
     <div className="p-6 space-y-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Executive Summary</h1>
-        <p className="text-gray-600 mt-2">Northern Trust CFO Dashboard</p>
+        <p className="text-gray-600 mt-2">{config.shortName} CFO Dashboard</p>
       </div>
 
       <div className="metric-card">

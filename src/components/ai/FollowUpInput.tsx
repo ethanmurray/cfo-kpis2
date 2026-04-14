@@ -26,7 +26,7 @@ export default function FollowUpInput() {
       <button
         onClick={handleSubmit}
         disabled={!text.trim() || isLoading}
-        className="rounded-md p-1.5 text-gray-400 hover:text-[#006747] transition-colors disabled:opacity-40"
+        className="rounded-md p-1.5 text-gray-400 hover:text-[var(--client-primary)] transition-colors disabled:opacity-40"
       >
         {isLoading ? (
           <Loader2 size={16} className="animate-spin" />

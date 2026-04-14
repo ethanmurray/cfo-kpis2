@@ -84,12 +84,12 @@ export default function InteractiveScenarioBuilder() {
     <div className="space-y-6">
       {/* Header */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
-        background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%)',
-        border: '1px solid rgba(212, 175, 55, 0.2)'
+        background: 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.1) 0%, rgba(var(--client-accent-rgb), 0.05) 100%)',
+        border: '1px solid rgba(var(--client-accent-rgb), 0.2)'
       }}>
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold" style={{ color: '#006747' }}>Interactive Scenario Builder</h2>
+            <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>Interactive Scenario Builder</h2>
             <p className="text-sm mt-1" style={{ color: '#6b7280' }}>
               Adjust levers below to see real-time impact on financial outcomes
             </p>
@@ -134,18 +134,18 @@ export default function InteractiveScenarioBuilder() {
         <div className="space-y-4">
           <div className="rounded-2xl p-6 shadow-lg" style={{
             background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-            border: '1px solid rgba(0, 77, 53, 0.08)'
+            border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
           }}>
-            <h3 className="text-lg font-bold mb-6" style={{ color: '#006747' }}>Adjust Key Levers</h3>
+            <h3 className="text-lg font-bold mb-6" style={{ color: 'var(--client-primary)' }}>Adjust Key Levers</h3>
 
             {/* Client Growth */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <Users className="h-5 w-5" style={{ color: '#3b82f6' }} />
-                  <span className="font-semibold text-sm" style={{ color: '#006747' }}>Client Growth</span>
+                  <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>Client Growth</span>
                 </div>
-                <span className="text-lg font-bold" style={{ color: '#D4AF37' }}>
+                <span className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>
                   {sliders.clientGrowth > 0 ? '+' : ''}{sliders.clientGrowth}%
                 </span>
               </div>
@@ -173,9 +173,9 @@ export default function InteractiveScenarioBuilder() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <TrendingUp className="h-5 w-5" style={{ color: '#10b981' }} />
-                  <span className="font-semibold text-sm" style={{ color: '#006747' }}>AUM per Client Growth</span>
+                  <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>AUM per Client Growth</span>
                 </div>
-                <span className="text-lg font-bold" style={{ color: '#D4AF37' }}>
+                <span className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>
                   {sliders.aumGrowth > 0 ? '+' : ''}{sliders.aumGrowth}%
                 </span>
               </div>
@@ -202,10 +202,10 @@ export default function InteractiveScenarioBuilder() {
             <div className="mb-6">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <DollarSign className="h-5 w-5" style={{ color: '#D4AF37' }} />
-                  <span className="font-semibold text-sm" style={{ color: '#006747' }}>Fee Rate Change</span>
+                  <DollarSign className="h-5 w-5" style={{ color: 'var(--client-accent)' }} />
+                  <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>Fee Rate Change</span>
                 </div>
-                <span className="text-lg font-bold" style={{ color: '#D4AF37' }}>
+                <span className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>
                   {sliders.feeRate > 0 ? '+' : ''}{(sliders.feeRate / 10).toFixed(1)} bps
                 </span>
               </div>
@@ -233,9 +233,9 @@ export default function InteractiveScenarioBuilder() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <Zap className="h-5 w-5" style={{ color: '#f59e0b' }} />
-                  <span className="font-semibold text-sm" style={{ color: '#006747' }}>Cost Reduction</span>
+                  <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>Cost Reduction</span>
                 </div>
-                <span className="text-lg font-bold" style={{ color: '#D4AF37' }}>
+                <span className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>
                   {sliders.costReduction}%
                 </span>
               </div>
@@ -263,9 +263,9 @@ export default function InteractiveScenarioBuilder() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <TrendingDown className="h-5 w-5" style={{ color: '#3b82f6' }} />
-                  <span className="font-semibold text-sm" style={{ color: '#006747' }}>Capital Efficiency</span>
+                  <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>Capital Efficiency</span>
                 </div>
-                <span className="text-lg font-bold" style={{ color: '#D4AF37' }}>
+                <span className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>
                   {sliders.capitalEfficiency}%
                 </span>
               </div>
@@ -294,17 +294,17 @@ export default function InteractiveScenarioBuilder() {
         <div className="space-y-4">
           {/* Key Outcomes */}
           <div className="rounded-2xl p-6 shadow-lg" style={{
-            background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)',
-            border: '2px solid rgba(212, 175, 55, 0.3)'
+            background: 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.15) 0%, rgba(var(--client-accent-rgb), 0.05) 100%)',
+            border: '2px solid rgba(var(--client-accent-rgb), 0.3)'
           }}>
-            <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Scenario Outcomes</h3>
+            <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Scenario Outcomes</h3>
 
             <div className="space-y-3">
               <div className="p-4 rounded-xl bg-white">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#6b7280' }}>RAROC</div>
-                    <div className="text-3xl font-bold mt-1" style={{ color: '#D4AF37' }}>{raroc.toFixed(1)}%</div>
+                    <div className="text-3xl font-bold mt-1" style={{ color: 'var(--client-accent)' }}>{raroc.toFixed(1)}%</div>
                   </div>
                   <div className="text-right">
                     <div className={`text-xl font-bold ${deltas.raroc >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -319,7 +319,7 @@ export default function InteractiveScenarioBuilder() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#6b7280' }}>Economic Profit</div>
-                    <div className="text-3xl font-bold mt-1" style={{ color: '#006747' }}>${economicProfit.toFixed(0)}M</div>
+                    <div className="text-3xl font-bold mt-1" style={{ color: 'var(--client-primary)' }}>${economicProfit.toFixed(0)}M</div>
                   </div>
                   <div className="text-right">
                     <div className={`text-xl font-bold ${deltas.economicProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -334,7 +334,7 @@ export default function InteractiveScenarioBuilder() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#6b7280' }}>Total Revenue</div>
-                    <div className="text-2xl font-bold mt-1" style={{ color: '#006747' }}>${totalRevenue.toFixed(0)}M</div>
+                    <div className="text-2xl font-bold mt-1" style={{ color: 'var(--client-primary)' }}>${totalRevenue.toFixed(0)}M</div>
                   </div>
                   <div className="text-right">
                     <div className={`text-lg font-bold ${deltas.revenue >= 0 ? 'text-green-600' : 'text-red-600'}`}>
@@ -350,59 +350,59 @@ export default function InteractiveScenarioBuilder() {
           {/* Scenario Details */}
           <div className="rounded-2xl p-6 shadow-lg" style={{
             background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-            border: '1px solid rgba(0, 77, 53, 0.08)'
+            border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
           }}>
-            <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Scenario Details</h3>
+            <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Scenario Details</h3>
 
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>Clients</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold" style={{ color: '#006747' }}>{scenario.clients}</span>
+                  <span className="font-bold" style={{ color: 'var(--client-primary)' }}>{scenario.clients}</span>
                   <span className={`text-xs font-semibold ${deltas.clients >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     ({deltas.clients >= 0 ? '+' : ''}{deltas.clients})
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>AUM per Client</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold" style={{ color: '#006747' }}>${scenario.aumPerClient}B</span>
+                  <span className="font-bold" style={{ color: 'var(--client-primary)' }}>${scenario.aumPerClient}B</span>
                   <span className={`text-xs font-semibold ${deltas.aumPerClient >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     ({deltas.aumPerClient >= 0 ? '+' : ''}{deltas.aumPerClient.toFixed(1)}B)
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>Total AUM</span>
-                <span className="font-bold" style={{ color: '#006747' }}>${totalAum.toFixed(1)}B</span>
+                <span className="font-bold" style={{ color: 'var(--client-primary)' }}>${totalAum.toFixed(1)}B</span>
               </div>
 
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>Fee Rate</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold" style={{ color: '#006747' }}>{scenario.feeRate} bps</span>
+                  <span className="font-bold" style={{ color: 'var(--client-primary)' }}>{scenario.feeRate} bps</span>
                   <span className={`text-xs font-semibold ${deltas.feeRate >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     ({deltas.feeRate >= 0 ? '+' : ''}{deltas.feeRate.toFixed(1)} bps)
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>Total Costs</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold" style={{ color: '#006747' }}>${scenario.costs}M</span>
+                  <span className="font-bold" style={{ color: 'var(--client-primary)' }}>${scenario.costs}M</span>
                   <span className={`text-xs font-semibold ${deltas.costs <= 0 ? 'text-green-600' : 'text-red-600'}`}>
                     ({deltas.costs >= 0 ? '+' : ''}{deltas.costs}M)
                   </span>
                 </div>
               </div>
 
-              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+              <div className="flex justify-between p-2 rounded" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
                 <span style={{ color: '#6b7280' }}>Allocated Capital</span>
-                <span className="font-bold" style={{ color: '#006747' }}>${scenario.capital}M</span>
+                <span className="font-bold" style={{ color: 'var(--client-primary)' }}>${scenario.capital}M</span>
               </div>
             </div>
           </div>

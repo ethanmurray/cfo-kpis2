@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import type { AIReport, AskResponse, ClassifyResponse } from '../types/ai.types'
+import { useClientStore } from './clientStore'
 
 interface AIState {
   isOpen: boolean
@@ -50,6 +51,7 @@ export const useAIStore = create<AIState>((set, get) => ({
 
   submitQuestion: async (question, filters) => {
     const state = get()
+    const clientId = useClientStore.getState().clientId
     set({ isLoading: true, isClassifying: true, error: null })
 
     try {
@@ -57,7 +59,7 @@ export const useAIStore = create<AIState>((set, get) => ({
       const classifyRes = await fetch('/api/classify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, clientId }),
       })
 
       if (!classifyRes.ok) throw new Error('Classification failed')
@@ -95,7 +97,7 @@ export const useAIStore = create<AIState>((set, get) => ({
       const askRes = await fetch('/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, filters, conversationHistory }),
+        body: JSON.stringify({ question, filters, conversationHistory, clientId }),
       })
 
       if (!askRes.ok) throw new Error('Analysis failed')

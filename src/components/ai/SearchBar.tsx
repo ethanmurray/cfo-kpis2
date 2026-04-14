@@ -44,7 +44,7 @@ export default function SearchBar() {
 
   return (
     <div className="relative">
-      <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 focus-within:border-[#006747] focus-within:ring-1 focus-within:ring-[#006747]">
+      <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 focus-within:border-[var(--client-primary)] focus-within:ring-1 focus-within:ring-[var(--client-primary)]">
         <Search size={18} className="text-gray-400 flex-shrink-0" />
         <input
           ref={inputRef}
@@ -61,7 +61,7 @@ export default function SearchBar() {
           onClick={() => handleSubmit()}
           disabled={!query.trim() || isLoading}
           className="flex items-center gap-1 rounded-md px-3 py-1.5 text-xs font-medium text-white transition-colors disabled:opacity-40"
-          style={{ backgroundColor: '#006747' }}
+          style={{ backgroundColor: 'var(--client-primary)' }}
         >
           {isLoading ? (
             <Loader2 size={14} className="animate-spin" />

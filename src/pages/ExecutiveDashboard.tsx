@@ -98,14 +98,14 @@ export default function ExecutiveDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight" style={{ color: '#006747' }}>Executive Dashboard</h1>
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--client-primary)' }}>Executive Dashboard</h1>
           <p className="text-xs mt-1" style={{ color: '#6b7280' }}>Real-time view of critical metrics and alerts</p>
         </div>
         <div className="text-right">
-          <div className="text-xs font-semibold tracking-wide uppercase" style={{ color: '#D4AF37' }}>
+          <div className="text-xs font-semibold tracking-wide uppercase" style={{ color: 'var(--client-accent)' }}>
             Live Data
           </div>
-          <div className="text-sm font-medium mt-1" style={{ color: '#006747' }}>
+          <div className="text-sm font-medium mt-1" style={{ color: 'var(--client-primary)' }}>
             {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
           </div>
           <div className="text-xs" style={{ color: '#9ca3af' }}>
@@ -121,17 +121,17 @@ export default function ExecutiveDashboard() {
       }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
-            <TrendingUp className="h-6 w-6" style={{ color: '#D4AF37' }} />
+            <TrendingUp className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
           </div>
-          <h2 className="text-xl font-bold" style={{ color: '#006747' }}>Enterprise Overview</h2>
+          <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Enterprise Overview</h2>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Financials */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <DollarSign className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Financials</span>
+              <DollarSign className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Financials</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -156,8 +156,8 @@ export default function ExecutiveDashboard() {
           {/* Client Economics */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Users className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Client Economics</span>
+              <Users className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Client Economics</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -182,8 +182,8 @@ export default function ExecutiveDashboard() {
           {/* Product Economics */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Package className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Product Economics</span>
+              <Package className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Product Economics</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -208,8 +208,8 @@ export default function ExecutiveDashboard() {
           {/* Operations */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Zap className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Operations</span>
+              <Zap className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Operations</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -234,8 +234,8 @@ export default function ExecutiveDashboard() {
           {/* Planning & Strategy */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Target className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Planning & Strategy</span>
+              <Target className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Planning & Strategy</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -260,8 +260,8 @@ export default function ExecutiveDashboard() {
           {/* External Positioning */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Award className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>External Positioning</span>
+              <Award className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>External Positioning</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -286,8 +286,8 @@ export default function ExecutiveDashboard() {
           {/* Risk & Compliance */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Shield className="h-5 w-5" style={{ color: '#006747' }} />
-              <span className="font-bold text-sm" style={{ color: '#006747' }}>Risk & Compliance</span>
+              <Shield className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Risk & Compliance</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -312,24 +312,24 @@ export default function ExecutiveDashboard() {
           {/* Strategic Priorities */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Target className="h-5 w-5" style={{ color: '#D4AF37' }} />
-              <span className="font-bold text-sm" style={{ color: '#D4AF37' }}>Top Priorities</span>
+              <Target className="h-5 w-5" style={{ color: 'var(--client-accent)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-accent)' }}>Top Priorities</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
-                <span className="text-xs font-bold" style={{ color: '#D4AF37' }}>1.</span>
+                <span className="text-xs font-bold" style={{ color: 'var(--client-accent)' }}>1.</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>Execute capital deployment strategy</span>
               </div>
               <div className="flex items-start gap-2">
-                <span className="text-xs font-bold" style={{ color: '#D4AF37' }}>2.</span>
+                <span className="text-xs font-bold" style={{ color: 'var(--client-accent)' }}>2.</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>Accelerate cross-sell program</span>
               </div>
               <div className="flex items-start gap-2">
-                <span className="text-xs font-bold" style={{ color: '#D4AF37' }}>3.</span>
+                <span className="text-xs font-bold" style={{ color: 'var(--client-accent)' }}>3.</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>Improve efficiency ratio to 58.5%</span>
               </div>
               <div className="flex items-start gap-2">
-                <span className="text-xs font-bold" style={{ color: '#D4AF37' }}>4.</span>
+                <span className="text-xs font-bold" style={{ color: 'var(--client-accent)' }}>4.</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>Automation & digital initiatives</span>
               </div>
             </div>
@@ -344,10 +344,10 @@ export default function ExecutiveDashboard() {
       }}>
         <div className="flex items-center gap-3 mb-5">
           <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.25)' }}>
-            <Activity className="h-6 w-6" style={{ color: '#D4AF37' }} />
+            <Activity className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
           </div>
           <div>
-            <h2 className="text-xl font-bold" style={{ color: '#006747' }}>2025 Target Trajectory & Required Interventions</h2>
+            <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>2025 Target Trajectory & Required Interventions</h2>
             <p className="text-xs" style={{ color: '#6b7280' }}>Forecast vs. plan analysis with strategic initiative impact</p>
           </div>
         </div>
@@ -360,7 +360,7 @@ export default function ExecutiveDashboard() {
               borderWidth: '2px'
             }}>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold" style={{ color: '#006747' }}>{item.metric}</span>
+                <span className="text-sm font-bold" style={{ color: 'var(--client-primary)' }}>{item.metric}</span>
                 <div className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                   item.status === 'good' ? 'bg-green-100 text-green-700' :
                   item.status === 'warning' ? 'bg-amber-100 text-amber-700' :
@@ -387,7 +387,7 @@ export default function ExecutiveDashboard() {
                 </div>
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs" style={{ color: '#6b7280' }}>Target:</span>
-                  <span className="text-base font-bold" style={{ color: '#D4AF37' }}>
+                  <span className="text-base font-bold" style={{ color: 'var(--client-accent)' }}>
                     {typeof item.target2025 === 'number' && item.target2025 < 100 ? item.target2025.toFixed(1) : item.target2025}
                     {item.metric.includes('Ratio') ? '%' : item.metric.includes('$T') ? 'T' : ''}
                   </span>
@@ -407,7 +407,7 @@ export default function ExecutiveDashboard() {
                 <ul className="space-y-0.5">
                   {item.initiatives.map((initiative, i) => (
                     <li key={i} className="text-xs flex items-start gap-1" style={{ color: '#6b7280' }}>
-                      <ArrowRight className="h-3 w-3 mt-0.5 flex-shrink-0" style={{ color: '#D4AF37' }} />
+                      <ArrowRight className="h-3 w-3 mt-0.5 flex-shrink-0" style={{ color: 'var(--client-accent)' }} />
                       <span>{initiative}</span>
                     </li>
                   ))}
@@ -421,7 +421,7 @@ export default function ExecutiveDashboard() {
         <div className="grid grid-cols-2 gap-6">
           {/* RAROC Trajectory */}
           <div className="bg-white p-4 rounded-xl border border-gray-100">
-            <h3 className="text-sm font-bold mb-3" style={{ color: '#006747' }}>RAROC Trajectory to 12.5% Target</h3>
+            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>RAROC Trajectory to 12.5% Target</h3>
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={rarocTrajectory}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -478,7 +478,7 @@ export default function ExecutiveDashboard() {
 
           {/* Cost/Income Trajectory */}
           <div className="bg-white p-4 rounded-xl border border-gray-100">
-            <h3 className="text-sm font-bold mb-3" style={{ color: '#006747' }}>Cost/Income Ratio to 58.5% Target</h3>
+            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Cost/Income Ratio to 58.5% Target</h3>
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={costIncomeTrajectory}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -585,7 +585,7 @@ export default function ExecutiveDashboard() {
                 <span className="font-medium" style={{ color: '#1f2937' }}>{alert.message}</span>
               </div>
               <span className="text-xs font-medium px-3 py-1.5 rounded-full" style={{
-                color: '#D4AF37',
+                color: 'var(--client-accent)',
                 backgroundColor: 'rgba(212, 175, 55, 0.1)'
               }}>{alert.action}</span>
             </div>
@@ -598,7 +598,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           Financial Performance (YTD)
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -664,7 +664,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           Balance Sheet & Capital
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -728,7 +728,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           Client & Business Metrics
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -790,7 +790,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           Operations & Efficiency
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -854,11 +854,11 @@ export default function ExecutiveDashboard() {
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-bold text-sm tracking-wide uppercase" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+          <h2 className="font-bold text-sm tracking-wide uppercase" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
             Recent Client Activity (Last 24h)
           </h2>
           <button className="text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 hover:shadow-md" style={{
-            color: '#D4AF37',
+            color: 'var(--client-accent)',
             backgroundColor: 'rgba(212, 175, 55, 0.1)'
           }}>View All →</button>
         </div>
@@ -877,7 +877,7 @@ export default function ExecutiveDashboard() {
                   activity.status === 'positive' ? 'bg-green-500' :
                   activity.status === 'negative' ? 'bg-red-500' : 'bg-amber-500'
                 }`} />
-                <span className="font-semibold w-36" style={{ color: '#006747' }}>{activity.client}</span>
+                <span className="font-semibold w-36" style={{ color: 'var(--client-primary)' }}>{activity.client}</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>{activity.event}</span>
               </div>
               <div className="flex items-center gap-4">
@@ -897,23 +897,23 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%)',
         border: '1px solid rgba(212, 175, 55, 0.2)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           2025 Strategic Targets Progress
         </h2>
         <div className="grid grid-cols-4 gap-4">
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>RAROC Target: 12.5%</span>
-              <span className="font-bold" style={{ color: '#006747' }}>9.8% (78%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>9.8% (78%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-              <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '78%', backgroundColor: '#D4AF37' }} />
+              <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '78%', backgroundColor: 'var(--client-accent)' }} />
             </div>
           </div>
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>Client Growth: 308</span>
-              <span className="font-bold" style={{ color: '#006747' }}>285 (93%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>285 (93%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
               <div className="bg-green-600 h-2.5 rounded-full transition-all duration-500" style={{ width: '93%' }} />
@@ -922,7 +922,7 @@ export default function ExecutiveDashboard() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>Cost/Income: 58.5%</span>
-              <span className="font-bold" style={{ color: '#006747' }}>62.5% (88%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>62.5% (88%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}>
               <div className="bg-amber-600 h-2.5 rounded-full transition-all duration-500" style={{ width: '88%' }} />
@@ -931,10 +931,10 @@ export default function ExecutiveDashboard() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>AUM: $6.5T</span>
-              <span className="font-bold" style={{ color: '#006747' }}>$6.1T (94%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>$6.1T (94%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-              <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '94%', backgroundColor: '#D4AF37' }} />
+              <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '94%', backgroundColor: 'var(--client-accent)' }} />
             </div>
           </div>
         </div>
@@ -945,7 +945,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: '#006747', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
           Peer Comparison (Percentile Ranking)
         </h2>
         <div className="grid grid-cols-8 gap-3 text-xs">

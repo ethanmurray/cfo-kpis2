@@ -39,8 +39,8 @@ export default function CompactMetricCard({
     },
     neutral: {
       bg: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-      border: 'rgba(0, 77, 53, 0.08)',
-      accent: '#006747'
+      border: 'rgba(var(--client-primary-rgb), 0.08)',
+      accent: 'var(--client-primary)'
     }
   }
 
@@ -76,11 +76,11 @@ export default function CompactMetricCard({
       </div>
       {target && (
         <div className="text-xs font-medium" style={{ color: '#9ca3af' }}>
-          Target: <span style={{ color: '#D4AF37' }}>{target}{unit}</span>
+          Target: <span style={{ color: 'var(--client-accent)' }}>{target}{unit}</span>
         </div>
       )}
       {trend && trend.length > 0 && (
-        <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(0, 77, 53, 0.05)' }}>
+        <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(var(--client-primary-rgb), 0.05)' }}>
           <svg width="100%" height="24" className="overflow-visible">
             <defs>
               <linearGradient id={`gradient-${label}`} x1="0%" y1="0%" x2="0%" y2="100%">

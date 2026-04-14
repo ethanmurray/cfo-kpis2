@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --nt-forest: #006747;
-  --nt-forest-dark: #004d35;
-  --nt-gold: #D4AF37;
-  --nt-gold-light: rgba(212, 175, 55, 0.1);
+  --client-primary: #006747;
+  --client-primary-dark: #004d35;
+  --client-primary-darkest: #003829;
+  --client-accent: #D4AF37;
+  --client-accent-light: #e8d48b;
+  --client-primary-rgb: 0, 103, 71;
+  --client-primary-dark-rgb: 0, 77, 53;
+  --client-accent-rgb: 212, 175, 55;
 }
 
 @layer base {
@@ -30,17 +34,17 @@
   .metric-card {
     @apply rounded-xl shadow-md p-5 transition-all duration-200 hover:shadow-lg;
     background: linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%);
-    border: 1px solid rgba(0, 77, 53, 0.08);
+    border: 1px solid rgba(var(--client-primary-rgb), 0.08);
   }
 
   .card-title {
     @apply text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide;
-    color: var(--nt-forest);
+    color: var(--client-primary);
   }
 
   .metric-value {
     @apply text-3xl font-bold tracking-tight;
-    color: var(--nt-forest);
+    color: var(--client-primary);
   }
 
   .metric-change {
@@ -57,8 +61,8 @@
 
   .executive-summary {
     @apply rounded-xl p-5 shadow-md;
-    background: linear-gradient(135deg, rgba(0, 77, 53, 0.04) 0%, rgba(0, 77, 53, 0.01) 100%);
-    border: 1px solid rgba(0, 77, 53, 0.12);
+    background: linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.04) 0%, rgba(var(--client-primary-rgb), 0.01) 100%);
+    border: 1px solid rgba(var(--client-primary-rgb), 0.12);
   }
 
   .summary-card {
@@ -71,34 +75,59 @@
 
   .section-header {
     @apply font-bold text-xs tracking-wider uppercase mb-3;
-    color: var(--nt-forest);
+    color: var(--client-primary);
     letter-spacing: 0.05em;
   }
 }
 
 @layer utilities {
+  .text-client-primary {
+    color: var(--client-primary);
+  }
+
+  .text-client-accent {
+    color: var(--client-accent);
+  }
+
+  .bg-client-primary {
+    background-color: var(--client-primary);
+  }
+
+  .bg-client-accent {
+    background-color: var(--client-accent);
+  }
+
+  .border-client-primary {
+    border-color: var(--client-primary);
+  }
+
+  .border-client-accent {
+    border-color: var(--client-accent);
+  }
+
+  /* Keep old names as aliases for backward compat during migration */
   .text-nt-forest {
-    color: var(--nt-forest);
+    color: var(--client-primary);
   }
 
   .text-nt-gold {
-    color: var(--nt-gold);
+    color: var(--client-accent);
   }
 
   .bg-nt-forest {
-    background-color: var(--nt-forest);
+    background-color: var(--client-primary);
   }
 
   .bg-nt-gold {
-    background-color: var(--nt-gold);
+    background-color: var(--client-accent);
   }
 
   .border-nt-forest {
-    border-color: var(--nt-forest);
+    border-color: var(--client-primary);
   }
 
   .border-nt-gold {
-    border-color: var(--nt-gold);
+    border-color: var(--client-accent);
   }
 
   .smooth-scroll {
@@ -106,13 +135,13 @@
   }
 
   .shadow-premium {
-    box-shadow: 0 3px 15px rgba(0, 103, 71, 0.07),
-                0 1px 3px rgba(0, 103, 71, 0.04);
+    box-shadow: 0 3px 15px rgba(var(--client-primary-rgb), 0.07),
+                0 1px 3px rgba(var(--client-primary-rgb), 0.04);
   }
 
   .shadow-premium-lg {
-    box-shadow: 0 8px 30px rgba(0, 103, 71, 0.1),
-                0 3px 10px rgba(0, 103, 71, 0.06);
+    box-shadow: 0 8px 30px rgba(var(--client-primary-rgb), 0.1),
+                0 3px 10px rgba(var(--client-primary-rgb), 0.06);
   }
 }
 
@@ -128,22 +157,22 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 103, 71, 0.2);
+  background: rgba(var(--client-primary-rgb), 0.2);
   border-radius: 3px;
   transition: background 0.2s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 103, 71, 0.35);
+  background: rgba(var(--client-primary-rgb), 0.35);
 }
 
 ::selection {
-  background-color: rgba(212, 175, 55, 0.3);
-  color: var(--nt-forest);
+  background-color: rgba(var(--client-primary-rgb), 0.15);
+  color: var(--client-primary);
 }
 
 :focus-visible {
-  outline: 2px solid var(--nt-gold);
+  outline: 2px solid var(--client-accent);
   outline-offset: 2px;
 }
 

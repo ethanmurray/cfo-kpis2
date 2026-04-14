@@ -4,8 +4,10 @@ import TrendsView from '../components/peer/TrendsView'
 import ValuationView from '../components/peer/ValuationView'
 import CompactMetricCard from '../components/CompactMetricCard'
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts'
+import { useClientStore } from '../stores/clientStore'
 
 export default function MarketRisk() {
+  const config = useClientStore((s) => s.config)
   // Risk metrics
   const riskMetrics = {
     credit: { var95: 285, var99: 412, expectedLoss: 125, rwa: 42500, npl: 0.8, coverage: 145 },
@@ -92,7 +94,7 @@ export default function MarketRisk() {
                     <PolarGrid />
                     <PolarAngleAxis dataKey="dimension" />
                     <PolarRadiusAxis domain={[0, 100]} />
-                    <Radar name="Northern Trust" dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
+                    <Radar name={config.shortName} dataKey="score" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
                   </RadarChart>
                 </ResponsiveContainer>
                 <div className="space-y-2">
@@ -154,7 +156,7 @@ export default function MarketRisk() {
                       <span className="font-semibold">26.2%</span>
                     </div>
                     <div className="flex justify-between p-1.5 bg-blue-50 rounded border border-blue-200">
-                      <span className="font-medium">Northern Trust</span>
+                      <span className="font-medium">{config.shortName}</span>
                       <span className="font-bold text-blue-600">18.8%</span>
                     </div>
                     <div className="flex justify-between p-1.5 bg-gray-50 rounded">

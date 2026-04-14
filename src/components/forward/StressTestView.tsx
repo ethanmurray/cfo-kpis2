@@ -163,15 +163,15 @@ export default function StressTestView() {
     <div className="space-y-6">
       {/* Header */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
-        background: 'linear-gradient(135deg, rgba(0, 77, 53, 0.05) 0%, rgba(0, 77, 53, 0.02) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.15)'
+        background: 'linear-gradient(135deg, rgba(var(--client-primary-rgb), 0.05) 0%, rgba(var(--client-primary-rgb), 0.02) 100%)',
+        border: '1px solid rgba(var(--client-primary-rgb), 0.15)'
       }}>
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
             <Shield className="h-6 w-6" style={{ color: '#ef4444' }} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold" style={{ color: '#006747' }}>Regulatory Stress Testing</h2>
+            <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>Regulatory Stress Testing</h2>
             <p className="text-sm" style={{ color: '#6b7280' }}>CCAR/DFAST-style capital adequacy analysis</p>
           </div>
         </div>
@@ -232,7 +232,7 @@ export default function StressTestView() {
               }}>
                 {scenario.results.cet1Ratio.trough >= 4.5 ? 'STRESS TEST: PASS' : 'STRESS TEST: FAIL'}
               </div>
-              <div className="text-2xl font-bold mt-1" style={{ color: '#006747' }}>
+              <div className="text-2xl font-bold mt-1" style={{ color: 'var(--client-primary)' }}>
                 CET1 Trough: {formatPercent(scenario.results.cet1Ratio.trough)}
               </div>
               <div className="text-sm mt-1" style={{ color: '#6b7280' }}>
@@ -263,15 +263,15 @@ export default function StressTestView() {
       <div className="grid grid-cols-4 gap-4">
         <div className="rounded-xl p-4 shadow-lg" style={{
           background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-          border: '1px solid rgba(0, 77, 53, 0.08)'
+          border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
         }}>
           <div className="text-xs font-semibold uppercase tracking-wide mb-2" style={{ color: '#6b7280' }}>
             Starting CET1
           </div>
-          <div className="text-3xl font-bold" style={{ color: '#006747' }}>
+          <div className="text-3xl font-bold" style={{ color: 'var(--client-primary)' }}>
             {formatPercent(scenario.results.cet1Ratio.start)}
           </div>
-          <div className="mt-2 pt-2" style={{ borderTop: '1px solid rgba(0, 77, 53, 0.08)' }}>
+          <div className="mt-2 pt-2" style={{ borderTop: '1px solid rgba(var(--client-primary-rgb), 0.08)' }}>
             <div className="text-xs" style={{ color: '#10b981' }}>Well-capitalized</div>
           </div>
         </div>
@@ -343,10 +343,10 @@ export default function StressTestView() {
       {/* CET1 Trajectory */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold" style={{ color: '#006747' }}>CET1 Ratio Trajectory (9 Quarters)</h2>
+          <h2 className="text-lg font-bold" style={{ color: 'var(--client-primary)' }}>CET1 Ratio Trajectory (9 Quarters)</h2>
           <div className="flex items-center gap-4 text-xs">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded" style={{ backgroundColor: '#ef4444' }} />
@@ -377,7 +377,7 @@ export default function StressTestView() {
               formatter={(v: number) => `${v.toFixed(1)}%`}
               contentStyle={{
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid rgba(0, 77, 53, 0.2)',
+                border: '1px solid rgba(var(--client-primary-rgb), 0.2)',
                 borderRadius: '8px',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
@@ -388,8 +388,8 @@ export default function StressTestView() {
             <ReferenceLine y={7.0} stroke="#f59e0b" strokeWidth={2} strokeDasharray="5 5">
               <Label value="CET1 + CCB" position="insideTopRight" style={{ fill: '#f59e0b', fontSize: '12px', fontWeight: 'bold' }} />
             </ReferenceLine>
-            <ReferenceLine y={capital.cet1.target} stroke="#D4AF37" strokeWidth={2} strokeDasharray="5 5">
-              <Label value="Internal Target" position="insideTopRight" style={{ fill: '#D4AF37', fontSize: '12px', fontWeight: 'bold' }} />
+            <ReferenceLine y={capital.cet1.target} stroke="var(--client-accent)" strokeWidth={2} strokeDasharray="5 5">
+              <Label value="Internal Target" position="insideTopRight" style={{ fill: 'var(--client-accent)', fontSize: '12px', fontWeight: 'bold' }} />
             </ReferenceLine>
             <Area type="monotone" dataKey="actual" fill="url(#colorCET1)" stroke="none" />
             <Bar dataKey="actual" name="CET1 Ratio" radius={[8, 8, 0, 0]}>
@@ -399,7 +399,7 @@ export default function StressTestView() {
             </Bar>
           </ComposedChart>
         </ResponsiveContainer>
-        <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+        <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
           <div className="grid grid-cols-3 gap-4 text-xs">
             <div>
               <div style={{ color: '#6b7280' }}>Peak to Trough</div>
@@ -409,7 +409,7 @@ export default function StressTestView() {
             </div>
             <div>
               <div style={{ color: '#6b7280' }}>Trough Quarter</div>
-              <div className="text-lg font-bold" style={{ color: '#006747' }}>Q3</div>
+              <div className="text-lg font-bold" style={{ color: 'var(--client-primary)' }}>Q3</div>
             </div>
             <div>
               <div style={{ color: '#6b7280' }}>Recovery by Q9</div>
@@ -424,10 +424,10 @@ export default function StressTestView() {
       {/* P&L Decomposition */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold" style={{ color: '#006747' }}>P&L Components (9 Quarter Cumulative)</h2>
+          <h2 className="text-lg font-bold" style={{ color: 'var(--client-primary)' }}>P&L Components (9 Quarter Cumulative)</h2>
           <div className="text-right">
             <div className="text-xs" style={{ color: '#6b7280' }}>Net Loss</div>
             <div className="text-xl font-bold text-red-600">
@@ -444,7 +444,7 @@ export default function StressTestView() {
               formatter={(v: number) => `$${v.toFixed(1)}B`}
               contentStyle={{
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid rgba(0, 77, 53, 0.2)',
+                border: '1px solid rgba(var(--client-primary-rgb), 0.2)',
                 borderRadius: '8px',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
               }}
@@ -461,24 +461,24 @@ export default function StressTestView() {
       {/* Buffer Analysis */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h2 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Regulatory Buffer Analysis</h2>
+        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Regulatory Buffer Analysis</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full">
-            <thead style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
+            <thead style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Buffer Level</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Trough CET1</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Excess / (Shortfall)</th>
-                <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: '#006747' }}>Status</th>
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Buffer Level</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Trough CET1</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Excess / (Shortfall)</th>
+                <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y" style={{ divideColor: 'rgba(0, 77, 53, 0.05)' }}>
+            <tbody className="divide-y" style={{ borderColor: 'rgba(var(--client-primary-rgb), 0.05)' }}>
               {bufferAnalysis.map((item, index) => (
                 <tr key={index} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 text-sm font-semibold" style={{ color: '#006747' }}>{item.buffer}</td>
-                  <td className="px-6 py-4 text-sm text-right font-bold" style={{ color: '#006747' }}>
+                  <td className="px-6 py-4 text-sm font-semibold" style={{ color: 'var(--client-primary)' }}>{item.buffer}</td>
+                  <td className="px-6 py-4 text-sm text-right font-bold" style={{ color: 'var(--client-primary)' }}>
                     {formatPercent(item.trough)}
                   </td>
                   <td className={`px-6 py-4 text-sm font-bold text-right ${
@@ -506,9 +506,9 @@ export default function StressTestView() {
       <div className="grid grid-cols-2 gap-6">
         <div className="rounded-2xl p-6 shadow-lg" style={{
           background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-          border: '1px solid rgba(0, 77, 53, 0.08)'
+          border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
         }}>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Macroeconomic Assumptions</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Macroeconomic Assumptions</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Real GDP Growth (Y1-Y4)</span>
@@ -541,9 +541,9 @@ export default function StressTestView() {
 
         <div className="rounded-2xl p-6 shadow-lg" style={{
           background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-          border: '1px solid rgba(0, 77, 53, 0.08)'
+          border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
         }}>
-          <h3 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Capital Actions</h3>
+          <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Capital Actions</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-600">Common Dividends (9Q)</span>
@@ -572,9 +572,9 @@ export default function StressTestView() {
       {/* Key Takeaways */}
       <div className="rounded-2xl p-6 shadow-lg" style={{
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
-        border: '1px solid rgba(0, 77, 53, 0.08)'
+        border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h2 className="text-lg font-bold mb-4" style={{ color: '#006747' }}>Stress Test Assessment</h2>
+        <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Stress Test Assessment</h2>
         <div className="space-y-4">
           <div className="p-5 rounded-xl" style={{
             background: scenario.results.cet1Ratio.trough >= capital.cet1.target
@@ -587,7 +587,7 @@ export default function StressTestView() {
               scenario.results.cet1Ratio.trough >= 4.5 ? '#f59e0b' : '#ef4444'
             }`
           }}>
-            <div className="font-bold text-sm mb-2" style={{ color: '#006747' }}>Overall Result</div>
+            <div className="font-bold text-sm mb-2" style={{ color: 'var(--client-primary)' }}>Overall Result</div>
             <div className="text-sm" style={{ color: '#1f2937' }}>
               {scenario.results.cet1Ratio.trough >= capital.cet1.target
                 ? `✓ Strong pass. CET1 remains above internal target throughout stress period. Comfortable buffer of ${formatPercent(scenario.results.cet1Ratio.trough - 4.5)} above regulatory minimum.`
@@ -602,7 +602,7 @@ export default function StressTestView() {
             background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%)',
             borderLeft: '4px solid #3b82f6'
           }}>
-            <div className="font-bold text-sm mb-2" style={{ color: '#006747' }}>Loss Absorption Capacity</div>
+            <div className="font-bold text-sm mb-2" style={{ color: 'var(--client-primary)' }}>Loss Absorption Capacity</div>
             <div className="text-sm" style={{ color: '#1f2937' }}>
               Pre-provision net revenue of ${scenario.results.preProvisionNetRevenue.toFixed(1)}B partially offsets total losses of ${scenario.results.totalLosses.toFixed(1)}B over 9 quarters. Net loss of ${(scenario.results.totalLosses - scenario.results.preProvisionNetRevenue).toFixed(1)}B represents {formatPercent((scenario.results.totalLosses - scenario.results.preProvisionNetRevenue) / capital.totalCapital * 100)} of current capital.
             </div>
@@ -612,7 +612,7 @@ export default function StressTestView() {
             background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%)',
             borderLeft: '4px solid #a855f7'
           }}>
-            <div className="font-bold text-sm mb-2" style={{ color: '#006747' }}>Capital Recovery</div>
+            <div className="font-bold text-sm mb-2" style={{ color: 'var(--client-primary)' }}>Capital Recovery</div>
             <div className="text-sm" style={{ color: '#1f2937' }}>
               CET1 ratio recovers from trough of {formatPercent(scenario.results.cet1Ratio.trough)} to {formatPercent(scenario.results.cet1Ratio.end)} by end of projection period. Recovery driven by return to profitability and RWA stabilization.
             </div>

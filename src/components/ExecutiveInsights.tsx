@@ -52,7 +52,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
       }
       case 'recommendation': return {
         label: 'ACTION',
-        color: '#D4AF37'
+        color: 'var(--client-accent)'
       }
       case 'context': return {
         label: 'INFO',
@@ -72,7 +72,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
         className="rounded-xl overflow-hidden"
         style={{
           background: '#ffffff',
-          border: '2px solid #006747',
+          border: '2px solid var(--client-primary)',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
         }}
       >
@@ -80,20 +80,20 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
         <div
           className="px-4 py-2 cursor-pointer border-b"
           style={{
-            background: 'linear-gradient(135deg, #006747 0%, #004d35 100%)',
-            borderColor: '#D4AF37'
+            background: 'linear-gradient(135deg, var(--client-primary) 0%, var(--client-primary-dark) 100%)',
+            borderColor: 'var(--client-accent)'
           }}
           onClick={() => setIsExpanded(!isExpanded)}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-xs font-bold tracking-wider" style={{ color: '#D4AF37' }}>
+              <span className="text-xs font-bold tracking-wider" style={{ color: 'var(--client-accent)' }}>
                 [AI]
               </span>
               <span className="text-sm font-bold tracking-wide" style={{ color: '#FFFFFF' }}>
                 INTELLIGENCE
               </span>
-              <div className="h-3 w-px" style={{ background: '#D4AF37', opacity: 0.4 }} />
+              <div className="h-3 w-px" style={{ background: 'var(--client-accent)', opacity: 0.4 }} />
               <span className="text-xs font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                 {period}
               </span>
@@ -105,7 +105,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold" style={{ color: '#D4AF37' }}>
+              <span className="text-xs font-bold" style={{ color: 'var(--client-accent)' }}>
                 {isExpanded ? '[-]' : '[+]'}
               </span>
             </div>
@@ -128,7 +128,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
                   onClick={() => setFilterType('all')}
                   className="px-3 py-1 text-xs font-bold tracking-wide whitespace-nowrap transition-all"
                   style={{
-                    background: filterType === 'all' ? '#006747' : 'transparent',
+                    background: filterType === 'all' ? 'var(--client-primary)' : 'transparent',
                     color: filterType === 'all' ? '#ffffff' : '#6b7280',
                     border: filterType === 'all' ? 'none' : '1px solid #e5e7eb'
                   }}
@@ -201,11 +201,11 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
                         {insight.title}
                       </span>
                       {!isInsightExpanded && insight.metrics && insight.metrics.length > 0 && (
-                        <span className="text-xs font-bold flex-shrink-0" style={{ color: '#006747' }}>
+                        <span className="text-xs font-bold flex-shrink-0" style={{ color: 'var(--client-primary)' }}>
                           {insight.metrics[0].value}
                         </span>
                       )}
-                      <span className="text-xs font-bold flex-shrink-0" style={{ color: '#D4AF37' }}>
+                      <span className="text-xs font-bold flex-shrink-0" style={{ color: 'var(--client-accent)' }}>
                         {isInsightExpanded ? '[-]' : '[+]'}
                       </span>
                     </div>
@@ -267,13 +267,13 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
                               borderColor: '#e5e7eb'
                             }}
                           >
-                            <div className="text-xs font-bold tracking-wider mb-1.5" style={{ color: '#006747' }}>
+                            <div className="text-xs font-bold tracking-wider mb-1.5" style={{ color: 'var(--client-primary)' }}>
                               ACTIONS:
                             </div>
                             <ul className="space-y-1">
                               {insight.actions.map((action, actionIdx) => (
                                 <li key={actionIdx} className="flex items-start gap-2 text-xs" style={{ color: '#4b5563', lineHeight: '1.5' }}>
-                                  <span style={{ color: '#D4AF37' }}>•</span>
+                                  <span style={{ color: 'var(--client-accent)' }}>•</span>
                                   <span>{action}</span>
                                 </li>
                               ))}

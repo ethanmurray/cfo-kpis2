@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react'
 import { generatePeerData, generatePeerTimeSeries } from '../../data/peerData'
 import LineChart from '../charts/LineChart'
+import { useClientStore } from '../../stores/clientStore'
 
 export default function TrendsView() {
+  const config = useClientStore((s) => s.config)
   const [selectedMetric, setSelectedMetric] = useState<'price' | 'roe' | 'cet1' | 'nim'>('roe')
-  const [selectedPeers, setSelectedPeers] = useState<string[]>(['NTRS', 'JPM', 'STT', 'BK'])
+  const [selectedPeers, setSelectedPeers] = useState<string[]>([config.ticker, 'JPM', 'STT', 'BK'])
   const [isIndexed, setIsIndexed] = useState(false)
 
   const peers = useMemo(() => generatePeerData(), [])
@@ -50,7 +52,7 @@ export default function TrendsView() {
   const lines = selectedPeers.map(ticker => {
     const peer = peers.find(p => p.ticker === ticker)
     const colors: { [key: string]: string } = {
-      'NTRS': '#f59e0b',
+      [config.ticker]: '#f59e0b',
       'JPM': '#3b82f6',
       'BAC': '#10b981',
       'WFC': '#ef4444',
@@ -132,7 +134,7 @@ export default function TrendsView() {
             <div className="flex gap-2 flex-wrap">
               {peers.map(peer => {
                 const isSelected = selectedPeers.includes(peer.ticker)
-                const isOwn = peer.ticker === 'NTRS'
+                const isOwn = peer.ticker === config.ticker
 
                 return (
                   <button
@@ -179,7 +181,7 @@ export default function TrendsView() {
       {!isIndexed && selectedPeers.length > 0 && (
         <div className="metric-card">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            Relative Performance vs Northern Trust
+            Relative Performance vs {config.shortName}
           </h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
@@ -192,7 +194,7 @@ export default function TrendsView() {
                     Latest Value
                   </th>
                   <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    NTRS Delta
+                    {config.ticker} Delta
                   </th>
                   <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     12Q Change
@@ -206,25 +208,25 @@ export default function TrendsView() {
                   const firstValue = series[0].value
                   const change = ((latestValue - firstValue) / firstValue) * 100
 
-                  const ntrsSeries = generatePeerTimeSeries('NTRS', selectedMetric, 12)
+                  const ntrsSeries = generatePeerTimeSeries(config.ticker, selectedMetric, 12)
                   const ntrsLatest = ntrsSeries[ntrsSeries.length - 1].value
                   const delta = latestValue - ntrsLatest
                   const deltaPercent = (delta / ntrsLatest) * 100
 
                   return (
-                    <tr key={ticker} className={ticker === 'NTRS' ? 'bg-amber-50' : ''}>
+                    <tr key={ticker} className={ticker === config.ticker ? 'bg-amber-50' : ''}>
                       <td className="px-4 py-3 text-sm font-medium text-gray-900">{ticker}</td>
                       <td className="px-4 py-3 text-sm text-gray-900 text-right">
                         {valueFormatters[selectedMetric](latestValue)}
                       </td>
                       <td className={`px-4 py-3 text-sm text-right font-medium ${
-                        ticker === 'NTRS'
+                        ticker === config.ticker
                           ? 'text-gray-500'
                           : delta >= 0
                           ? 'text-green-600'
                           : 'text-red-600'
                       }`}>
-                        {ticker === 'NTRS'
+                        {ticker === config.ticker
                           ? '—'
                           : `${delta >= 0 ? '+' : ''}${deltaPercent.toFixed(1)}%`
                         }

@@ -1,7 +1,7 @@
 // This module serializes all mock data into a JSON string for the E2B sandbox.
 // It calls the data generator functions and snapshots their outputs.
 // NOTE: Because the generators use Math.random(), values will differ per call.
-// We cache the result on first call so a single session gets consistent data.
+// We cache the result per clientId so a single session gets consistent data.
 
 import {
   getExecutiveSummaryData,
@@ -21,6 +21,7 @@ import {
   getRegulatoryExaminationData,
   getCybersecurityMetricsData,
   getCreditRiskDetailData,
+  setActiveClientConfig,
 } from '../../data/mockData'
 
 import { generateCapitalMetrics } from '../../data/capitalMetrics'
@@ -30,8 +31,9 @@ import { generateOrderFlowMetrics } from '../../data/orderFlowMetrics'
 import { generateBalanceSheetMetrics } from '../../data/balanceSheetMetrics'
 import { getAllForecasts } from '../../data/forecastData'
 import { generatePeerData } from '../../data/peerData'
+import { getClientConfig, DEFAULT_CLIENT_ID, type ClientConfig } from '../../config/clientConfig'
 
-let cachedData: string | null = null
+const dataCache = new Map<string, string>()
 
 function serializeDate(obj: unknown): unknown {
   if (obj instanceof Date) return obj.toISOString()
@@ -46,8 +48,13 @@ function serializeDate(obj: unknown): unknown {
   return obj
 }
 
-export function getDataJson(): string {
-  if (cachedData) return cachedData
+export function getDataJson(clientId?: string): string {
+  const id = clientId ?? DEFAULT_CLIENT_ID
+  if (dataCache.has(id)) return dataCache.get(id)!
+
+  // Switch mock data generators to this client
+  const config = getClientConfig(id)
+  setActiveClientConfig(config)
 
   const data = {
     executiveSummary: getExecutiveSummaryData(),
@@ -76,6 +83,7 @@ export function getDataJson(): string {
     peers: generatePeerData(),
   }
 
-  cachedData = JSON.stringify(serializeDate(data))
-  return cachedData
+  const json = JSON.stringify(serializeDate(data))
+  dataCache.set(id, json)
+  return json
 }

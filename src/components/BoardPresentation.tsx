@@ -7,8 +7,10 @@ import { generatePeerData } from '../data/peerData'
 import { formatCurrency, formatPercent } from '../utils/dataGenerators'
 import { Printer, Download, Eye, EyeOff } from 'lucide-react'
 import { BarChart, Bar, LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts'
+import { useClientStore } from '../stores/clientStore'
 
 export default function BoardPresentation() {
+  const config = useClientStore((s) => s.config)
   const [isPrintMode, setIsPrintMode] = useState(false)
   const [visibleSections, setVisibleSections] = useState({
     executive: true,
@@ -25,8 +27,8 @@ export default function BoardPresentation() {
   const interestRate = useMemo(() => generateInterestRateMetrics(), [])
   const peers = useMemo(() => generatePeerData(), [])
 
-  const ownPeer = peers.find(p => p.ticker === 'NTRS')
-  const otherPeers = peers.filter(p => p.ticker !== 'NTRS')
+  const ownPeer = peers.find(p => p.ticker === config.ticker)
+  const otherPeers = peers.filter(p => p.ticker !== config.ticker)
   const avgPeerROE = otherPeers.length > 0
     ? otherPeers.reduce((sum, p) => sum + p.fundamentals.roe, 0) / otherPeers.length
     : 12.0
@@ -120,7 +122,7 @@ export default function BoardPresentation() {
 
       {/* Cover Page */}
       <div className={`${sectionStyle} text-center py-20 border-b-4 border-blue-600`}>
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">Northern Trust Corporation</h1>
+        <h1 className="text-5xl font-bold text-gray-900 mb-4">{config.name}</h1>
         <h2 className="text-3xl font-semibold text-blue-600 mb-6">Board of Directors Presentation</h2>
         <p className="text-xl text-gray-600 mb-2">
           {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -372,7 +374,7 @@ export default function BoardPresentation() {
               </thead>
               <tbody>
                 {peers.slice(0, 8).map((peer, i) => (
-                  <tr key={i} className={`border-b ${peer.ticker === 'NTRS' ? 'bg-amber-50 font-semibold' : ''}`}>
+                  <tr key={i} className={`border-b ${peer.ticker === config.ticker ? 'bg-amber-50 font-semibold' : ''}`}>
                     <td className="py-2">{peer.ticker}</td>
                     <td className="py-2 text-right">{formatPercent(peer.fundamentals.roe)}</td>
                     <td className="py-2 text-right">{peer.valuation.ptbv.toFixed(2)}x</td>
@@ -422,7 +424,7 @@ export default function BoardPresentation() {
 
       {/* Footer */}
       <div className="mt-12 pt-4 border-t-2 border-gray-200 text-center text-sm text-gray-500">
-        <p>Northern Trust Corporation - Confidential</p>
+        <p>{config.name} - Confidential</p>
         <p>Generated: {new Date().toLocaleString()}</p>
       </div>
 
