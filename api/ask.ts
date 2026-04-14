@@ -25,7 +25,7 @@ const CLIENT_PROMPTS: Record<string, { description: string; bullets: string; cha
 - ~90,000 employees globally
 - Strong presence in Canada, Latin America & Caribbean
 - Headquarters: Toronto, Ontario`,
-    chartColors: '#EC111A (red), #003366 (navy), #10b981, #3b82f6, #f59e0b, #ef4444, #8b5cf6',
+    chartColors: '#C8102E (red), #003B5C (navy), #D4A84B (gold), #2D6A4F (green), #6366F1 (indigo), #E67E22 (orange), #8B5CF6 (purple)',
   },
 }
 

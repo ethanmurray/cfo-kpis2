@@ -250,15 +250,15 @@ export const SCOTIABANK_CONFIG: ClientConfig = {
   ticker: 'BNS',
   headquarters: 'Toronto, Ontario',
   colors: {
-    primary: '#EC111A',
-    primaryDark: '#B80D14',
-    primaryDarkest: '#8A0A0F',
-    accent: '#003366',
-    accentLight: '#4d7faa',
-    primaryRGB: '236, 17, 26',
-    primaryDarkRGB: '184, 13, 20',
-    accentRGB: '0, 51, 102',
-    chartColors: ['#EC111A', '#003366', '#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'],
+    primary: '#C8102E',
+    primaryDark: '#2A0A12',
+    primaryDarkest: '#170508',
+    accent: '#D4A84B',
+    accentLight: '#E8C97A',
+    primaryRGB: '200, 16, 46',
+    primaryDarkRGB: '42, 10, 18',
+    accentRGB: '212, 168, 75',
+    chartColors: ['#C8102E', '#003B5C', '#D4A84B', '#2D6A4F', '#6366F1', '#E67E22', '#8B5CF6'],
   },
   logo: {
     monogram: 'BNS',
@@ -386,7 +386,7 @@ export const SCOTIABANK_CONFIG: ClientConfig = {
       'Strong presence in Canada, Latin America & Caribbean',
       'Headquarters: Toronto, Ontario',
     ],
-    chartColorsCSS: '#EC111A (red), #003366 (navy), #10b981, #3b82f6, #f59e0b, #ef4444, #8b5cf6',
+    chartColorsCSS: '#C8102E (red), #003B5C (navy), #D4A84B (gold), #2D6A4F (green), #6366F1 (indigo), #E67E22 (orange), #8B5CF6 (purple)',
   },
 }
 
