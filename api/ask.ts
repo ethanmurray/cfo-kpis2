@@ -1,11 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import AnthropicBedrock from '@anthropic-ai/bedrock-sdk'
+import Anthropic from '@anthropic-ai/sdk'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 
 export const maxDuration = 60
 
-const SONNET_MODEL = 'us.anthropic.claude-sonnet-4-20250514-v1:0'
+const SONNET_MODEL = 'claude-sonnet-4-20250514'
 
 // Client configs for prompt generation (self-contained to avoid ESM import issues on Vercel)
 const CLIENT_PROMPTS: Record<string, { description: string; bullets: string; chartColors: string }> = {
@@ -148,8 +148,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Missing question parameter' })
     }
 
-    const anthropic = new AnthropicBedrock({
-      awsRegion: process.env.AWS_REGION || 'us-west-2',
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY,
     })
 
     // Load the full dataset for the requested client

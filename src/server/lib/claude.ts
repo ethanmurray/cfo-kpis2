@@ -1,12 +1,16 @@
+import Anthropic from '@anthropic-ai/sdk'
 import AnthropicBedrock from '@anthropic-ai/bedrock-sdk'
 
-const anthropic = new AnthropicBedrock({
-  awsRegion: process.env.AWS_REGION || 'us-west-2',
-})
+// Use direct Anthropic API if key is available, otherwise fall back to Bedrock
+const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY
+// Both SDKs share the same messages.create() interface
+const anthropic: { messages: { create: (params: any) => Promise<any> } } = apiKey
+  ? new Anthropic({ apiKey })
+  : new AnthropicBedrock({ awsRegion: process.env.AWS_REGION || 'us-west-2' })
 
-// Bedrock model IDs
-const SONNET_MODEL = 'us.anthropic.claude-sonnet-4-20250514-v1:0'
-const HAIKU_MODEL = 'us.anthropic.claude-haiku-4-5-20251001-v1:0'
+// Model IDs differ between direct API and Bedrock
+const SONNET_MODEL = apiKey ? 'claude-sonnet-4-20250514' : 'us.anthropic.claude-sonnet-4-20250514-v1:0'
+const HAIKU_MODEL = apiKey ? 'claude-haiku-4-5-20251001' : 'us.anthropic.claude-haiku-4-5-20251001-v1:0'
 
 function extractText(content: Array<{ type: string; text?: string }>): string {
   return content

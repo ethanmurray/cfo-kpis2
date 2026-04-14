@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import AnthropicBedrock from '@anthropic-ai/bedrock-sdk'
+import Anthropic from '@anthropic-ai/sdk'
 
 export const maxDuration = 30
 
@@ -40,12 +40,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Missing question parameter' })
     }
 
-    const anthropic = new AnthropicBedrock({
-      awsRegion: process.env.AWS_REGION || 'us-west-2',
+    const anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY,
     })
 
     const response = await anthropic.messages.create({
-      model: 'us.anthropic.claude-haiku-4-5-20251001-v1:0',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 512,
       system: CLASSIFY_SYSTEM_PROMPT,
       messages: [{ role: 'user', content: question }],
