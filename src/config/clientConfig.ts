@@ -517,8 +517,8 @@ export const ACME_BANK_CONFIG: ClientConfig = {
     { ticker: 'TFC', name: 'Truist Financial Corp.' },
     { ticker: 'STT', name: 'State Street Corporation' },
     { ticker: 'BK', name: 'Bank of New York Mellon' },
-    { ticker: 'NTRS', name: 'Northern Trust Corporation' },
     { ticker: 'SCHW', name: 'Charles Schwab Corp.' },
+    { ticker: 'KEY', name: 'KeyCorp' },
   ],
   globalRanking: 8,
 
@@ -538,14 +538,21 @@ export const ACME_BANK_CONFIG: ClientConfig = {
 // ---------------------------------------------------------------------------
 // Registry
 // ---------------------------------------------------------------------------
-export const CLIENT_CONFIGS: Record<string, ClientConfig> = {
-  ntrs: NORTHERN_TRUST_CONFIG,
-  bns: SCOTIABANK_CONFIG,
-  acme: ACME_BANK_CONFIG,
-}
+// In public mode (VITE_PUBLIC_CLIENTS=acme), Vite injects boolean constants
+// (__INCLUDE_NTRS__, etc.) that let Rollup/terser eliminate entire config
+// objects as dead code, so no proprietary client names appear in the bundle.
 
-export const DEFAULT_CLIENT_ID = 'acme'
+declare const __INCLUDE_NTRS__: boolean
+declare const __INCLUDE_BNS__: boolean
+declare const __INCLUDE_ACME__: boolean
+
+export const CLIENT_CONFIGS: Record<string, ClientConfig> = {}
+if (typeof __INCLUDE_NTRS__ === 'undefined' || __INCLUDE_NTRS__) CLIENT_CONFIGS.ntrs = NORTHERN_TRUST_CONFIG
+if (typeof __INCLUDE_BNS__ === 'undefined' || __INCLUDE_BNS__) CLIENT_CONFIGS.bns = SCOTIABANK_CONFIG
+if (typeof __INCLUDE_ACME__ === 'undefined' || __INCLUDE_ACME__) CLIENT_CONFIGS.acme = ACME_BANK_CONFIG
+
+export const DEFAULT_CLIENT_ID = Object.keys(CLIENT_CONFIGS)[0] ?? 'acme'
 
 export function getClientConfig(clientId: string): ClientConfig {
-  return CLIENT_CONFIGS[clientId] ?? ACME_BANK_CONFIG
+  return CLIENT_CONFIGS[clientId] ?? CLIENT_CONFIGS[DEFAULT_CLIENT_ID] ?? ACME_BANK_CONFIG
 }

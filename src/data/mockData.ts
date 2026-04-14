@@ -25,10 +25,10 @@ import type {
   CybersecurityMetricsData,
   CreditRiskDetailData,
 } from '../types/dashboard.types'
-import { type ClientConfig, NORTHERN_TRUST_CONFIG } from '../config/clientConfig'
+import { type ClientConfig, ACME_BANK_CONFIG } from '../config/clientConfig'
 
 // Active client configuration (switchable at runtime)
-let activeConfig: ClientConfig = NORTHERN_TRUST_CONFIG
+let activeConfig: ClientConfig = ACME_BANK_CONFIG
 let currentClientId: string = activeConfig.id
 
 // Module-level data variables — recalculated when config changes

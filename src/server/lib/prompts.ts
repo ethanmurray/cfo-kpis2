@@ -1,4 +1,4 @@
-import { type ClientConfig, NORTHERN_TRUST_CONFIG } from '../../config/clientConfig'
+import { type ClientConfig, ACME_BANK_CONFIG } from '../../config/clientConfig'
 
 // Data schema description (shared across prompts, client-independent)
 const DATA_SCHEMA = `The data.json file contains these top-level keys:
@@ -31,7 +31,7 @@ function companyContext(config: ClientConfig): string {
   return config.aiContext.companyBulletPoints.map((b) => `- ${b}`).join('\n')
 }
 
-export function getCodeGenerationSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+export function getCodeGenerationSystemPrompt(config: ClientConfig = ACME_BANK_CONFIG): string {
   return `You are a senior data analyst for ${config.aiContext.companyDescription}.
 
 ## Company Context
@@ -99,7 +99,7 @@ export function buildCodeGenUserPrompt(
   return prompt
 }
 
-export function getNarrativeSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+export function getNarrativeSystemPrompt(config: ClientConfig = ACME_BANK_CONFIG): string {
   return `You are a senior financial analyst advising the CFO of ${config.name}.
 Given analysis results from a data query, write a brief executive narrative (3-5 sentences).
 Be direct and action-oriented. Highlight:
@@ -124,7 +124,7 @@ export function buildNarrativeUserPrompt(
   return prompt
 }
 
-export function getClassifySystemPrompt(_config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+export function getClassifySystemPrompt(_config: ClientConfig = ACME_BANK_CONFIG): string {
   return `You classify CFO dashboard questions into two tiers. Respond with ONLY valid JSON, no other text.
 
 Available dashboard pages and their tab slugs:
@@ -154,7 +154,7 @@ or
 
 export const CLASSIFY_SYSTEM_PROMPT = getClassifySystemPrompt()
 
-export function getDirectAnalysisSystemPrompt(config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
+export function getDirectAnalysisSystemPrompt(config: ClientConfig = ACME_BANK_CONFIG): string {
   return `You are a senior data analyst for ${config.aiContext.companyDescription}.
 
 ## Company Context

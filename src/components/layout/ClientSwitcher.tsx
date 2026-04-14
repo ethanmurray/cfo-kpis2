@@ -4,6 +4,9 @@ export default function ClientSwitcher() {
   const { clientId, setClient } = useClientStore()
   const clients = getAvailableClients()
 
+  // Hide switcher when there's only one client
+  if (clients.length <= 1) return null
+
   return (
     <div className="relative">
       <select

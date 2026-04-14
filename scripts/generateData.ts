@@ -10,7 +10,7 @@ for (const [id, config] of Object.entries(CLIENT_CONFIGS)) {
   console.log(`Wrote ${(data.length / 1024).toFixed(0)} KB to ${filename} (${config.shortName})`)
 }
 
-// Also write default (ntrs) as data.json for backward compatibility
-const defaultData = getDataJson('ntrs')
+// Also write default (acme) as data.json for backward compatibility
+const defaultData = getDataJson('acme')
 writeFileSync('./api/data.json', defaultData)
 console.log(`Wrote ${(defaultData.length / 1024).toFixed(0)} KB to api/data.json (default)`)

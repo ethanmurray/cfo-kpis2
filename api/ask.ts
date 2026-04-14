@@ -9,36 +9,25 @@ const SONNET_MODEL = 'us.anthropic.claude-sonnet-4-20250514-v1:0'
 
 // Client configs for prompt generation (self-contained to avoid ESM import issues on Vercel)
 const CLIENT_PROMPTS: Record<string, { description: string; bullets: string; chartColors: string }> = {
-  ntrs: {
-    description: 'Northern Trust Corporation, one of the world\'s leading custody banks',
-    bullets: `- Assets Under Custody/Administration: $15.8 trillion
-- Annual Revenue: ~$7.1 billion
-- ~19,500 employees globally
-- Ranked 4th globally by AUC among custody banks
-- Headquarters: Chicago, Illinois`,
+  acme: {
+    description: 'Acme Bank Corporation, a diversified financial services company',
+    bullets: `- Assets Under Custody/Administration: $8.5 trillion
+- Annual Revenue: ~$12 billion
+- ~35,000 employees globally
+- Diversified across commercial, wealth, capital markets, and retail banking
+- Headquarters: New York, New York`,
     chartColors: '#006747 (green), #D4AF37 (gold), #10b981, #3b82f6, #f59e0b, #ef4444, #8b5cf6',
-  },
-  bns: {
-    description: 'Bank of Nova Scotia (Scotiabank), one of Canada\'s Big Five banks and a leading international bank',
-    bullets: `- Total Assets Under Management: ~$600 billion
-- Annual Revenue: ~$24 billion USD
-- ~90,000 employees globally
-- Strong presence in Canada, Latin America & Caribbean
-- Headquarters: Toronto, Ontario`,
-    chartColors: '#C8102E (red), #003B5C (navy), #D4A84B (gold), #2D6A4F (green), #6366F1 (indigo), #E67E22 (orange), #8B5CF6 (purple)',
   },
 }
 
 // Load static data snapshot (generated from mock data generators)
 const dataCache = new Map<string, string>()
 function getDataJson(clientId?: string): string {
-  const id = clientId || 'ntrs'
+  const id = clientId || 'acme'
   if (dataCache.has(id)) return dataCache.get(id)!
 
   // Try per-client file first, fall back to default
-  const filenames = id !== 'ntrs'
-    ? [`data-${id}.json`, 'data.json']
-    : ['data.json', `data-${id}.json`]
+  const filenames = [`data-${id}.json`, 'data.json']
 
   const basePaths = [
     join(process.cwd(), 'api'),
@@ -85,7 +74,7 @@ const DATA_SCHEMA = `The data.json contains these top-level keys:
 - peers: bank peers with marketData, valuation, fundamentals, creditMarket, news`
 
 function getSystemPrompt(clientId?: string): string {
-  const c = CLIENT_PROMPTS[clientId || 'ntrs'] || CLIENT_PROMPTS.ntrs
+  const c = CLIENT_PROMPTS[clientId || 'acme'] || CLIENT_PROMPTS.acme
   return `You are a senior data analyst for ${c.description}.
 
 ## Company Context
