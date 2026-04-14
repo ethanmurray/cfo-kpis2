@@ -201,7 +201,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
                         {insight.title}
                       </span>
                       {!isInsightExpanded && insight.metrics && insight.metrics.length > 0 && (
-                        <span className="text-xs font-bold flex-shrink-0" style={{ color: 'var(--client-primary)' }}>
+                        <span className="text-xs font-bold flex-shrink-0" style={{ color: 'var(--client-text)' }}>
                           {insight.metrics[0].value}
                         </span>
                       )}
@@ -267,7 +267,7 @@ export default function ExecutiveInsights({ insights, period = 'December 2026' }
                               borderColor: '#e5e7eb'
                             }}
                           >
-                            <div className="text-xs font-bold tracking-wider mb-1.5" style={{ color: 'var(--client-primary)' }}>
+                            <div className="text-xs font-bold tracking-wider mb-1.5" style={{ color: 'var(--client-text)' }}>
                               ACTIONS:
                             </div>
                             <ul className="space-y-1">

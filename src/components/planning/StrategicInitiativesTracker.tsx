@@ -157,7 +157,7 @@ export default function StrategicInitiativesTracker() {
               Total Initiatives
             </div>
           </div>
-          <div className="text-3xl font-bold" style={{ color: 'var(--client-primary)' }}>{summary.totalInitiatives}</div>
+          <div className="text-3xl font-bold" style={{ color: 'var(--client-text)' }}>{summary.totalInitiatives}</div>
           <div className="text-xs mt-1" style={{ color: '#6b7280' }}>
             {summary.onTrack} on track • {summary.atRisk} at risk
           </div>
@@ -173,7 +173,7 @@ export default function StrategicInitiativesTracker() {
               Total Investment
             </div>
           </div>
-          <div className="text-3xl font-bold" style={{ color: 'var(--client-primary)' }}>${summary.totalInvestment}M</div>
+          <div className="text-3xl font-bold" style={{ color: 'var(--client-text)' }}>${summary.totalInvestment}M</div>
           <div className="text-xs mt-1" style={{ color: '#6b7280' }}>
             Across {summary.totalInitiatives} programs
           </div>
@@ -205,7 +205,7 @@ export default function StrategicInitiativesTracker() {
               Actual Return (YTD)
             </div>
           </div>
-          <div className="text-3xl font-bold" style={{ color: 'var(--client-primary)' }}>${summary.totalActualReturn}M</div>
+          <div className="text-3xl font-bold" style={{ color: 'var(--client-text)' }}>${summary.totalActualReturn}M</div>
           <div className="text-xs mt-1" style={{ color: '#6b7280' }}>
             {Math.round((summary.totalActualReturn / summary.totalExpectedReturn) * 100)}% of target
           </div>
@@ -221,7 +221,7 @@ export default function StrategicInitiativesTracker() {
               Avg Progress
             </div>
           </div>
-          <div className="text-3xl font-bold" style={{ color: 'var(--client-primary)' }}>{summary.avgProgress}%</div>
+          <div className="text-3xl font-bold" style={{ color: 'var(--client-text)' }}>{summary.avgProgress}%</div>
           <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
             <div className="bg-blue-600 h-2 rounded-full transition-all duration-500" style={{ width: `${summary.avgProgress}%` }} />
           </div>
@@ -234,7 +234,7 @@ export default function StrategicInitiativesTracker() {
         border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
         <div className="p-6 border-b" style={{ borderColor: 'rgba(var(--client-primary-rgb), 0.08)' }}>
-          <h3 className="text-lg font-bold" style={{ color: 'var(--client-primary)' }}>Strategic Initiatives Detail</h3>
+          <h3 className="text-lg font-bold" style={{ color: 'var(--client-text)' }}>Strategic Initiatives Detail</h3>
           <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Real-time tracking of key strategic programs</p>
         </div>
 
@@ -242,13 +242,13 @@ export default function StrategicInitiativesTracker() {
           <table className="min-w-full">
             <thead style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.02)' }}>
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Initiative</th>
-                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Status</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Progress</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Investment</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Return</th>
-                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>ROI</th>
-                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Next Milestone</th>
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Initiative</th>
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Status</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Progress</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Investment</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Return</th>
+                <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>ROI</th>
+                <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Next Milestone</th>
               </tr>
             </thead>
             <tbody className="divide-y" style={{ borderColor: 'rgba(var(--client-primary-rgb), 0.05)' }}>
@@ -262,7 +262,7 @@ export default function StrategicInitiativesTracker() {
                       <div className="flex items-start gap-3">
                         <div className="mt-0.5 w-1 h-12 rounded-full" style={{ backgroundColor: getPriorityColor(initiative.priority) }} />
                         <div>
-                          <div className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>{initiative.name}</div>
+                          <div className="font-semibold text-sm" style={{ color: 'var(--client-text)' }}>{initiative.name}</div>
                           <div className="text-xs mt-1" style={{ color: '#6b7280' }}>
                             <span className="font-medium">{initiative.owner}</span>
                             <span className="mx-2">•</span>
@@ -290,7 +290,7 @@ export default function StrategicInitiativesTracker() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="text-right">
-                        <div className="text-sm font-bold mb-1" style={{ color: 'var(--client-primary)' }}>{initiative.progress}%</div>
+                        <div className="text-sm font-bold mb-1" style={{ color: 'var(--client-text)' }}>{initiative.progress}%</div>
                         <div className="w-24 bg-gray-200 rounded-full h-2 ml-auto">
                           <div
                             className="h-2 rounded-full transition-all duration-500"
@@ -315,7 +315,7 @@ export default function StrategicInitiativesTracker() {
                       <div className="text-lg font-bold" style={{ color: 'var(--client-accent)' }}>{roi}%</div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-xs font-medium" style={{ color: 'var(--client-primary)' }}>
+                      <div className="text-xs font-medium" style={{ color: 'var(--client-text)' }}>
                         {initiative.nextMilestone}
                       </div>
                       <div className="text-xs mt-1" style={{ color: '#9ca3af' }}>

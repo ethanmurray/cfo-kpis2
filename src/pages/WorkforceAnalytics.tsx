@@ -240,7 +240,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Headcount Trends by Segment (Last 7 Months)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Headcount Trends by Segment (Last 7 Months)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={headcountTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -275,7 +275,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Headcount by Business Segment</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Headcount by Business Segment</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -320,7 +320,7 @@ export default function WorkforceAnalytics() {
                 background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                 border: '1px solid rgba(0, 77, 53, 0.08)'
               }}>
-                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Headcount by Department</h3>
+                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-text)' }}>Headcount by Department</h3>
                 <div className="space-y-3">
                   {headcountByDept.map((dept, idx) => (
                     <div key={idx} className="p-3 rounded-lg bg-white border border-gray-100">
@@ -349,7 +349,7 @@ export default function WorkforceAnalytics() {
                 background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                 border: '1px solid rgba(0, 77, 53, 0.08)'
               }}>
-                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Headcount by Location</h3>
+                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-text)' }}>Headcount by Location</h3>
                 <ResponsiveContainer width="100%" height={280}>
                   <PieChart>
                     <Pie
@@ -382,7 +382,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Compensation & Benefits by Segment (YTD)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Compensation & Benefits by Segment (YTD)</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -444,7 +444,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Monthly Compensation Trends</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Monthly Compensation Trends</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <ComposedChart data={compTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -487,7 +487,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Productivity Metrics by Business Segment</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Productivity Metrics by Business Segment</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -516,7 +516,7 @@ export default function WorkforceAnalytics() {
               </table>
               <div className="mt-6 grid grid-cols-2 gap-6">
                 <div className="p-4 rounded-lg bg-white border border-gray-200">
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Revenue per FTE</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Revenue per FTE</div>
                   <ResponsiveContainer width="100%" height={200}>
                     <BarChart data={productivityBySegment} layout="horizontal">
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -536,7 +536,7 @@ export default function WorkforceAnalytics() {
                 </div>
 
                 <div className="p-4 rounded-lg bg-white border border-gray-200">
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Profit per FTE</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Profit per FTE</div>
                   <ResponsiveContainer width="100%" height={200}>
                     <BarChart data={productivityBySegment} layout="horizontal">
                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -558,7 +558,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Span of Control & Organizational Efficiency</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Span of Control & Organizational Efficiency</h3>
               <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="p-4 rounded-lg bg-blue-50">
@@ -581,7 +581,7 @@ export default function WorkforceAnalytics() {
                   </div>
                 </div>
                 <div className="p-4 rounded-lg bg-white border border-gray-200">
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Improvement Opportunities</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Improvement Opportunities</div>
                   <div className="space-y-3 text-xs text-gray-700">
                     <div className="p-3 rounded-lg bg-amber-50">
                       <div className="font-semibold text-amber-900 mb-1">WM Organizational Redesign</div>
@@ -616,7 +616,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Monthly Attrition Trends</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Monthly Attrition Trends</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <ComposedChart data={attritionData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -651,7 +651,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Voluntary Attrition by Reason (Last 7 Months)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Voluntary Attrition by Reason (Last 7 Months)</h3>
               <div className="grid grid-cols-2 gap-6">
                 <ResponsiveContainer width="100%" height={280}>
                   <PieChart>
@@ -715,7 +715,7 @@ export default function WorkforceAnalytics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Hiring Pipeline Status</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Hiring Pipeline Status</h3>
               <div className="space-y-3">
                 {hiringPipeline.map((stage, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-white border border-gray-100">

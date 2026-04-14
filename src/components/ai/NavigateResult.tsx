@@ -21,7 +21,7 @@ export default function NavigateResult({ target, question }: Props) {
     <div className="space-y-4">
       <div className="rounded-lg bg-[rgba(var(--client-primary-rgb),0.05)] border border-[rgba(var(--client-primary-rgb),0.1)] p-4">
         <div className="flex items-start gap-3">
-          <MapPin size={18} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--client-primary)' }} />
+          <MapPin size={18} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--client-text)' }} />
           <div className="flex-1">
             <div className="text-sm font-medium text-gray-900">
               {target.pageName}

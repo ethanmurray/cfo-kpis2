@@ -39,12 +39,12 @@
 
   .card-title {
     @apply text-sm font-semibold text-gray-600 mb-2 uppercase tracking-wide;
-    color: var(--client-primary);
+    color: var(--client-text, var(--client-primary));
   }
 
   .metric-value {
     @apply text-3xl font-bold tracking-tight;
-    color: var(--client-primary);
+    color: var(--client-text, var(--client-primary));
   }
 
   .metric-change {
@@ -75,14 +75,14 @@
 
   .section-header {
     @apply font-bold text-xs tracking-wider uppercase mb-3;
-    color: var(--client-primary);
+    color: var(--client-text, var(--client-primary));
     letter-spacing: 0.05em;
   }
 }
 
 @layer utilities {
   .text-client-primary {
-    color: var(--client-primary);
+    color: var(--client-text, var(--client-primary));
   }
 
   .text-client-accent {
@@ -107,7 +107,7 @@
 
   /* Keep old names as aliases for backward compat during migration */
   .text-nt-forest {
-    color: var(--client-primary);
+    color: var(--client-text, var(--client-primary));
   }
 
   .text-nt-gold {
@@ -167,8 +167,8 @@
 }
 
 ::selection {
-  background-color: rgba(var(--client-primary-rgb), 0.15);
-  color: var(--client-primary);
+  background-color: rgba(var(--client-text-rgb, var(--client-primary-rgb)), 0.15);
+  color: var(--client-text, var(--client-primary));
 }
 
 :focus-visible {

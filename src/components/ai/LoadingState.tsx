@@ -6,7 +6,7 @@ export default function LoadingState() {
 
   return (
     <div className="flex flex-col items-center justify-center py-12">
-      <Loader2 size={32} className="animate-spin mb-4" style={{ color: 'var(--client-primary)' }} />
+      <Loader2 size={32} className="animate-spin mb-4" style={{ color: 'var(--client-text)' }} />
       <div className="text-sm font-medium text-gray-700">
         {isClassifying ? 'Understanding your question...' : 'Generating analysis...'}
       </div>

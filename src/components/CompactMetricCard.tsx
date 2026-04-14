@@ -40,7 +40,7 @@ export default function CompactMetricCard({
     neutral: {
       bg: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
       border: 'rgba(var(--client-primary-rgb), 0.08)',
-      accent: 'var(--client-primary)'
+      accent: 'var(--client-text, var(--client-primary))'
     }
   }
 

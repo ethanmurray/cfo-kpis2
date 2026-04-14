@@ -158,7 +158,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>
                 Strategic Position vs Peer Average (Percentile Scores)
               </h3>
               <div className="grid grid-cols-2 gap-6">
@@ -178,7 +178,7 @@ export default function ExternalPositioning() {
                       backgroundColor: 'rgba(0, 77, 53, 0.02)'
                     }}>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>{item.dimension}</span>
+                        <span className="font-semibold text-sm" style={{ color: 'var(--client-text)' }}>{item.dimension}</span>
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-bold" style={{ color: 'var(--client-accent)' }}>
                             {item.score}th
@@ -237,20 +237,20 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Competitive Metrics & Rankings</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Competitive Metrics & Rankings</h3>
               <table className="min-w-full">
                 <thead style={{ backgroundColor: 'rgba(0, 77, 53, 0.02)' }}>
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Metric</th>
-                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Value</th>
-                    <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Industry Rank</th>
-                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-primary)' }}>Trend</th>
+                    <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Metric</th>
+                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Value</th>
+                    <th className="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Industry Rank</th>
+                    <th className="px-6 py-3 text-right text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--client-text)' }}>Trend</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y" style={{ borderColor: 'rgba(var(--client-primary-rgb), 0.05)' }}>
                   {competitiveMetrics.map((item, idx) => (
                     <tr key={idx} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 font-semibold text-sm" style={{ color: 'var(--client-primary)' }}>{item.metric}</td>
+                      <td className="px-6 py-4 font-semibold text-sm" style={{ color: 'var(--client-text)' }}>{item.metric}</td>
                       <td className="px-6 py-4 text-right text-xl font-bold" style={{ color: 'var(--client-accent)' }}>{item.value}</td>
                       <td className="px-6 py-4 text-center">
                         <span className="px-4 py-2 rounded-full text-sm font-bold" style={{
@@ -276,7 +276,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>US Custody Market Share</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>US Custody Market Share</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={marketShareData} layout="horizontal">
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -304,7 +304,7 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Win/Loss Analysis (Last 5 Quarters)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Win/Loss Analysis (Last 5 Quarters)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={winLossData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -340,10 +340,10 @@ export default function ExternalPositioning() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Key Differentiators</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Key Differentiators</h3>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Strengths</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Strengths</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
                       <span className="text-green-600 font-bold">✓</span>
@@ -360,7 +360,7 @@ export default function ExternalPositioning() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Neutral</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Neutral</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}>
                       <span className="text-amber-600 font-bold">~</span>
@@ -377,7 +377,7 @@ export default function ExternalPositioning() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Gaps</div>
+                  <div className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Gaps</div>
                   <div className="space-y-2 text-sm">
                     <div className="p-3 rounded-lg flex items-center gap-2" style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}>
                       <span className="text-red-600 font-bold">✗</span>

@@ -112,7 +112,7 @@ export default function DriverTreesEnhanced() {
               )}
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>{label}</span>
+                  <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>{label}</span>
                   {formula && (
                     <span className="text-xs font-mono px-2 py-0.5 rounded" style={{
                       backgroundColor: 'rgba(var(--client-primary-rgb), 0.05)',
@@ -208,7 +208,7 @@ export default function DriverTreesEnhanced() {
       }}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>Visual Driver Trees</h2>
+            <h2 className="text-2xl font-bold" style={{ color: 'var(--client-text)' }}>Visual Driver Trees</h2>
             <p className="text-sm mt-1" style={{ color: '#6b7280' }}>Interactive decomposition with historical trends and contribution analysis</p>
           </div>
           <div className="flex gap-2">
@@ -250,7 +250,7 @@ export default function DriverTreesEnhanced() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Driver Contributions</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Revenue Driver Contributions</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={revenueWaterfall} layout="horizontal">
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.05)" />
@@ -278,7 +278,7 @@ export default function DriverTreesEnhanced() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Tree (Interactive)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Revenue Tree (Interactive)</h3>
 
         <VisualDriverNode
           id="revenue"
@@ -349,7 +349,7 @@ export default function DriverTreesEnhanced() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(var(--client-primary-rgb), 0.08)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Economic Profit Tree (Interactive)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Economic Profit Tree (Interactive)</h3>
 
         <VisualDriverNode
           id="economic-profit"
@@ -406,7 +406,7 @@ export default function DriverTreesEnhanced() {
         background: 'linear-gradient(135deg, rgba(var(--client-accent-rgb), 0.05) 0%, rgba(var(--client-accent-rgb), 0.02) 100%)',
         border: '1px solid rgba(var(--client-accent-rgb), 0.2)'
       }}>
-        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>RAROC Decomposition (9.8%)</h3>
+        <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>RAROC Decomposition (9.8%)</h3>
         <div className="grid grid-cols-3 gap-8 items-center">
           <div className="text-center p-6 rounded-xl" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
             <div className="text-xs font-bold uppercase tracking-wide mb-2" style={{ color: '#6b7280' }}>
@@ -434,7 +434,7 @@ export default function DriverTreesEnhanced() {
         <div className="mt-6 pt-6" style={{ borderTop: '1px solid rgba(var(--client-accent-rgb), 0.2)' }}>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <div className="font-semibold mb-2" style={{ color: 'var(--client-primary)' }}>Key Drivers to Close Gap:</div>
+              <div className="font-semibold mb-2" style={{ color: 'var(--client-text)' }}>Key Drivers to Close Gap:</div>
               <ul className="space-y-1" style={{ color: '#6b7280' }}>
                 <li>• Revenue Growth: +8% clients, +12% AUM → +$720M</li>
                 <li>• Fee Optimization: +0.5 bps → +$307M</li>
@@ -443,7 +443,7 @@ export default function DriverTreesEnhanced() {
               </ul>
             </div>
             <div>
-              <div className="font-semibold mb-2" style={{ color: 'var(--client-primary)' }}>Historical Progress:</div>
+              <div className="font-semibold mb-2" style={{ color: 'var(--client-text)' }}>Historical Progress:</div>
               <div className="space-y-2">
                 {[
                   { year: '2022', raroc: 8.2 },
@@ -463,7 +463,7 @@ export default function DriverTreesEnhanced() {
                           }}
                         />
                       </div>
-                      <span className="font-bold w-12 text-right" style={{ color: 'var(--client-primary)' }}>{item.raroc}%</span>
+                      <span className="font-bold w-12 text-right" style={{ color: 'var(--client-text)' }}>{item.raroc}%</span>
                     </div>
                   </div>
                 ))}

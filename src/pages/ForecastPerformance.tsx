@@ -235,7 +235,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Forecast vs Actual (Rolling 7 Months)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Revenue Forecast vs Actual (Rolling 7 Months)</h3>
               <ResponsiveContainer width="100%" height={320}>
                 <LineChart data={forecastAccuracy}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -271,7 +271,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Forecast Accuracy by Time Horizon</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Forecast Accuracy by Time Horizon</h3>
               <div className="overflow-x-auto">
                 <table className="min-w-full text-xs">
                   <thead className="bg-gray-50">
@@ -319,7 +319,7 @@ export default function ForecastPerformance() {
                 </table>
               </div>
               <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-primary)' }}>Interpretation</div>
+                <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-text)' }}>Interpretation</div>
                 <div className="text-xs text-gray-700 space-y-1">
                   <div>• Excellent short-term accuracy (1-3 months): &gt;97% accuracy suitable for operational planning</div>
                   <div>• Medium-term accuracy (6 months): 94.8% accuracy sufficient for quarterly reforecasting</div>
@@ -334,7 +334,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Forecast vs Actual Scatter (Bias Detection)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Forecast vs Actual Scatter (Bias Detection)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <ScatterChart>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -366,7 +366,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Top Forecast Misses (Root Cause Analysis)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Top Forecast Misses (Root Cause Analysis)</h3>
               <div className="space-y-3">
                 {topMisses.map((miss, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-white border-l-4" style={{
@@ -403,7 +403,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>YTD Budget Performance (Through January 2025)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>YTD Budget Performance (Through January 2025)</h3>
               <div className="space-y-3">
                 {Object.entries(budgetPerformanceYTD).map(([key, data]) => (
                   <div key={key} className="p-4 rounded-xl bg-white border-l-4" style={{
@@ -466,7 +466,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Budget & Forecast Accuracy by Segment</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Budget & Forecast Accuracy by Segment</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -511,7 +511,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Systematic Forecast Bias by Metric</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Systematic Forecast Bias by Metric</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -557,7 +557,7 @@ export default function ForecastPerformance() {
                 </tbody>
               </table>
               <div className="mt-4 p-4 rounded-lg" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
-                <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-primary)' }}>Bias Interpretation</div>
+                <div className="text-sm font-bold mb-2" style={{ color: 'var(--client-text)' }}>Bias Interpretation</div>
                 <div className="grid grid-cols-3 gap-4 text-xs text-gray-700">
                   <div>
                     <div className="font-semibold text-amber-800 mb-1">Optimistic Bias (Overforecasting)</div>
@@ -580,7 +580,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Forecast Accuracy by Dimension (Latest Period)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Forecast Accuracy by Dimension (Latest Period)</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={accuracyByDimension}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -607,7 +607,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>2025 Full Year Outlook</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>2025 Full Year Outlook</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -671,7 +671,7 @@ export default function ForecastPerformance() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Forecast Revision History (2025)</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Forecast Revision History (2025)</h3>
               <div className="space-y-4">
                 <div className="p-4 rounded-xl bg-white border border-gray-200">
                   <div className="flex items-center justify-between mb-2">

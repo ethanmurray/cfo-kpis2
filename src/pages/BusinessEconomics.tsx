@@ -246,7 +246,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Business Segment Performance vs. Plan</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Business Segment Performance vs. Plan</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -298,7 +298,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Monthly Revenue Trends: Actual vs. Plan</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Monthly Revenue Trends: Actual vs. Plan</h3>
               <ResponsiveContainer width="100%" height={320}>
                 <ComposedChart data={monthlyTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -330,7 +330,7 @@ export default function BusinessEconomics() {
                 background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                 border: '1px solid rgba(0, 77, 53, 0.08)'
               }}>
-                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Mix</h3>
+                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-text)' }}>Revenue Mix</h3>
                 <div className="space-y-3">
                   <div>
                     <div className="flex justify-between text-xs mb-1">
@@ -359,7 +359,7 @@ export default function BusinessEconomics() {
                 background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
                 border: '1px solid rgba(0, 77, 53, 0.08)'
               }}>
-                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Operating Income Mix</h3>
+                <h3 className="text-base font-bold mb-4" style={{ color: 'var(--client-text)' }}>Operating Income Mix</h3>
                 <div className="space-y-3">
                   <div>
                     <div className="flex justify-between text-xs mb-1">
@@ -395,7 +395,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Return on Equity (ROE) by Segment</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Return on Equity (ROE) by Segment</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={roeTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -429,7 +429,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Shareholder Value Added (SVA) by Segment</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Shareholder Value Added (SVA) by Segment</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <ComposedChart data={svaTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -469,12 +469,12 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Segment Performance Matrix</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Segment Performance Matrix</h3>
               <div className="grid grid-cols-2 gap-6">
                 {segmentPerformance.map((seg, idx) => (
                   <div key={idx} className="p-5 rounded-xl bg-white border-2 border-green-200">
                     <div className="flex items-center justify-between mb-4">
-                      <h4 className="text-base font-bold" style={{ color: 'var(--client-primary)' }}>{seg.segment}</h4>
+                      <h4 className="text-base font-bold" style={{ color: 'var(--client-text)' }}>{seg.segment}</h4>
                       <div className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-700">
                         Outperforming
                       </div>
@@ -516,7 +516,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Key Variance Drivers vs. Plan</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Key Variance Drivers vs. Plan</h3>
               <div className="space-y-3">
                 {keyVariances.map((item, idx) => (
                   <div key={idx} className="p-4 rounded-xl bg-white border-l-4" style={{
@@ -546,7 +546,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Revenue Variance Bridge: Plan to Actual</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Revenue Variance Bridge: Plan to Actual</h3>
               <div className="grid grid-cols-2 gap-6">
                 {/* C&IS Variance Bridge */}
                 <div>
@@ -671,7 +671,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Corporate & Institutional Services - Product Line Performance</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Corporate & Institutional Services - Product Line Performance</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -719,7 +719,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>Wealth Management - Product Line Performance</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>Wealth Management - Product Line Performance</h3>
               <table className="min-w-full text-xs">
                 <thead className="bg-gray-50">
                   <tr>
@@ -767,7 +767,7 @@ export default function BusinessEconomics() {
               background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
               border: '1px solid rgba(0, 77, 53, 0.08)'
             }}>
-              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>YoY Revenue Growth by Product Line</h3>
+              <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>YoY Revenue Growth by Product Line</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={[...cisProducts, ...wmProducts].sort((a, b) => b.growth - a.growth)}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />

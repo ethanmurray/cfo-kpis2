@@ -98,14 +98,14 @@ export default function ExecutiveDashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--client-primary)' }}>Executive Dashboard</h1>
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--client-text)' }}>Executive Dashboard</h1>
           <p className="text-xs mt-1" style={{ color: '#6b7280' }}>Real-time view of critical metrics and alerts</p>
         </div>
         <div className="text-right">
           <div className="text-xs font-semibold tracking-wide uppercase" style={{ color: 'var(--client-accent)' }}>
             Live Data
           </div>
-          <div className="text-sm font-medium mt-1" style={{ color: 'var(--client-primary)' }}>
+          <div className="text-sm font-medium mt-1" style={{ color: 'var(--client-text)' }}>
             {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
           </div>
           <div className="text-xs" style={{ color: '#9ca3af' }}>
@@ -123,15 +123,15 @@ export default function ExecutiveDashboard() {
           <div className="p-2 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.2)' }}>
             <TrendingUp className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
           </div>
-          <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>Enterprise Overview</h2>
+          <h2 className="text-xl font-bold" style={{ color: 'var(--client-text)' }}>Enterprise Overview</h2>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Financials */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <DollarSign className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Financials</span>
+              <DollarSign className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Financials</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -156,8 +156,8 @@ export default function ExecutiveDashboard() {
           {/* Client Economics */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Users className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Client Economics</span>
+              <Users className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Client Economics</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -182,8 +182,8 @@ export default function ExecutiveDashboard() {
           {/* Product Economics */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Package className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Product Economics</span>
+              <Package className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Product Economics</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -208,8 +208,8 @@ export default function ExecutiveDashboard() {
           {/* Operations */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Zap className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Operations</span>
+              <Zap className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Operations</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -234,8 +234,8 @@ export default function ExecutiveDashboard() {
           {/* Planning & Strategy */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Target className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Planning & Strategy</span>
+              <Target className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Planning & Strategy</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -260,8 +260,8 @@ export default function ExecutiveDashboard() {
           {/* External Positioning */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Award className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>External Positioning</span>
+              <Award className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>External Positioning</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -286,8 +286,8 @@ export default function ExecutiveDashboard() {
           {/* Risk & Compliance */}
           <div className="p-4 rounded-xl bg-white border border-gray-100">
             <div className="flex items-center gap-2 mb-3">
-              <Shield className="h-5 w-5" style={{ color: 'var(--client-primary)' }} />
-              <span className="font-bold text-sm" style={{ color: 'var(--client-primary)' }}>Risk & Compliance</span>
+              <Shield className="h-5 w-5" style={{ color: 'var(--client-text)' }} />
+              <span className="font-bold text-sm" style={{ color: 'var(--client-text)' }}>Risk & Compliance</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
@@ -347,7 +347,7 @@ export default function ExecutiveDashboard() {
             <Activity className="h-6 w-6" style={{ color: 'var(--client-accent)' }} />
           </div>
           <div>
-            <h2 className="text-xl font-bold" style={{ color: 'var(--client-primary)' }}>2025 Target Trajectory & Required Interventions</h2>
+            <h2 className="text-xl font-bold" style={{ color: 'var(--client-text)' }}>2025 Target Trajectory & Required Interventions</h2>
             <p className="text-xs" style={{ color: '#6b7280' }}>Forecast vs. plan analysis with strategic initiative impact</p>
           </div>
         </div>
@@ -360,7 +360,7 @@ export default function ExecutiveDashboard() {
               borderWidth: '2px'
             }}>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold" style={{ color: 'var(--client-primary)' }}>{item.metric}</span>
+                <span className="text-sm font-bold" style={{ color: 'var(--client-text)' }}>{item.metric}</span>
                 <div className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                   item.status === 'good' ? 'bg-green-100 text-green-700' :
                   item.status === 'warning' ? 'bg-amber-100 text-amber-700' :
@@ -421,7 +421,7 @@ export default function ExecutiveDashboard() {
         <div className="grid grid-cols-2 gap-6">
           {/* RAROC Trajectory */}
           <div className="bg-white p-4 rounded-xl border border-gray-100">
-            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>RAROC Trajectory to 12.5% Target</h3>
+            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>RAROC Trajectory to 12.5% Target</h3>
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={rarocTrajectory}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -478,7 +478,7 @@ export default function ExecutiveDashboard() {
 
           {/* Cost/Income Trajectory */}
           <div className="bg-white p-4 rounded-xl border border-gray-100">
-            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-primary)' }}>Cost/Income Ratio to 58.5% Target</h3>
+            <h3 className="text-sm font-bold mb-3" style={{ color: 'var(--client-text)' }}>Cost/Income Ratio to 58.5% Target</h3>
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={costIncomeTrajectory}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -598,7 +598,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           Financial Performance (YTD)
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -664,7 +664,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           Balance Sheet & Capital
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -728,7 +728,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           Client & Business Metrics
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -790,7 +790,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           Operations & Efficiency
         </h2>
         <div className="grid grid-cols-6 gap-3">
@@ -854,7 +854,7 @@ export default function ExecutiveDashboard() {
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-bold text-sm tracking-wide uppercase" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+          <h2 className="font-bold text-sm tracking-wide uppercase" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
             Recent Client Activity (Last 24h)
           </h2>
           <button className="text-xs font-semibold px-3 py-1.5 rounded-full transition-all duration-200 hover:shadow-md" style={{
@@ -877,7 +877,7 @@ export default function ExecutiveDashboard() {
                   activity.status === 'positive' ? 'bg-green-500' :
                   activity.status === 'negative' ? 'bg-red-500' : 'bg-amber-500'
                 }`} />
-                <span className="font-semibold w-36" style={{ color: 'var(--client-primary)' }}>{activity.client}</span>
+                <span className="font-semibold w-36" style={{ color: 'var(--client-text)' }}>{activity.client}</span>
                 <span className="text-xs" style={{ color: '#6b7280' }}>{activity.event}</span>
               </div>
               <div className="flex items-center gap-4">
@@ -897,14 +897,14 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%)',
         border: '1px solid rgba(212, 175, 55, 0.2)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           2025 Strategic Targets Progress
         </h2>
         <div className="grid grid-cols-4 gap-4">
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>RAROC Target: 12.5%</span>
-              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>9.8% (78%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-text)' }}>9.8% (78%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
               <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '78%', backgroundColor: 'var(--client-accent)' }} />
@@ -913,7 +913,7 @@ export default function ExecutiveDashboard() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>Client Growth: 308</span>
-              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>285 (93%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-text)' }}>285 (93%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(16, 185, 129, 0.1)' }}>
               <div className="bg-green-600 h-2.5 rounded-full transition-all duration-500" style={{ width: '93%' }} />
@@ -922,7 +922,7 @@ export default function ExecutiveDashboard() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>Cost/Income: 58.5%</span>
-              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>62.5% (88%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-text)' }}>62.5% (88%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}>
               <div className="bg-amber-600 h-2.5 rounded-full transition-all duration-500" style={{ width: '88%' }} />
@@ -931,7 +931,7 @@ export default function ExecutiveDashboard() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span style={{ color: '#6b7280' }}>AUM: $6.5T</span>
-              <span className="font-bold" style={{ color: 'var(--client-primary)' }}>$6.1T (94%)</span>
+              <span className="font-bold" style={{ color: 'var(--client-text)' }}>$6.1T (94%)</span>
             </div>
             <div className="w-full rounded-full h-2.5" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }}>
               <div className="h-2.5 rounded-full transition-all duration-500" style={{ width: '94%', backgroundColor: 'var(--client-accent)' }} />
@@ -945,7 +945,7 @@ export default function ExecutiveDashboard() {
         background: 'linear-gradient(135deg, #ffffff 0%, rgba(248, 249, 250, 0.5) 100%)',
         border: '1px solid rgba(0, 77, 53, 0.08)'
       }}>
-        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-primary)', letterSpacing: '0.05em' }}>
+        <h2 className="font-bold text-sm tracking-wide uppercase mb-4" style={{ color: 'var(--client-text)', letterSpacing: '0.05em' }}>
           Peer Comparison (Percentile Ranking)
         </h2>
         <div className="grid grid-cols-8 gap-3 text-xs">

@@ -67,7 +67,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                 <Info className="h-6 w-6" style={{ color: colors.bg }} />
               </div>
               <div>
-                <h2 className="text-2xl font-bold" style={{ color: 'var(--client-primary)' }}>
+                <h2 className="text-2xl font-bold" style={{ color: 'var(--client-text)' }}>
                   {metric.label}
                 </h2>
                 {metric.description && (
@@ -124,7 +124,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
             {/* Historical Trend */}
             {metric.historicalData && metric.historicalData.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>
                   Historical Trend
                 </h3>
                 <div
@@ -169,7 +169,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
             {/* Breakdown by Category */}
             {metric.breakdown && metric.breakdown.length > 0 && (
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-primary)' }}>
+                <h3 className="text-lg font-bold mb-4" style={{ color: 'var(--client-text)' }}>
                   Breakdown by Category
                 </h3>
                 <div
@@ -196,7 +196,7 @@ export default function MetricDetailModal({ isOpen, onClose, metric }: MetricDet
                         className="flex items-center justify-between p-3 rounded-lg"
                         style={{ backgroundColor: 'rgba(var(--client-primary-rgb), 0.05)' }}
                       >
-                        <span className="text-sm font-medium" style={{ color: 'var(--client-primary)' }}>
+                        <span className="text-sm font-medium" style={{ color: 'var(--client-text)' }}>
                           {item.category}
                         </span>
                         <div className="flex items-center gap-3">

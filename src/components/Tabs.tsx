@@ -56,14 +56,14 @@ export function TabsTrigger({ value, children, className = '' }: TabsTriggerProp
       onClick={() => setActiveTab(value)}
       className={`px-5 py-3 font-semibold text-sm whitespace-nowrap transition-all duration-200 relative rounded-t-lg ${className}`}
       style={{
-        color: isActive ? 'var(--client-primary)' : '#6b7280',
+        color: isActive ? 'var(--client-text)' : '#6b7280',
         backgroundColor: isActive ? 'rgba(var(--client-accent-rgb), 0.08)' : 'transparent',
         borderBottom: isActive ? '3px solid var(--client-accent)' : '3px solid transparent',
         transform: isActive ? 'translateY(2px)' : 'translateY(0)'
       }}
       onMouseEnter={(e) => {
         if (!isActive) {
-          e.currentTarget.style.color = 'var(--client-primary)'
+          e.currentTarget.style.color = 'var(--client-text)'
           e.currentTarget.style.backgroundColor = 'rgba(var(--client-accent-rgb), 0.04)'
         }
       }}
