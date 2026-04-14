@@ -9,12 +9,16 @@ export default function SearchBar() {
   const [suggestions, setSuggestions] = useState<QuestionItem[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+  const submitted = useRef(false)
 
   useEffect(() => {
     inputRef.current?.focus()
   }, [])
 
   useEffect(() => {
+    // Don't reopen suggestions after a submit
+    if (submitted.current) return
+
     if (query.trim().length >= 2) {
       const results = searchQuestions(query)
       setSuggestions(results)
@@ -28,6 +32,7 @@ export default function SearchBar() {
   const handleSubmit = (text?: string) => {
     const q = text || query
     if (!q.trim() || isLoading) return
+    submitted.current = true
     setShowSuggestions(false)
     submitQuestion(q.trim())
   }
@@ -43,16 +48,21 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative" onBlur={(e) => {
+      // Close suggestions when focus leaves the entire search container
+      if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+        setShowSuggestions(false)
+      }
+    }}>
       <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 focus-within:border-[var(--client-primary)] focus-within:ring-1 focus-within:ring-[var(--client-primary)]">
         <Search size={18} className="text-gray-400 flex-shrink-0" />
         <input
           ref={inputRef}
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => { submitted.current = false; setQuery(e.target.value) }}
           onKeyDown={handleKeyDown}
-          onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+          onFocus={() => { if (!submitted.current && suggestions.length > 0) setShowSuggestions(true) }}
           placeholder="Ask about financials, capital, risk, clients..."
           className="flex-1 bg-transparent text-sm outline-none placeholder:text-gray-400"
           disabled={isLoading}

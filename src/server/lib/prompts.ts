@@ -127,25 +127,27 @@ export function buildNarrativeUserPrompt(
 export function getClassifySystemPrompt(_config: ClientConfig = NORTHERN_TRUST_CONFIG): string {
   return `You classify CFO dashboard questions into two tiers. Respond with ONLY valid JSON, no other text.
 
-Available dashboard pages:
-- "/" (Executive Dashboard): Enterprise overview, targets, critical alerts, financial/balance sheet/client/operations metrics, peer percentile
-- "/financials" (Group Financials): P&L, balance sheet overview, capital ratios, funding, NIM analysis
-- "/business-economics" (Business Economics): Revenue by segment, client acquisition, margin analysis
-- "/clients" (Client Economics): Client profitability, wallet share, relationship depth, retention
-- "/products" (Product Economics): Product profitability, pricing, expense allocation
-- "/operations" (Finance Operations): Month-end close, reconciliation, treasury operations, STP rates
-- "/alm" (ALM & Treasury): Asset-liability management, interest rate risk, liquidity, capital metrics
-- "/planning" (Planning & Strategy): Strategic initiatives, interactive scenarios, forecasts
-- "/external-positioning" (External Positioning): Market position, peer comparison, valuation
-- "/risk-compliance" (Risk & Compliance): Regulatory, cybersecurity, operational risk
-- "/market-risk" (Market Risk): Market risk metrics, VaR, stress testing
+Available dashboard pages and their tab slugs:
+- "/" (Executive Dashboard): Enterprise overview, 2025 targets, critical alerts, financial/balance sheet/client/operations metrics, peer percentile. No tabs.
+- "/financials" (Group Financials): Tabs: "pl" (P&L & Profitability), "balancesheet" (Balance Sheet), "funding" (Funding), "assets" (Assets), "capital" (Capital ratios incl. CET1), "liquidity" (Treasury & Liquidity), "nim" (NII/NIM Analysis)
+- "/business-economics" (Business Economics): Tabs: "segment-pl" (Segment P&L), "roe-sva" (ROE & SVA Analysis), "variance" (Variance Analysis), "products" (Product Line Detail)
+- "/clients" (Client Economics): Tabs: "raroc" (Client RAROC), "wallet" (Wallet Share & Cross-Sell), "relationship" (Relationship Health), "attribution" (Profit Attribution), "activity" (Activity & Flow), "deposits" (Deposits & Commitments)
+- "/products" (Product Economics): Tabs: "profitability" (Product P&L), "pricing" (Pricing & Value Capture), "expenses" (Expense Management)
+- "/operations" (Finance Operations): Tabs: "pulse" (Daily Pulse), "custody" (Custody & Settlement), "treasury" (Treasury Operations), "close" (Month-End Close), "recon" (Reconciliation & Controls)
+- "/alm" (ALM & Treasury): Tabs: "irr" (Interest Rate Risk), "liquidity" (Liquidity Management), "funding" (Funding & Maturity), "hedging" (Hedge Program)
+- "/planning" (Planning & Strategy): Tabs: "initiatives" (Strategic Initiatives), "scenario-builder" (Scenario Builder), "drivertrees" (Driver Trees), "scenarios" (Scenarios & Forecasts), "stress" (Stress Tests)
+- "/external-positioning" (External Positioning): Tabs: "scoreboard" (Peer Scoreboard), "positioning" (Strategic Positioning), "competitive" (Competitive Dynamics), "trends" (Performance Trends)
+- "/risk-compliance" (Risk & Compliance): Tabs: "risk-metrics" (Risk Metrics), "risk-appetite" (Risk Appetite), "compliance" (Compliance Monitoring), "regulatory" (Regulatory Oversight), "finance-controls" (Finance Controls)
+- "/market-risk" (Market Risk): Tabs: "peers" (Peer Comparison), "positioning" (Strategic Positioning), "risk" (Risk Metrics), "compliance" (Compliance)
+- "/workforce" (Workforce Analytics): Tabs: "headcount" (Headcount Analytics), "compensation" (Compensation & Benefits), "productivity" (Productivity Metrics), "attrition" (Attrition & Retention)
+- "/forecast" (Forecast Performance): Tabs: "accuracy" (Forecast Accuracy), "budget" (Budget Performance), "bias" (Bias Analysis), "outlook" (Full Year Outlook)
 
 Classification rules:
-- If the question asks for a specific metric or view that clearly maps to ONE page, return tier "navigate" with the route, tab name if applicable, and a brief description.
+- If the question asks for a specific metric or view that clearly maps to ONE page, return tier "navigate" with the route and the exact tab slug from the list above. Only use tab slugs listed above — do not invent tab names.
 - If the question requires custom analysis, comparison across multiple domains, or cannot be answered by a single existing page, return tier "dynamic".
 
 Response format:
-{"tier": "navigate", "route": "/path", "tab": "tabName", "pageName": "Page Name", "description": "Brief description of what the user will find"}
+{"tier": "navigate", "route": "/path", "tab": "tabSlug", "pageName": "Page Name", "description": "Brief description of what the user will find"}
 or
 {"tier": "dynamic"}`
 }

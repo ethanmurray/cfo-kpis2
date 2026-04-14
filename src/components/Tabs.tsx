@@ -1,8 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, useCallback, ReactNode } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 interface TabsContextValue {
   activeTab: string
   setActiveTab: (value: string) => void
+  registerTab: (value: string) => void
 }
 
 const TabsContext = createContext<TabsContextValue | undefined>(undefined)
@@ -14,10 +16,37 @@ interface TabsProps {
 }
 
 export function Tabs({ defaultValue, children, className = '' }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(defaultValue)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tabParam = searchParams.get('tab')
+  const [activeTab, setActiveTab] = useState(tabParam || defaultValue)
+  const knownTabs = useRef(new Set<string>())
+  const validated = useRef(false)
+
+  const registerTab = useCallback((value: string) => {
+    knownTabs.current.add(value)
+  }, [])
+
+  // After children mount and register, validate the active tab
+  useEffect(() => {
+    if (validated.current) return
+    validated.current = true
+
+    if (tabParam) {
+      // If the ?tab= param doesn't match any registered tab, fall back
+      if (knownTabs.current.size > 0 && !knownTabs.current.has(tabParam)) {
+        setActiveTab(defaultValue)
+      }
+      // Clear the param from the URL either way
+      setSearchParams((prev) => {
+        const next = new URLSearchParams(prev)
+        next.delete('tab')
+        return next
+      }, { replace: true })
+    }
+  }) // runs after every render until validated
 
   return (
-    <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+    <TabsContext.Provider value={{ activeTab, setActiveTab, registerTab }}>
       <div className={className}>{children}</div>
     </TabsContext.Provider>
   )
@@ -48,7 +77,10 @@ export function TabsTrigger({ value, children, className = '' }: TabsTriggerProp
   const context = useContext(TabsContext)
   if (!context) throw new Error('TabsTrigger must be used within Tabs')
 
-  const { activeTab, setActiveTab } = context
+  const { activeTab, setActiveTab, registerTab } = context
+
+  // Register this tab value so Tabs can validate ?tab= params
+  useEffect(() => { registerTab(value) }, [value, registerTab])
   const isActive = activeTab === value
 
   return (

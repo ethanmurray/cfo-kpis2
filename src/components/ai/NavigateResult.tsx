@@ -14,7 +14,8 @@ export default function NavigateResult({ target, question }: Props) {
 
   const handleNavigate = () => {
     close()
-    navigate(target.path)
+    const path = target.tab ? `${target.path}?tab=${target.tab}` : target.path
+    navigate(path)
   }
 
   return (
