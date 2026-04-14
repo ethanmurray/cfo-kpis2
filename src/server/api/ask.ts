@@ -107,7 +107,6 @@ async function handleDirectAnalysis(
   filters?: AskRequest['filters'],
   historyContext?: string
 ): Promise<AskResponse> {
-  // Get a compact summary of the data for the prompt
   const dataJson = getDataJson()
 
   let userPrompt = buildDirectAnalysisUserPrompt(question, dataJson, filters)
@@ -115,15 +114,17 @@ async function handleDirectAnalysis(
     userPrompt = `Previous conversation:\n${historyContext}\n\nNew question: ${userPrompt}`
   }
 
-  userPrompt += `\n\nRemember: respond with ONLY valid JSON containing "narrative" and "chart" fields. The chart must be a complete SVG element.`
+  userPrompt += `\n\nRespond with ONLY valid JSON containing "pythonCode", "stdout", "narrative", and "chart" fields. Use ONLY numbers from the dataset above.`
 
   const rawText = await generateDirectAnalysis(
     DIRECT_ANALYSIS_SYSTEM_PROMPT,
     userPrompt
   )
 
-  // Parse the JSON response to extract narrative and SVG chart
+  // Parse the JSON response
   let narrative = ''
+  let pythonCode = ''
+  let stdout = ''
   const images: string[] = []
 
   try {
@@ -131,6 +132,8 @@ async function handleDirectAnalysis(
     if (jsonMatch) {
       const parsed = JSON.parse(jsonMatch[0])
       narrative = parsed.narrative || ''
+      pythonCode = parsed.pythonCode || ''
+      stdout = parsed.stdout || ''
       if (parsed.chart) {
         images.push('svg:' + parsed.chart)
       }
@@ -138,7 +141,6 @@ async function handleDirectAnalysis(
       narrative = rawText
     }
   } catch {
-    // If JSON parsing fails, try to extract SVG separately
     const svgMatch = rawText.match(/<svg[\s\S]*?<\/svg>/)
     if (svgMatch) {
       images.push('svg:' + svgMatch[0])
@@ -150,8 +152,8 @@ async function handleDirectAnalysis(
 
   return {
     narrative,
-    pythonCode: '',
-    stdout: '',
+    pythonCode,
+    stdout,
     images,
     error: null,
   }
