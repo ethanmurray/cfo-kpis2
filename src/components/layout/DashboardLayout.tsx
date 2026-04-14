@@ -1,5 +1,7 @@
 import { ReactNode, useState } from 'react'
 import Sidebar from './Sidebar'
+import AskButton from '../ai/AskButton'
+import AskPanel from '../ai/AskPanel'
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -16,6 +18,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           {children}
         </div>
       </main>
+      <AskButton />
+      <AskPanel />
     </div>
   )
 }

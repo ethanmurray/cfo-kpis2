@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import { apiPlugin } from './src/server/viteApiPlugin'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [apiPlugin(), react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
