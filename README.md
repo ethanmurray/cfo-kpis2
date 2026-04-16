@@ -1,29 +1,30 @@
-# Northern Trust CFO Dashboard
+# CFO KPI Dashboard
 
-A comprehensive dashboard application designed for the CFO of Northern Trust, providing real-time insights into financial performance, operational efficiency, assets under custody, and risk metrics. Data is based on Northern Trust's public filings and industry information.
+A comprehensive dashboard application designed for CFOs and senior finance executives, providing real-time insights into financial performance, operational efficiency, assets under custody, and risk metrics.
 
 ## Features
 
 ### Dashboard Sections
 
 1. **Executive Summary** - High-level KPIs and alerts
-2. **Revenue Performance** - Revenue trends, breakdown by category, and top clients
-3. **Assets Under Custody (AUC)** - AUC analysis by asset class, region, and client segment
-4. **Operational Efficiency** - Cost-to-income ratios, STP rates, and expense analysis
-5. **Profitability** - P&L statements, margins, ROE, and ROA
-6. **Risk & Compliance** - Operational events, capital ratios, liquidity metrics
-7. **Client Metrics** - Retention rates, client growth, and satisfaction
-8. **Market Position** - Market share analysis and competitive benchmarking
+2. **Group Financials** - P&L, balance sheet, capital, liquidity, NII/NIM
+3. **Business Economics** - Segment P&L, ROE & SVA, variance analysis
+4. **Client Economics** - RAROC, wallet share, relationship health, profit attribution
+5. **Product Economics** - Product P&L, pricing, expense management
+6. **Finance Operations** - Daily pulse, custody & settlement, treasury ops, month-end close
+7. **ALM & Treasury** - Interest rate risk, liquidity, funding, hedging
+8. **Planning & Strategy** - Initiatives, scenario builder, driver trees, stress tests
+9. **External Positioning** - Peer scoreboard, competitive dynamics, performance trends
+10. **Risk & Compliance** - Risk metrics, appetite, compliance, regulatory oversight
+11. **Workforce Analytics** - Headcount, compensation, productivity, attrition
+12. **Forecast Performance** - Forecast accuracy, budget performance, bias analysis
 
-### Key Metrics Tracked (Northern Trust Scale)
+### AI-Powered Analysis
 
-- Total Assets Under Custody: $15.8 trillion
-- Annual Revenue: $7.1 billion
-- Cost-to-Income Ratio: ~68%
-- Client Base: ~450 institutional clients
-- Geographic Distribution: Americas (55%), EMEA (30%), APAC (15%)
-- Global Ranking: #4 by assets under custody
-- Asset Classes: Equities (48%), Fixed Income (32%), Alternatives (12%), Cash (8%)
+- Natural language question interface powered by Claude
+- Intelligent routing: questions are classified and either navigate to the relevant dashboard page or trigger custom analysis
+- Custom analysis generates Python code, executive narrative, and SVG charts
+- Conversation history for follow-up questions
 
 ## Technology Stack
 
@@ -34,7 +35,8 @@ A comprehensive dashboard application designed for the CFO of Northern Trust, pr
 - **Routing**: React Router
 - **Icons**: Lucide React
 - **State Management**: Zustand
-- **Date Handling**: date-fns
+- **AI**: Claude (Anthropic API / AWS Bedrock)
+- **Deployment**: Vercel
 
 ## Getting Started
 
@@ -46,100 +48,33 @@ A comprehensive dashboard application designed for the CFO of Northern Trust, pr
 ### Installation
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
 ```
 
 The application will be available at `http://localhost:3000`
 
-## Project Structure
+### Environment Variables
+
+Create a `.env` file:
 
 ```
-cfo-kpis2/
-├── src/
-│   ├── components/         # Reusable UI components
-│   │   ├── charts/        # Chart components (Line, Bar, Pie)
-│   │   ├── layout/        # Layout components (Sidebar, DashboardLayout)
-│   │   ├── AlertBanner.tsx
-│   │   ├── DataTable.tsx
-│   │   └── MetricCard.tsx
-│   ├── pages/             # Dashboard pages
-│   │   ├── ExecutiveSummary.tsx
-│   │   ├── RevenuePerformance.tsx
-│   │   ├── AssetsUnderCustody.tsx
-│   │   ├── OperationalEfficiency.tsx
-│   │   ├── Profitability.tsx
-│   │   ├── RiskCompliance.tsx
-│   │   ├── ClientMetrics.tsx
-│   │   └── MarketPosition.tsx
-│   ├── data/              # Mock data generators
-│   ├── types/             # TypeScript type definitions
-│   ├── utils/             # Utility functions
-│   ├── App.tsx           # Main application component
-│   ├── main.tsx          # Application entry point
-│   └── index.css         # Global styles
-├── public/               # Static assets
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── tailwind.config.js
+ANTHROPIC_API_KEY=sk-ant-...   # For direct Anthropic API (Vercel deployment)
+E2B_API_KEY=...                # For code execution sandbox
 ```
 
-## Data Source
+For local development with AWS Bedrock, omit `ANTHROPIC_API_KEY` and configure AWS credentials instead.
 
-The application uses data modeled after Northern Trust's publicly available information:
-- Based on Northern Trust's scale and business model
-- 3 years of historical financial trends
-- ~450 institutional clients (matching Northern Trust's profile)
-- Real-time data updates (simulated)
-- Seasonal patterns and growth trends reflecting custody banking
-- Operational risk events
+### Multi-Client Support
 
-**Note:** While figures are based on Northern Trust's publicly available information and typical industry metrics, actual figures should be verified against FFIEC Call Reports and SEC filings (CIK: 0000073124) for precise data.
+The dashboard supports multiple client configurations. The default client (Acme Bank) is included in the repo. Additional client configs can be added in `src/config/clients.private.ts` (gitignored) using the `registerClient()` API:
 
-## Key Features
+```typescript
+import { registerClient, type ClientConfig } from './clientConfig'
 
-### Data Visualization
-- Interactive time-series charts for trends
-- Bar charts for comparisons
-- Pie charts for breakdowns
-- Data tables with sorting and formatting
-
-### Real-time Updates
-- Simulated real-time data refresh
-- Alert notifications for critical events
-- Live metric updates
-
-### Responsive Design
-- Desktop-optimized layout (1920px)
-- Tablet support (768px)
-- Mobile-friendly views (375px)
-
-### Professional Design
-- Clean, executive-appropriate aesthetics
-- Consistent color scheme
-- Clear data hierarchy
-- Accessible typography
-
-## Future Enhancements
-
-- Connect to real backend APIs
-- User authentication and role-based access
-- Customizable dashboard layouts
-- Advanced filtering and data slicing
-- Export functionality (PDF/Excel)
-- Predictive analytics and forecasting
-- Integration with data warehouses
-- Mobile app version
+const MY_CLIENT: ClientConfig = { /* ... */ }
+registerClient(MY_CLIENT)
+```
 
 ## Browser Support
 
@@ -150,8 +85,4 @@ The application uses data modeled after Northern Trust's publicly available info
 
 ## License
 
-Proprietary - Global Custody Bank
-
-## Contact
-
-For questions or support, contact the CFO Office Technology Team.
+Proprietary

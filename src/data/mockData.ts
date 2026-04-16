@@ -81,7 +81,7 @@ export const getExecutiveSummaryData = (): ExecutiveSummaryData => {
   return {
     auc: {
       value: totalAUC,
-      yoyGrowth: 8.2, // Northern Trust has seen strong AUC growth
+      yoyGrowth: 8.2,
     },
     revenue: {
       qtd: currentQtrRevenue,
@@ -184,7 +184,7 @@ export const getAUCData = (): AUCData => {
   // Fee-earning AUC (typically 85-90% of total)
   const feeEarningAUC = totalAUC * 0.88
 
-  // Net New Business - Northern Trust targets $300-500B annually
+  // Net New Business
   const aucWon = 425_000_000_000 // $425B won YTD
   const aucLost = 185_000_000_000 // $185B lost YTD
   const netNewBusiness = aucWon - aucLost
@@ -242,7 +242,7 @@ export const getOperationalMetrics = (): OperationalMetrics => {
       benchmark: activeConfig.efficiencyRatio - 2.8,
     },
     costPerTransaction: 1.62,
-    stpRate: 95.8, // Northern Trust has industry-leading automation
+    stpRate: 95.8,
     automationRate: 89.2,
     expensesByCategory: [
       {
@@ -350,7 +350,7 @@ export const getProfitabilityData = (): ProfitabilityData => {
 export const getRiskMetrics = (): RiskMetrics => {
   return {
     operationalEvents: generateRiskEvents(20),
-    settlementFailRate: 0.08, // Northern Trust has excellent operational performance
+    settlementFailRate: 0.08,
     capitalRatios: {
       tier1: 15.2,
       total: 17.1,
@@ -367,7 +367,7 @@ export const getRiskMetrics = (): RiskMetrics => {
 // Client Metrics Data
 export const getClientMetrics = (): ClientMetricsData => {
   return {
-    retentionRate: 97.8, // Northern Trust has excellent client retention
+    retentionRate: 97.8,
     churnRate: 2.2,
     newClients: 32,
     lostClients: 10,
@@ -383,7 +383,7 @@ export const getClientMetrics = (): ClientMetricsData => {
 export const getMarketPositionData = (): MarketPositionData => {
   return {
     marketShare: {
-      overall: 5.8, // Northern Trust is #4-5 globally
+      overall: 5.8,
       byRegion: [
         { region: 'Americas', share: 8.2 },
         { region: 'EMEA', share: 4.5 },

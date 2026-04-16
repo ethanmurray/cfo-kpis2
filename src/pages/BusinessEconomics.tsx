@@ -6,7 +6,7 @@ import { useClientStore } from '../stores/clientStore'
 
 export default function BusinessEconomics() {
   const config = useClientStore((s) => s.config)
-  // Business Segment Performance Data (Based on Northern Trust's two main segments)
+  // Business Segment Performance Data
   const segmentPerformance = [
     {
       segment: 'Corporate & Institutional Services',

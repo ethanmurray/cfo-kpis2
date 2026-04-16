@@ -65,6 +65,25 @@ export async function generateDirectAnalysis(
   return extractText(response.content).trim()
 }
 
+export async function generateDeckPlan(
+  systemPrompt: string,
+  userPrompt: string
+): Promise<string> {
+  const response = await anthropic.messages.create({
+    model: SONNET_MODEL,
+    max_tokens: 16384,
+    system: systemPrompt,
+    messages: [{ role: 'user', content: userPrompt }],
+  })
+
+  if (!response.content) {
+    console.error('Deck plan response missing content:', JSON.stringify(response).slice(0, 500))
+    throw new Error(`Claude returned no content. Stop reason: ${response.stop_reason || 'unknown'}`)
+  }
+
+  return extractText(response.content).trim()
+}
+
 export async function classify(
   systemPrompt: string,
   question: string

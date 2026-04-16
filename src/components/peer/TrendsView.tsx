@@ -208,10 +208,10 @@ export default function TrendsView() {
                   const firstValue = series[0].value
                   const change = ((latestValue - firstValue) / firstValue) * 100
 
-                  const ntrsSeries = generatePeerTimeSeries(config.ticker, selectedMetric, 12)
-                  const ntrsLatest = ntrsSeries[ntrsSeries.length - 1].value
-                  const delta = latestValue - ntrsLatest
-                  const deltaPercent = (delta / ntrsLatest) * 100
+                  const ownSeries = generatePeerTimeSeries(config.ticker, selectedMetric, 12)
+                  const ownLatest = ownSeries[ownSeries.length - 1].value
+                  const delta = latestValue - ownLatest
+                  const deltaPercent = (delta / ownLatest) * 100
 
                   return (
                     <tr key={ticker} className={ticker === config.ticker ? 'bg-amber-50' : ''}>

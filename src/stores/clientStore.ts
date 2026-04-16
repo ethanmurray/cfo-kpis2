@@ -26,7 +26,7 @@ export function applyClientTheme(config: ClientConfig) {
   root.style.setProperty('--client-primary-rgb', config.colors.primaryRGB)
   root.style.setProperty('--client-primary-dark-rgb', config.colors.primaryDarkRGB)
   root.style.setProperty('--client-accent-rgb', config.colors.accentRGB)
-  // Text color override: falls back to primary when not set (e.g. Northern Trust green is fine for text)
+  // Text color override: falls back to primary when not set
   root.style.setProperty('--client-text', config.colors.textPrimary ?? config.colors.primary)
   root.style.setProperty('--client-text-rgb', config.colors.textPrimaryRGB ?? config.colors.primaryRGB)
 }

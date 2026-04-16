@@ -5,7 +5,7 @@ interface ClientLogoProps {
   className?: string
 }
 
-export default function NorthernTrustLogo({ variant = 'full', className = '' }: ClientLogoProps) {
+export default function ClientLogo({ variant = 'full', className = '' }: ClientLogoProps) {
   const config = useClientStore((s) => s.config)
   const { primary, accent } = config.colors
   const { monogram, textLines } = config.logo

@@ -34,3 +34,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Private client configurations (not shipped in public repo)
+src/config/clients.private.ts

@@ -64,7 +64,7 @@ ${DATA_SCHEMA}
 `
 }
 
-// Keep backward-compatible constant (defaults to Northern Trust)
+// Keep backward-compatible constant
 export const CODE_GENERATION_SYSTEM_PROMPT = getCodeGenerationSystemPrompt()
 
 export function buildCodeGenUserPrompt(
@@ -209,6 +209,181 @@ Generate ONE clean SVG chart:
 }
 
 export const DIRECT_ANALYSIS_SYSTEM_PROMPT = getDirectAnalysisSystemPrompt()
+
+// ── Deck Planning Prompts ──────────────────────────────────────────────
+
+export function getDeckPlanningSystemPrompt(config: ClientConfig = ACME_BANK_CONFIG): string {
+  return `You are a presentation strategist creating executive PowerPoint decks for ${config.aiContext.companyDescription}.
+
+## Company Context
+${companyContext(config)}
+
+## Your Task
+Given a user prompt describing the story to tell, create a structured slide plan as JSON. You will be given the full financial dataset — every number in your plan MUST come from this data.
+
+## Output Format
+Respond with ONLY valid JSON matching this schema. No text before or after.
+
+{
+  "title": "Deck title",
+  "subtitle": "Subtitle or date line",
+  "slides": [
+    {
+      "layout": "title|section-divider|kpi-grid|chart-narrative|two-column|table|title-content",
+      "title": "Slide title",
+      "subtitle": "Optional subtitle",
+      "content": {
+        "textBlocks": [{"text": "...", "style": "heading|body|bullet|callout", "position": "left|right|full"}],
+        "charts": [{
+          "type": "bar|line|pie|doughnut|scatter",
+          "title": "Chart title",
+          "data": {"labels": ["Q1","Q2",...], "series": [{"name": "Series A", "values": [1.2, 1.5,...]}]},
+          "position": "left|right|full"
+        }],
+        "tables": [{"headers": ["Col1","Col2"], "rows": [["val1","val2"]], "position": "left|right|full"}],
+        "kpis": [{"label": "CET1 Ratio", "value": "12.8%", "change": "+30bps QoQ", "status": "positive|negative|neutral"}],
+        "narrative": "Executive commentary for this slide",
+        "speakerNotes": "Additional context for the presenter"
+      }
+    }
+  ]
+}
+
+## Layout Types — When to Use Each
+- **title**: Opening slide only. Deck title, subtitle, company name, date.
+- **section-divider**: Use between major sections to introduce a new topic. Title + optional subtitle only.
+- **kpi-grid**: 3-6 headline KPI metrics with values, changes, and status indicators. Best for executive summary or key metrics overview. Include narrative below the KPI boxes.
+- **chart-narrative**: One chart (left ~60%) with narrative text (right ~40%). Best for telling a data story — the chart shows the trend/comparison, the narrative explains the "so what".
+- **two-column**: Two content areas side by side. Can hold two charts, chart + table, chart + bullets, etc. Good for comparisons or showing related metrics together.
+- **table**: Full-width data table. Use for detailed breakdowns, peer comparisons, segment performance. Keep to 4-8 rows max.
+- **title-content**: Title with full-width text/bullets below. Use for strategic commentary, key takeaways, action items, or outlook.
+
+## Chart Type Guidance
+- **bar**: Comparisons across categories (segments, peers, products). Use for budget vs actual, this year vs last year.
+- **line**: Trends over time (revenue trajectory, NIM evolution, stock price). 2-4 series max.
+- **pie/doughnut**: Composition or mix (revenue by category, AUC by region, RWA breakdown). Max 6 slices.
+- **scatter**: Correlation or positioning (P/E vs ROE, efficiency vs profitability across peers).
+
+## Story Arc
+Structure the deck as a coherent narrative:
+1. Title slide
+2. Executive summary (kpi-grid with 4-6 headline metrics)
+3. Context/market environment (if relevant)
+4. 3-6 deep-dive slides on the focus areas (chart-narrative, two-column, or table layouts)
+5. Peer positioning or benchmarking (if relevant)
+6. Outlook / key actions / closing (title-content)
+
+## Audience Framing
+Adjust tone and depth based on the audience:
+- **Board**: Strategic, high-level, focus on targets vs actuals, risk posture, peer positioning. Fewer slides, bigger numbers.
+- **CFO/Leadership**: Detail-oriented, variance-focused, actionable. Include driver analysis and decompositions.
+- **Investors**: Growth narrative, returns-focused (ROE, EPS, book value), peer premium/discount story. Forward-looking.
+- **Regulators**: Compliance emphasis, capital adequacy, liquidity buffers, risk appetite utilization. Conservative framing.
+
+## Critical Rules
+- ONLY use numbers from the provided dataset. Every value must trace to a field in the data.
+- Chart data arrays must contain actual numbers, not placeholders.
+- Format currency as "$X.XB" or "$XXXM". Percentages to 1 decimal. Ratios in bps where appropriate.
+- Keep total slides between the requested count (±2).
+- Speaker notes should provide presenter context — what to emphasize, potential questions.
+- No emoji.
+
+${DATA_SCHEMA}`
+}
+
+export function buildDeckPlanningUserPrompt(
+  prompt: string,
+  dataJson: string,
+  options?: {
+    focusAreas?: string[]
+    audience?: string
+    slideCount?: number
+  }
+): string {
+  const truncatedData = dataJson.length > 100000
+    ? dataJson.substring(0, 100000) + '...(truncated)'
+    : dataJson
+
+  let userPrompt = `Story/Focus: ${prompt}\n`
+
+  if (options?.audience) {
+    userPrompt += `Audience: ${options.audience}\n`
+  }
+  if (options?.focusAreas && options.focusAreas.length > 0) {
+    userPrompt += `Focus areas: ${options.focusAreas.join(', ')}\n`
+  }
+  if (options?.slideCount) {
+    userPrompt += `Target slide count: ${options.slideCount}\n`
+  }
+
+  userPrompt += `\nHere is the complete financial dataset:\n${truncatedData}`
+  userPrompt += `\n\nRespond with ONLY valid JSON matching the SlidePlan schema. Use ONLY numbers from the dataset above.`
+
+  return userPrompt
+}
+
+export function getDeckTemplateFillSystemPrompt(config: ClientConfig = ACME_BANK_CONFIG): string {
+  return `You are a presentation specialist updating an existing PowerPoint template for ${config.aiContext.companyDescription}.
+
+## Company Context
+${companyContext(config)}
+
+## Your Task
+You are given:
+1. The structure of an existing PowerPoint template (slide titles, placeholder names and types)
+2. The complete financial dataset
+3. User guidance on what to update and what story to tell
+
+Your job is to decide what new content goes into each placeholder in the template.
+
+## Output Format
+Respond with ONLY valid JSON matching this schema:
+
+{
+  "slides": [
+    {
+      "index": 0,
+      "fills": [
+        {"placeholderName": "Title 1", "newContent": "Q1 2026 Financial Review"},
+        {"placeholderName": "Text Placeholder 2", "newContent": "Revenue grew 8.2% YoY to $3.1B..."}
+      ],
+      "tableFills": [
+        {"placeholderName": "Table 1", "headers": ["Metric", "Actual", "Budget", "Var"], "rows": [["Revenue", "$3.1B", "$2.9B", "+6.9%"]]}
+      ]
+    }
+  ]
+}
+
+## Rules
+- Only fill placeholders that exist in the template structure provided.
+- Use ONLY numbers from the provided dataset.
+- Write executive-quality commentary — direct, specific, no hedging.
+- If a placeholder doesn't need updating (e.g., a logo or decorative element), omit it from the fills.
+- For tables, provide complete header + row data matching the table dimensions.
+- Format currency as "$X.XB" or "$XXXM". Percentages to 1 decimal.
+
+${DATA_SCHEMA}`
+}
+
+export function buildDeckTemplateFillUserPrompt(
+  prompt: string,
+  dataJson: string,
+  templateStructure: string
+): string {
+  const truncatedData = dataJson.length > 100000
+    ? dataJson.substring(0, 100000) + '...(truncated)'
+    : dataJson
+
+  return `User guidance: ${prompt}
+
+Template structure:
+${templateStructure}
+
+Financial dataset:
+${truncatedData}
+
+Respond with ONLY valid JSON matching the template fill schema. Use ONLY numbers from the dataset.`
+}
 
 export function buildDirectAnalysisUserPrompt(
   question: string,

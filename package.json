@@ -1,7 +1,7 @@
 {
-  "name": "northern-trust-cfo-dashboard",
+  "name": "cfo-dashboard",
   "version": "1.0.0",
-  "description": "Northern Trust CFO Dashboard - Real-world data based on public filings",
+  "description": "CFO KPI Dashboard - Financial analytics and executive reporting",
   "type": "module",
   "scripts": {
     "dev": "vite",

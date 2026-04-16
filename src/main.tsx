@@ -7,7 +7,7 @@ import { applyClientTheme } from './stores/clientStore'
 
 // Apply client theme before first render to prevent color flash.
 // Read persisted clientId from localStorage (matches zustand persist key).
-let initialClientId = 'ntrs'
+let initialClientId = 'acme'
 try {
   const stored = localStorage.getItem('cfo-dashboard-client')
   if (stored) {

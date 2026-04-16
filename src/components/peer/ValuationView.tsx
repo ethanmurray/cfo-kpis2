@@ -78,7 +78,7 @@ export default function ValuationView() {
     }
   })
 
-  const ntrsData = peers.find(p => p.ticker === clientConfig.ticker)
+  const ownData = peers.find(p => p.ticker === clientConfig.ticker)
 
   return (
     <div className="space-y-6">
@@ -123,27 +123,27 @@ export default function ValuationView() {
         {/* Valuation Summary */}
         <div className="metric-card">
           <h3 className="text-sm font-semibold text-gray-900 mb-3">Valuation Summary ({clientConfig.ticker})</h3>
-          {ntrsData && (
+          {ownData && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">P/E (TTM):</span>
-                <span className="font-medium">{ntrsData.valuation.peTTM.toFixed(1)}x</span>
+                <span className="font-medium">{ownData.valuation.peTTM.toFixed(1)}x</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">P/E (Forward):</span>
-                <span className="font-medium">{ntrsData.valuation.peForward.toFixed(1)}x</span>
+                <span className="font-medium">{ownData.valuation.peForward.toFixed(1)}x</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">P/B:</span>
-                <span className="font-medium">{ntrsData.valuation.pb.toFixed(2)}x</span>
+                <span className="font-medium">{ownData.valuation.pb.toFixed(2)}x</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">P/TBV:</span>
-                <span className="font-medium">{ntrsData.valuation.ptbv.toFixed(2)}x</span>
+                <span className="font-medium">{ownData.valuation.ptbv.toFixed(2)}x</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Dividend Yield:</span>
-                <span className="font-medium">{ntrsData.valuation.dividendYield.toFixed(2)}%</span>
+                <span className="font-medium">{ownData.valuation.dividendYield.toFixed(2)}%</span>
               </div>
             </div>
           )}
@@ -183,36 +183,36 @@ export default function ValuationView() {
         {/* Relative Position */}
         <div className="metric-card">
           <h3 className="text-sm font-semibold text-gray-900 mb-3">Relative Position ({clientConfig.ticker})</h3>
-          {ntrsData && (
+          {ownData && (
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">P/TBV vs Median:</span>
                 <span className={`font-medium ${
-                  ntrsData.valuation.ptbv > peers.map(p => p.valuation.ptbv).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
+                  ownData.valuation.ptbv > peers.map(p => p.valuation.ptbv).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
                     ? 'text-amber-600'
                     : 'text-green-600'
                 }`}>
-                  {((ntrsData.valuation.ptbv / peers.map(p => p.valuation.ptbv).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
+                  {((ownData.valuation.ptbv / peers.map(p => p.valuation.ptbv).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
                 </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">ROE vs Median:</span>
                 <span className={`font-medium ${
-                  ntrsData.fundamentals.roe > peers.map(p => p.fundamentals.roe).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
+                  ownData.fundamentals.roe > peers.map(p => p.fundamentals.roe).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
                     ? 'text-green-600'
                     : 'text-red-600'
                 }`}>
-                  {((ntrsData.fundamentals.roe / peers.map(p => p.fundamentals.roe).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
+                  {((ownData.fundamentals.roe / peers.map(p => p.fundamentals.roe).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
                 </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-gray-600">Div Yield vs Median:</span>
                 <span className={`font-medium ${
-                  ntrsData.valuation.dividendYield > peers.map(p => p.valuation.dividendYield).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
+                  ownData.valuation.dividendYield > peers.map(p => p.valuation.dividendYield).sort((a, b) => a - b)[Math.floor(peers.length / 2)]
                     ? 'text-green-600'
                     : 'text-red-600'
                 }`}>
-                  {((ntrsData.valuation.dividendYield / peers.map(p => p.valuation.dividendYield).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
+                  {((ownData.valuation.dividendYield / peers.map(p => p.valuation.dividendYield).sort((a, b) => a - b)[Math.floor(peers.length / 2)] - 1) * 100).toFixed(1)}%
                 </span>
               </div>
             </div>

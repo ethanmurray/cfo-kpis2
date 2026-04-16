@@ -2,6 +2,8 @@ import { ReactNode, useState } from 'react'
 import Sidebar from './Sidebar'
 import AskButton from '../ai/AskButton'
 import AskPanel from '../ai/AskPanel'
+import DeckButton from '../deck/DeckButton'
+import DeckGeneratorModal from '../deck/DeckGeneratorModal'
 
 interface DashboardLayoutProps {
   children: ReactNode
@@ -18,8 +20,10 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           {children}
         </div>
       </main>
+      <DeckButton />
       <AskButton />
       <AskPanel />
+      <DeckGeneratorModal />
     </div>
   )
 }

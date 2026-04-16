@@ -15,7 +15,7 @@ import {
   BarChart2,
   UserCog,
 } from 'lucide-react'
-import NorthernTrustLogo from '../NorthernTrustLogo'
+import ClientLogo from '../ClientLogo'
 import ClientSwitcher from './ClientSwitcher'
 import { useClientStore } from '../../stores/clientStore'
 
@@ -58,14 +58,14 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
       <div className="flex h-20 items-center px-5 border-b" style={{ borderColor: `${accent}26` }}>
         {!isCollapsed ? (
           <div className="flex-1">
-            <NorthernTrustLogo variant="full" className="h-12" />
+            <ClientLogo variant="full" className="h-12" />
             <div className="mt-1 text-xs font-medium tracking-wide" style={{ color: accent }}>
               CFO ANALYTICS
             </div>
           </div>
         ) : (
           <div className="flex-1 flex justify-center">
-            <NorthernTrustLogo variant="icon" className="h-12 w-12" />
+            <ClientLogo variant="icon" className="h-12 w-12" />
           </div>
         )}
         <button

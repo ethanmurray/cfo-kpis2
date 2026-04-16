@@ -50,6 +50,11 @@ export function apiPlugin(): Plugin {
             const result = await handleClassify(body.question as string)
             res.statusCode = 200
             res.end(JSON.stringify(result))
+          } else if (req.url === '/api/generate-deck' && req.method === 'POST') {
+            const { handleGenerateDeck } = await import('./api/generate-deck')
+            const result = await handleGenerateDeck(body as any)
+            res.statusCode = 200
+            res.end(JSON.stringify(result))
           } else {
             res.statusCode = 404
             res.end(JSON.stringify({ error: 'Not found' }))
